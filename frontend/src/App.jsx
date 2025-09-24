@@ -1,13 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
- 
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Landing from './pages/landing';
-import ProfileForm from './pages/profileform'; 
+import Dashboard from './pages/dashboard';
+import Sidebar from './components/Sidebar';
+import ProfileForm from './pages/profileform';
+
 function App() {
   const location = useLocation();
 
-  const shouldShowSidebar = !['/', '/login', '/signup'].includes(location.pathname);
-  const isLandingPage = location.pathname === '/';
+  // Show sidebar only on dashboard (exclude landing and profileform)
+  const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform';
 
   return (
     <div className="flex h-screen">
@@ -22,16 +24,14 @@ function App() {
       <div className="flex-1 overflow-auto">
         <Routes>
           <Route path="/" element={<Landing />} />
-           
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profileform" element={<ProfileForm />} />
         </Routes>
       </div>
 
-      {/* Accessibility Dialog - exclude landing */}
-      {!isLandingPage && <AccessibilityDialog />}
-
-      {/* Chatbot - exclude landing */}
-      {!isLandingPage && <Chatbot />}
+      {/* AccessibilityDialog & Chatbot can go here if needed */}
     </div>
   );
 }
+
 export default App;
