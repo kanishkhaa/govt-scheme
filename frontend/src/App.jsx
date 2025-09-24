@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
  
 import Landing from './pages/landing';
- 
+import ProfileForm from './pages/profileform'; 
 function App() {
   const location = useLocation();
 
