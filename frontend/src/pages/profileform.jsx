@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, Briefcase, MapPin, DollarSign, Calendar, Users } from 'lucide-react';
+import axios from 'axios';
 
 const ProfileForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,18 +14,36 @@ const ProfileForm = () => {
     state: '',
     customState: ''
   });
+  const [recommendations, setRecommendations] = useState([]);
+  const [query, setQuery] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    
-    // Clear any existing errors for this field
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
   };
 
+  const validateStep = () => {
+    const newErrors = {};
+    if (currentStep === 1) {
+      if (!formData.name) newErrors.name = 'Name is required';
+      if (!formData.age_group) newErrors.age_group = 'Age group is required';
+      if (!formData.gender) newErrors.gender = 'Gender is required';
+      if (!formData.occupation) newErrors.occupation = 'Occupation is required';
+      if (!formData.income_level) newErrors.income_level = 'Income level is required';
+      if (!formData.state) newErrors.state = 'State is required';
+      if (formData.state === 'Other' && !formData.customState) newErrors.customState = 'Custom state is required';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const nextStep = () => {
-    setCurrentStep(prev => Math.min(prev + 1, 3));
+    if (currentStep === 1 && !validateStep()) return;
+    setCurrentStep(prev => Math.min(prev + 1, 4));
   };
 
   const prevStep = () => {
@@ -32,79 +51,82 @@ const ProfileForm = () => {
   };
 
   const handleSubmit = async () => {
+    if (!validateStep()) return;
+    setLoading(true);
     try {
-      // Simulate API call - in real app, replace with actual API endpoint
-      console.log('Submitting profile data:', formData);
-      
-      // Prepare final data with custom state handling
       const submitData = {
         ...formData,
         state: formData.state === 'Other' ? formData.customState : formData.state
       };
       delete submitData.customState;
       
-      // Simulate successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await axios.post('http://localhost:5000/recommend', submitData);
+      
+      setQuery(response.data.query);
+      setRecommendations(response.data.recommendations);
+      setMessage(response.data.message);
       
       setCurrentStep(3);
       setTimeout(() => {
-        // In real app: navigate('/profile');
-        console.log('Would navigate to profile page');
+        setCurrentStep(4);
       }, 2000);
     } catch (err) {
-      console.error('Submit Profile Error:', err.message);
-      setErrors({ submit: 'Failed to save profile. Please try again.' });
+      setErrors({ submit: err.response?.data?.error || 'Failed to fetch recommendations. Please try again.' });
+    } finally {
+      setLoading(false);
     }
   };
 
   const renderStepIndicator = () => {
-  const steps = [
-    { id: 1, title: 'Profile Details', description: 'Basic information' },
-    { id: 2, title: 'Review', description: 'Verify details' },
-    { id: 3, title: 'Complete', description: 'All done!' }
-  ];
+    const steps = [
+      { id: 1, title: 'Profile Details', description: 'Basic information' },
+      { id: 2, title: 'Review', description: 'Verify details' },
+      { id: 3, title: 'Complete', description: 'All done!' },
+      { id: 4, title: 'Recommendations', description: 'Your suggestions' }
+    ];
 
-  return (
-    <div className="mb-8">
-      <div className="flex justify-center items-center mb-6">
-        {steps.map((step, index) => (
-          <React.Fragment key={step.id}>
-            <div className="flex flex-col items-center group">
-              <div className={`relative w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 transform group-hover:scale-105 ${
-                currentStep > step.id 
-                  ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg shadow-green-200' 
-                  : currentStep === step.id 
-                    ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-200 ring-4 ring-blue-100' 
-                    : 'bg-white text-gray-400 border-2 border-gray-200 shadow-sm'
-              }`}>
-                {currentStep > step.id ? <CheckCircle className="w-8 h-8" /> : step.id}
-                {currentStep === step.id && (
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full blur opacity-30 animate-pulse"></div>
-                )}
-              </div>
-              <div className="text-center mt-2">
-                <span className={`block text-sm font-semibold transition-colors ${
-                  currentStep > step.id ? 'text-emerald-600' : 
-                  currentStep === step.id ? 'text-indigo-600' : 'text-gray-500'
+    return (
+      <div className="mb-8">
+        <div className="flex justify-center items-center mb-6">
+          {steps.map((step, index) => (
+            <React.Fragment key={step.id}>
+              <div className="flex flex-col items-center group">
+                <div className={`relative w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 transform group-hover:scale-105 ${
+                  currentStep > step.id 
+                    ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg shadow-green-200' 
+                    : currentStep === step.id 
+                      ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-200 ring-4 ring-blue-100' 
+                      : 'bg-white text-gray-400 border-2 border-gray-200 shadow-sm'
                 }`}>
-                  {step.title}
-                </span>
-                <span className="block text-xs text-gray-400 mt-0.5">
-                  {step.description}
-                </span>
+                  {currentStep > step.id ? <CheckCircle className="w-8 h-8" /> : step.id}
+                  {currentStep === step.id && (
+                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full blur opacity-30 animate-pulse"></div>
+                  )}
+                </div>
+                <div className="text-center mt-2">
+                  <span className={`block text-sm font-semibold transition-colors ${
+                    currentStep > step.id ? 'text-emerald-600' : 
+                    currentStep === step.id ? 'text-indigo-600' : 'text-gray-500'
+                  }`}>
+                    {step.title}
+                  </span>
+                  <span className="block text-xs text-gray-400 mt-0.5">
+                    {step.description}
+                  </span>
+                </div>
               </div>
-            </div>
-            {index < steps.length - 1 && (
-              <div className={`w-32 h-1 mx-12 mt-8 rounded-full transition-all duration-500 ${
-                currentStep > step.id ? 'bg-gradient-to-r from-emerald-400 to-green-500' : 'bg-gray-200'
-              }`} />
-            )}
-          </React.Fragment>
-        ))}
+              {index < steps.length - 1 && (
+                <div className={`w-32 h-1 mx-12 mt-8 rounded-full transition-all duration-500 ${
+                  currentStep > step.id ? 'bg-gradient-to-r from-emerald-400 to-green-500' : 'bg-gray-200'
+                }`} />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+
   const renderProfileDetails = () => (
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-8">
@@ -133,6 +155,7 @@ const ProfileForm = () => {
               className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
               placeholder="Enter your full name"
             />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -151,6 +174,7 @@ const ProfileForm = () => {
                 <option value="young adult">Young Adult (25-35)</option>
                 <option value="adult">Adult (35+)</option>
               </select>
+              {errors.age_group && <p className="text-red-500 text-sm mt-1">{errors.age_group}</p>}
             </div>
             
             <div className="group">
@@ -168,6 +192,7 @@ const ProfileForm = () => {
                 <option value="male">Male</option>
                 <option value="other">Other</option>
               </select>
+              {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
             </div>
           </div>
           
@@ -187,6 +212,7 @@ const ProfileForm = () => {
                 <option value="farmer">Farmer</option>
                 <option value="employed">Employed</option>
               </select>
+              {errors.occupation && <p className="text-red-500 text-sm mt-1">{errors.occupation}</p>}
             </div>
             
             <div className="group">
@@ -204,6 +230,7 @@ const ProfileForm = () => {
                 <option value="middle">Middle</option>
                 <option value="high">High</option>
               </select>
+              {errors.income_level && <p className="text-red-500 text-sm mt-1">{errors.income_level}</p>}
             </div>
           </div>
           
@@ -240,6 +267,7 @@ const ProfileForm = () => {
               <option value="assam">Assam</option>
               <option value="Other">Other</option>
             </select>
+            {errors.state && <p className="text-red-500 text-sm mt-1">{errors.state}</p>}
           </div>
 
           {formData.state === 'Other' && (
@@ -255,6 +283,7 @@ const ProfileForm = () => {
                 className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
                 placeholder="Enter your state name"
               />
+              {errors.customState && <p className="text-red-500 text-sm mt-1">{errors.customState}</p>}
             </div>
           )}
         </div>
@@ -316,14 +345,14 @@ const ProfileForm = () => {
           Profile Created!
         </h2>
         <p className="text-xl text-gray-600 leading-relaxed">
-          Your profile has been saved successfully. Get ready for personalized recommendations crafted just for you.
+          Your profile has been saved successfully. Get ready for personalized recommendations crafted just for you, {formData.name}.
         </p>
       </div>
       
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
         <div className="flex items-center justify-center space-x-4 text-indigo-600">
           <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-lg font-medium">Redirecting to your profile...</span>
+          <span className="text-lg font-medium">Loading your recommendations...</span>
         </div>
       </div>
       
@@ -332,6 +361,54 @@ const ProfileForm = () => {
           <p className="text-red-700 font-medium text-lg">{errors.submit}</p>
         </div>
       )}
+    </div>
+  );
+
+  const renderRecommendations = () => (
+    <div className="max-w-4xl mx-auto">
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg shadow-blue-200">
+          <User className="w-12 h-12 text-white" />
+        </div>
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-3">
+          Your Personalized Recommendations, {formData.name}
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Based on your profile, here are the top government schemes for you
+        </p>
+      </div>
+      
+      <div className="bg-white rounded-3xl shadow-2xl shadow-gray-100 border border-gray-100 p-8">
+        <h3 className="text-xl font-semibold mb-4">Generated Query: {query}</h3>
+        <p className="text-lg text-gray-600 mb-4">{message}</p>
+        
+        {recommendations.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse border">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-100 to-indigo-100">
+                  <th className="border p-4 text-left">State</th>
+                  <th className="border p-4 text-left">Scheme Name</th>
+                  <th className="border p-4 text-left">Description</th>
+                  <th className="border p-4 text-left">Similarity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recommendations.map((rec, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="border p-4">{rec.state}</td>
+                    <td className="border p-4">{rec.scheme_name}</td>
+                    <td className="border p-4">{rec.description.substring(0, 200)}...</td>
+                    <td className="border p-4">{rec.similarity.toFixed(3)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="text-gray-500">No recommendations found.</p>
+        )}
+      </div>
     </div>
   );
 
@@ -344,6 +421,7 @@ const ProfileForm = () => {
           {currentStep === 1 && renderProfileDetails()}
           {currentStep === 2 && renderReview()}
           {currentStep === 3 && renderComplete()}
+          {currentStep === 4 && renderRecommendations()}
         </div>
 
         {currentStep < 3 && (
@@ -369,10 +447,11 @@ const ProfileForm = () => {
             ) : currentStep === 2 ? (
               <button
                 onClick={handleSubmit}
-                className="group inline-flex items-center px-10 py-5 border-2 border-transparent rounded-2xl text-lg font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all duration-200 shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transform hover:-translate-y-0.5"
+                disabled={loading}
+                className={`group inline-flex items-center px-10 py-5 border-2 border-transparent rounded-2xl text-lg font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all duration-200 shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transform hover:-translate-y-0.5 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <CheckCircle className="mr-3 h-6 w-6" />
-                Save Profile
+                {loading ? 'Submitting...' : 'Save Profile'}
               </button>
             ) : null}
           </div>

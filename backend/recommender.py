@@ -5,8 +5,16 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+# Initialize Flask app
 app = Flask(__name__)
+CORS(app)  # Enable CORS for React frontend
+
+# Load the pre-trained sentence transformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Function to clean text
 def clean_text(text):
     text = re.sub(r'\(adsbygoogle=window\.adsbygoogle\|\|\[\]\)\.push\(\{\}\);', '', text)
     text = re.sub(r'Table of Contents', '', text)
@@ -15,6 +23,8 @@ def clean_text(text):
     text = re.sub(r'[^\w\s]', '', text)
     text = text.lower().strip()
     return text
+
+# Function to extract state
 def extract_state(state_input):
     states = [
         ('andhra pradesh', 'andhrapradesh'), ('arunachal pradesh', 'arunachalpradesh'), ('assam', 'assam'),
@@ -30,9 +40,10 @@ def extract_state(state_input):
     state_lower = state_input.lower().replace('-', '').replace(' ', '')
     for state_name, state_normalized in states:
         if state_name.replace(' ', '') in state_lower or state_normalized in state_lower:
-            return state_normalized 
+            return state_normalized
     return None
 
+# Generate personalized query
 def generate_personalized_query(profile):
     base_queries = {
         'student': 'free education scholarships for students',
@@ -49,12 +60,19 @@ def generate_personalized_query(profile):
     if profile.get('income_level', '').lower() == 'low':
         qualifiers.append('poor or low-income')
     
-    query = f"{base} for {', '.join(qualifiers)} in {profile.get('state', 'india')}"
+    # Use customState if state is 'Other', else use state
+    state = profile.get('customState', profile.get('state', 'india')) if profile.get('state') == 'Other' else profile.get('state', 'india')
+    query = f"{base} for {', '.join(qualifiers)} in {state}"
     return query
+
+# Recommendation function
 def recommend_schemes(query, top_n=5, state_filter=None):
     cleaned_query = clean_text(query)
     query_embedding = model.encode([cleaned_query])
-    df = pd.read_pickle('schemes_with_embeddings.pkl').copy()
+    try:
+        df = pd.read_pickle('schemes_with_embeddings.pkl').copy()
+    except FileNotFoundError:
+        return [], "Error: 'schemes_with_embeddings.pkl' not found."
     
     filtered = False
     if state_filter:
@@ -81,69 +99,60 @@ def recommend_schemes(query, top_n=5, state_filter=None):
         print(f"Debug: Applied filter - results limited to {state_filter}.")
     
     return results, message
-@app.route('/recommend', methods=['POST'])
+
+# Flask API endpoint for recommendations
+@app.route('/recommend', methods=['GET', 'POST'])
 def get_recommendations():
+    if request.method == 'GET':
+        return jsonify({
+            'message': "This endpoint expects POST requests with user profile data."
+        }), 200
+
     try:
         data = request.get_json()
         if not data:
             return jsonify({'error': 'No input data provided'}), 400
         
+        # Extract profile
         profile = {
+            'name': data.get('name', ''),
             'age_group': data.get('age_group', ''),
             'gender': data.get('gender', ''),
             'occupation': data.get('occupation', ''),
             'income_level': data.get('income_level', ''),
-            'state': data.get('state', '')
+            'state': data.get('state', ''),
+            'customState': data.get('customState', '')
         }
         
-        query = generate_personalized_query(profile)
-        state_filter = extract_state(profile['state'])
+        # Validate required fields
+        required_fields = ['name', 'age_group', 'gender', 'occupation', 'income_level', 'state']
+        if profile['state'] == 'Other':
+            required_fields.append('customState')
+        missing_fields = [field for field in required_fields if not profile[field]]
+        if missing_fields:
+            return jsonify({'error': f'Missing required fields: {", ".join(missing_fields)}'}), 400
         
+        # Determine state for filtering
+        state_filter = extract_state(profile['customState'] if profile['state'] == 'Other' else profile['state'])
+        if not state_filter:
+            return jsonify({'error': f'Invalid state: {profile["state"]}'}), 400
+        
+        query = generate_personalized_query(profile)
         recommendations, message = recommend_schemes(query, top_n=5, state_filter=state_filter)
         
         return jsonify({
             'query': query,
             'recommendations': recommendations,
-            'message': message
+            'message': message,
+            'name': profile['name']
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 if __name__ == "__main__":
     if not os.path.exists('schemes_with_embeddings.pkl'):
         print("Error: 'schemes_with_embeddings.pkl' not found. Run previous steps to generate embeddings.")
         exit()
     
-    print("Government Scheme Recommender Ready!")
-    print("Enter 'profile' for personalized recommendations, or a direct query. Type 'quit' to exit.\n")
-    
-    while True:
-        user_input = input("Your input: ").strip()
-        if user_input.lower() == 'quit':
-            print("Exiting...")
-            break
-        
-        if user_input.lower() == 'profile':
-            profile = {
-                'age_group': input("Enter age group (e.g., 'student' for 18-25, 'young adult' for 25-35, 'adult' for 35+): ").strip().lower(),
-                'gender': input("Enter gender (e.g., 'female', 'male', 'other'): ").strip().lower(),
-                'occupation': input("Enter occupation/sector (e.g., 'student', 'farmer', 'employed'): ").strip().lower(),
-                'income_level': input("Enter income level (e.g., 'low', 'middle', 'high'): ").strip().lower(),
-                'state': input("Enter state (e.g., 'tamil nadu'): ").strip().lower()
-            }
-            print(f"Profile saved: {profile}")
-            query = generate_personalized_query(profile)
-            print(f"\nGenerated Query: '{query}'\n")
-            state_filter = extract_state(profile['state'])
-            recommendations, message = recommend_schemes(query, top_n=5, state_filter=state_filter)
-        else:
-            state_filter = extract_state(user_input)
-            recommendations, message = recommend_schemes(user_input, top_n=5, state_filter=state_filter)
-            query = user_input
-        
-        if recommendations:
-            print(f"\nTop 5 Personalized Recommendations for: '{query}'" + (f" (based on profile, filtered to {state_filter})" if 'profile' in user_input.lower() else "") + "\n")
-            print(pd.DataFrame(recommendations).to_string(index=False))
-        else:
-            print(f"No recommendations found: {message}")
-        
-        print("\n" + "-"*80 + "\n")
+    print("Starting Flask API server...")
+    app.run(debug=True, host='0.0.0.0', port=5000)
