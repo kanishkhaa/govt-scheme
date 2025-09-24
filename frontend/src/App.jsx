@@ -1,12 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
- 
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Landing from './pages/landing';
- 
+import Dashboard from './pages/dashboard';
+import Sidebar from './components/Sidebar'; // <-- import your real Sidebar
+
 function App() {
   const location = useLocation();
 
-  const shouldShowSidebar = !['/', '/login', '/signup'].includes(location.pathname);
+  // Show sidebar on all pages except landing
+  const shouldShowSidebar = location.pathname !== '/';
   const isLandingPage = location.pathname === '/';
 
   return (
@@ -22,16 +24,13 @@ function App() {
       <div className="flex-1 overflow-auto">
         <Routes>
           <Route path="/" element={<Landing />} />
-           
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
 
-      {/* Accessibility Dialog - exclude landing */}
-      {!isLandingPage && <AccessibilityDialog />}
-
-      {/* Chatbot - exclude landing */}
-      {!isLandingPage && <Chatbot />}
+      {/* AccessibilityDialog & Chatbot can go here if needed */}
     </div>
   );
 }
+
 export default App;
