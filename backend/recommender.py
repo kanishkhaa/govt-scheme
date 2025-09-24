@@ -5,14 +5,8 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from flask import Flask, request, jsonify
-
-# Initialize Flask app
 app = Flask(__name__)
-
-# Load the pre-trained sentence transformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')
-
-# Function to clean text
 def clean_text(text):
     text = re.sub(r'\(adsbygoogle=window\.adsbygoogle\|\|\[\]\)\.push\(\{\}\);', '', text)
     text = re.sub(r'Table of Contents', '', text)
@@ -21,8 +15,6 @@ def clean_text(text):
     text = re.sub(r'[^\w\s]', '', text)
     text = text.lower().strip()
     return text
-
-# Function to extract state from profile or query
 def extract_state(state_input):
     states = [
         ('andhra pradesh', 'andhrapradesh'), ('arunachal pradesh', 'arunachalpradesh'), ('assam', 'assam'),
@@ -38,10 +30,9 @@ def extract_state(state_input):
     state_lower = state_input.lower().replace('-', '').replace(' ', '')
     for state_name, state_normalized in states:
         if state_name.replace(' ', '') in state_lower or state_normalized in state_lower:
-            return state_normalized  # e.g., 'tamilnadu'
+            return state_normalized 
     return None
 
-# Generate personalized query from profile
 def generate_personalized_query(profile):
     base_queries = {
         'student': 'free education scholarships for students',
@@ -60,8 +51,6 @@ def generate_personalized_query(profile):
     
     query = f"{base} for {', '.join(qualifiers)} in {profile.get('state', 'india')}"
     return query
-
-# Recommendation function
 def recommend_schemes(query, top_n=5, state_filter=None):
     cleaned_query = clean_text(query)
     query_embedding = model.encode([cleaned_query])
@@ -92,8 +81,6 @@ def recommend_schemes(query, top_n=5, state_filter=None):
         print(f"Debug: Applied filter - results limited to {state_filter}.")
     
     return results, message
-
-# Flask API endpoint for recommendations
 @app.route('/recommend', methods=['POST'])
 def get_recommendations():
     try:
@@ -121,8 +108,6 @@ def get_recommendations():
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-# Interactive CLI for testing
 if __name__ == "__main__":
     if not os.path.exists('schemes_with_embeddings.pkl'):
         print("Error: 'schemes_with_embeddings.pkl' not found. Run previous steps to generate embeddings.")

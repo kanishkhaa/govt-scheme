@@ -1,9 +1,12 @@
-# Virtual environment
+# Python virtual environment
 venv/
 
 # Bytecode
 __pycache__/
 *.py[cod]
 
-# Other
+# Python packaging
 *.egg-info/
+
+# Node modules
+node_modules/
