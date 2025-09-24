@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
+    "numpy": "^0.0.1",
+    "pandas": "^0.0.3",
     "tailwindcss": "^4.1.13"
   }
 }

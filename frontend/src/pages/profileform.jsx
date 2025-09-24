@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, Briefcase, MapPin, DollarSign, Calendar, Users } from 'lucide-react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Add this import
 
 const ProfileForm = () => {
+  const navigate = useNavigate(); // Add this hook
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -14,9 +16,6 @@ const ProfileForm = () => {
     state: '',
     customState: ''
   });
-  const [recommendations, setRecommendations] = useState([]);
-  const [query, setQuery] = useState('');
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (field, value) => {
@@ -43,7 +42,7 @@ const ProfileForm = () => {
 
   const nextStep = () => {
     if (currentStep === 1 && !validateStep()) return;
-    setCurrentStep(prev => Math.min(prev + 1, 4));
+    setCurrentStep(prev => Math.min(prev + 1, 3)); // Changed from 4 to 3
   };
 
   const prevStep = () => {
@@ -60,16 +59,23 @@ const ProfileForm = () => {
       };
       delete submitData.customState;
       
+      // Call the API to get recommendations
       const response = await axios.post('http://localhost:5000/recommend', submitData);
       
-      setQuery(response.data.query);
-      setRecommendations(response.data.recommendations);
-      setMessage(response.data.message);
+      // Store the recommendations and profile data in localStorage or sessionStorage
+      const recommendationData = {
+        profile: submitData,
+        recommendations: response.data.recommendations,
+        query: response.data.query,
+        message: response.data.message
+      };
       
-      setCurrentStep(3);
-      setTimeout(() => {
-        setCurrentStep(4);
-      }, 2000);
+      // Store in sessionStorage (you can also use localStorage)
+      sessionStorage.setItem('recommendationData', JSON.stringify(recommendationData));
+      
+      // Navigate to scheme display page
+      navigate('/scheme', { state: recommendationData });
+      
     } catch (err) {
       setErrors({ submit: err.response?.data?.error || 'Failed to fetch recommendations. Please try again.' });
     } finally {
@@ -81,8 +87,8 @@ const ProfileForm = () => {
     const steps = [
       { id: 1, title: 'Profile Details', description: 'Basic information' },
       { id: 2, title: 'Review', description: 'Verify details' },
-      { id: 3, title: 'Complete', description: 'All done!' },
-      { id: 4, title: 'Recommendations', description: 'Your suggestions' }
+      { id: 3, title: 'Complete', description: 'All done!' }
+      // Removed the 4th step
     ];
 
     return (
@@ -345,14 +351,14 @@ const ProfileForm = () => {
           Profile Created!
         </h2>
         <p className="text-xl text-gray-600 leading-relaxed">
-          Your profile has been saved successfully. Get ready for personalized recommendations crafted just for you, {formData.name}.
+          Your profile has been saved successfully. Redirecting to your personalized recommendations...
         </p>
       </div>
       
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
         <div className="flex items-center justify-center space-x-4 text-indigo-600">
           <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-lg font-medium">Loading your recommendations...</span>
+          <span className="text-lg font-medium">Loading recommendations...</span>
         </div>
       </div>
       
@@ -361,54 +367,6 @@ const ProfileForm = () => {
           <p className="text-red-700 font-medium text-lg">{errors.submit}</p>
         </div>
       )}
-    </div>
-  );
-
-  const renderRecommendations = () => (
-    <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg shadow-blue-200">
-          <User className="w-12 h-12 text-white" />
-        </div>
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-3">
-          Your Personalized Recommendations, {formData.name}
-        </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Based on your profile, here are the top government schemes for you
-        </p>
-      </div>
-      
-      <div className="bg-white rounded-3xl shadow-2xl shadow-gray-100 border border-gray-100 p-8">
-        <h3 className="text-xl font-semibold mb-4">Generated Query: {query}</h3>
-        <p className="text-lg text-gray-600 mb-4">{message}</p>
-        
-        {recommendations.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border">
-              <thead>
-                <tr className="bg-gradient-to-r from-blue-100 to-indigo-100">
-                  <th className="border p-4 text-left">State</th>
-                  <th className="border p-4 text-left">Scheme Name</th>
-                  <th className="border p-4 text-left">Description</th>
-                  <th className="border p-4 text-left">Similarity</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recommendations.map((rec, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="border p-4">{rec.state}</td>
-                    <td className="border p-4">{rec.scheme_name}</td>
-                    <td className="border p-4">{rec.description.substring(0, 200)}...</td>
-                    <td className="border p-4">{rec.similarity.toFixed(3)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className="text-gray-500">No recommendations found.</p>
-        )}
-      </div>
     </div>
   );
 
@@ -421,7 +379,6 @@ const ProfileForm = () => {
           {currentStep === 1 && renderProfileDetails()}
           {currentStep === 2 && renderReview()}
           {currentStep === 3 && renderComplete()}
-          {currentStep === 4 && renderRecommendations()}
         </div>
 
         {currentStep < 3 && (
@@ -451,7 +408,7 @@ const ProfileForm = () => {
                 className={`group inline-flex items-center px-10 py-5 border-2 border-transparent rounded-2xl text-lg font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all duration-200 shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transform hover:-translate-y-0.5 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <CheckCircle className="mr-3 h-6 w-6" />
-                {loading ? 'Submitting...' : 'Save Profile'}
+                {loading ? 'Submitting...' : 'Save & View Recommendations'}
               </button>
             ) : null}
           </div>

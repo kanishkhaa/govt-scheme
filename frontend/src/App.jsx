@@ -4,6 +4,7 @@ import Landing from './pages/landing';
 import Dashboard from './pages/dashboard';
 import Sidebar from './components/Sidebar';
 import ProfileForm from './pages/profileform';
+import Scheme from './pages/scheme';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profileform" element={<ProfileForm />} />
+          <Route path="/scheme" element={<Scheme />} />
         </Routes>
       </div>
 
