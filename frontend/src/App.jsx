@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard';
 import Sidebar from './components/Sidebar';
 import ProfileForm from './pages/profileform';
 import Scheme from './pages/scheme';
+import Eligibility from './pages/eligibility';
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profileform" element={<ProfileForm />} />
           <Route path="/scheme" element={<Scheme />} />
+          <Route path="/eligibility" element={<Eligibility/>} />
         </Routes>
       </div>
 

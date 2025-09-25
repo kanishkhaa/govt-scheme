@@ -1,0 +1,860 @@
+{
+  "agriculture_schemes": [
+    {
+      "scheme_name": "Primary Cooperative Agriculture and Rural Development Bank: For Minor Irrigation",
+      "parent_scheme": "Agriculture Loan Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Co-operation, Food and Consumer Protection Department",
+      "objectives": [
+        "Provide financial assistance for minor irrigation projects",
+        "Enhance water availability and crop productivity"
+      ],
+      "benefits": {
+        "loan_amount": "₹65,000 to ₹1,20,000",
+        "interest_rate": "11% to 11.75% (subject to change)"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Engaged in agriculture",
+        "Farmer needing support for minor irrigation"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Collect and fill application form from Primary Cooperative Agriculture and Rural Development Bank",
+          "Attach required documents",
+          "Submit to Secretary or Special Officer of the Bank"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, PAN, etc.)",
+        "Address proof",
+        "Proof of land ownership or lease",
+        "Other documents (if required)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Primary Cooperative Agriculture and Rural Development Bank: For Plantation (Tea)",
+      "parent_scheme": "Agriculture Loan Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Co-operation, Food and Consumer Protection Department",
+      "objectives": [
+        "Provide financial assistance for tea plantations",
+        "Promote sustainable tea farming"
+      ],
+      "benefits": {
+        "loan_amount": "₹33,000 per acre",
+        "interest_rate": "11% to 11.5% (subject to change)"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Farmer intending to cultivate tea",
+        "Willing to use loan specifically for tea plantation"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Collect and fill application form from Primary Cooperative Agriculture and Rural Development Bank",
+          "Attach required documents",
+          "Submit to Secretary or Special Officer of the Bank"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, PAN, etc.)",
+        "Address proof",
+        "Proof of land ownership or lease",
+        "Other documents (if required)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Distribution of Soil Health Card",
+      "parent_scheme": "Soil Health Management",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Agriculture-Farmers Welfare Department",
+      "objectives": [
+        "Provide soil test results and recommendations for balanced fertilizer use",
+        "Promote sustainable farming"
+      ],
+      "benefits": {
+        "soil_health_card": "Issued after ₹5 fee per test for macro/micro nutrients"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Farmer who submitted soil samples and paid the fee"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Collect application from Agricultural Office",
+          "Fill and submit form with documents to concerned authority"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, Voter ID, etc.)",
+        "Proof of land ownership",
+        "Proof of soil sample submission and payment"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Distribution of Certified Seeds of Maize",
+      "parent_scheme": "Seed Subsidy Scheme",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Agriculture-Farmers Welfare Department",
+      "objectives": [
+        "Promote maize cultivation by subsidizing seed cost",
+        "Support small, marginal, SC/ST, and women farmers"
+      ],
+      "benefits": {
+        "subsidy": "50% of seed cost up to ₹1,200/quintal"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Farmer growing maize in specified districts",
+        "Preference to small/marginal farmers",
+        "24% benefit flow to SC/ST, 20% to women/women groups"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Collect application from Agricultural Office",
+          "Fill and attach required documents",
+          "Submit to Assistant Agricultural Officer / Agricultural Officer / Joint Director"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, Voter ID, etc.)",
+        "Proof of land ownership or tenancy",
+        "Recent photograph",
+        "Caste certificate (for SC/ST)",
+        "Women’s group proof (if applicable)",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Pipes Carrying Water From Source To Field",
+      "parent_scheme": "Farmer Irrigation Assistance",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Agriculture-Farmers Welfare Department",
+      "objectives": [
+        "Support farmers in improving irrigation facilities",
+        "Subsidize the cost of pipes used for water transportation to fields"
+      ],
+      "benefits": {
+        "subsidy": "50% of the pipe cost or ₹15,000 (whichever is lower) for up to 800 meters",
+        "pipe_types": "All types (PVC, HDPE, etc.) and sizes as per farmer requirement"
+      },
+      "eligibility_criteria": [
+        "Must be a farmer",
+        "Resident of Tamil Nadu"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Collect the application form from the nearest Agricultural Office",
+          "Fill out the application form and attach required documents",
+          "Submit to the Assistant Agricultural Officer (village), Agricultural Officer/Deputy AO (block), or Joint Director of Agriculture (district)"
+        ]
+      },
+      "documents_required": [
+        "Proof of identity (Aadhaar card, Voter ID)",
+        "Land ownership documents or lease agreement",
+        "Bank account details",
+        "Caste certificate (if applicable)",
+        "Women farmer group registration documents (if applicable)",
+        "Any other documents (if required)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Primary Cooperative Agriculture and Rural Development Bank: For Tractor Purchase",
+      "parent_scheme": "Agriculture Loan Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Co-operation, Food and Consumer Protection Department",
+      "objectives": [
+        "Provide financial support for purchasing tractors",
+        "Improve agricultural productivity through mechanization"
+      ],
+      "benefits": {
+        "loan_amount": "Up to 90% of the tractor's cost",
+        "interest_rate": "11% to 12.25% (subject to change)"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Farmer engaged in agriculture",
+        "Intention to use the loan specifically for tractor purchase"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Collect the application form from the Primary Cooperative Agriculture and Rural Development Bank",
+          "Fill in the application and attach documents",
+          "Submit to the Secretary or Special Officer",
+          "Request receipt or acknowledgment with application details"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, PAN card, etc.)",
+        "Address proof",
+        "Proof of land ownership or lease",
+        "Tractor purchase invoice or quotation",
+        "Any other documents (if required)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Pradhan Mantri Kisan Samman Nidhi Yojana",
+      "parent_scheme": "Farmer Income Support",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Provide income support to small and marginal farmers",
+        "Enhance financial stability for farming households"
+      ],
+      "benefits": {
+        "financial_support": "₹6,000 per year in three installments"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer owning up to 2 hectares of cultivable land",
+        "Registered under PM-KISAN"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Register through PM-KISAN portal or at CSC",
+          "Submit land and bank details",
+          "Verification by state authorities",
+          "Receive funds via DBT"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Bank account details",
+        "Proof of identity (Voter ID, etc.)"
+      ],
+      "official_links": {
+        "guidelines": "https://pmkisan.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+      "parent_scheme": "Crop Insurance Scheme",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Provide insurance coverage for crop losses",
+        "Stabilize farmers' income"
+      ],
+      "benefits": {
+        "insurance_coverage": "Premium as low as 1.5-5% of sum insured",
+        "compensation": "For crop loss due to natural calamities"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer cultivating insured crops",
+        "Registered with insurance provider"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through banks, CSCs, or insurance companies",
+          "Submit crop and land details",
+          "Pay premium",
+          "Claim processing post-loss assessment"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership/tenancy documents",
+        "Crop sowing certificate",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://pmfby.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Soil Health Management Scheme",
+      "parent_scheme": "National Mission for Sustainable Agriculture",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote soil health through testing and management",
+        "Enhance agricultural productivity"
+      ],
+      "benefits": {
+        "soil_testing": "Free or subsidized soil testing",
+        "recommendations": "Fertilizer and crop management advice"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer owning agricultural land"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Submit soil samples to local agricultural office",
+          "Pay nominal fee (if applicable)",
+          "Receive soil health card"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, Voter ID)",
+        "Land ownership documents",
+        "Proof of soil sample submission"
+      ],
+      "official_links": {
+        "guidelines": "https://agricoop.nic.in/en/nmsa"
+      }
+    },
+    {
+      "scheme_name": "National Agriculture Market (e-NAM)",
+      "parent_scheme": "Agricultural Marketing",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Create a unified national market for agricultural produce",
+        "Ensure better price discovery for farmers"
+      ],
+      "benefits": {
+        "market_access": "Online trading platform for agricultural produce",
+        "price_transparency": "Competitive pricing"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer or trader registered on e-NAM"
+      ],
+      "application_process": {
+        "mode": "Online",
+        "steps": [
+          "Register on e-NAM portal",
+          "Link Aadhaar and bank details",
+          "Access trading platform"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Bank account details",
+        "Proof of farmer/trader status"
+      ],
+      "official_links": {
+        "guidelines": "https://www.enam.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Kisan Credit Card Scheme",
+      "parent_scheme": "Agricultural Credit",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Provide timely credit to farmers",
+        "Support agricultural and allied activities"
+      ],
+      "benefits": {
+        "credit_limit": "Up to ₹3 lakh at concessional rates",
+        "interest_subvention": "Up to 7% interest rate"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer engaged in agriculture or allied activities"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through banks or cooperative societies",
+          "Submit land and identity details",
+          "Receive KCC post-verification"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership/tenancy documents",
+        "Proof of identity",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.nabard.org"
+      }
+    },
+    {
+      "scheme_name": "Paramparagat Krishi Vikas Yojana",
+      "parent_scheme": "Organic Farming Promotion",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote organic farming",
+        "Reduce chemical fertilizer dependency"
+      ],
+      "benefits": {
+        "financial_assistance": "₹50,000 per hectare for 3 years",
+        "training": "Organic farming techniques"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer or group of farmers practicing organic farming"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Form farmer groups",
+          "Apply through state agriculture department",
+          "Submit organic farming plan"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Group registration (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://pgsindia-ncof.gov.in/pkvy"
+      }
+    },
+    {
+      "scheme_name": "Micro Irrigation Fund",
+      "parent_scheme": "Irrigation Support",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote micro-irrigation systems",
+        "Enhance water use efficiency"
+      ],
+      "benefits": {
+        "subsidy": "Up to 55% for small farmers, 45% for others"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer installing micro-irrigation systems"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through state agriculture department",
+          "Submit system installation details",
+          "Receive subsidy post-verification"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Irrigation system quotation"
+      ],
+      "official_links": {
+        "guidelines": "https://pmksy.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Agricultural Mechanization for Small Farmers",
+      "parent_scheme": "Farm Mechanization",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote mechanization among small farmers",
+        "Reduce labor costs"
+      ],
+      "benefits": {
+        "subsidy": "Up to 50% on farm equipment"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Small or marginal farmer"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state agriculture department",
+          "Submit equipment purchase details",
+          "Receive subsidy post-verification"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Equipment purchase invoice"
+      ],
+      "official_links": {
+        "guidelines": "https://agricoop.nic.in/en/submission-agriculture-mechanization"
+      }
+    },
+    {
+      "scheme_name": "National Mission on Oilseeds and Oil Palm",
+      "parent_scheme": "Oilseed Promotion",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Increase oilseed and oil palm production",
+        "Reduce import dependency"
+      ],
+      "benefits": {
+        "subsidy": "On seeds, inputs, and equipment"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer cultivating oilseeds or oil palm"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state agriculture department",
+          "Submit crop and land details",
+          "Receive inputs or subsidy"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Crop sowing details"
+      ],
+      "official_links": {
+        "guidelines": "https://nmoop.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Dairy Entrepreneurship Development Scheme",
+      "parent_scheme": "Dairy Development",
+      "ministry": "Ministry of Fisheries, Animal Husbandry & Dairying",
+      "department": "Department of Animal Husbandry and Dairying",
+      "objectives": [
+        "Promote dairy farming",
+        "Support entrepreneurship in dairy sector"
+      ],
+      "benefits": {
+        "subsidy": "25-33% of project cost"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Individual or group engaged in dairy farming"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through banks or NABARD",
+          "Submit project proposal",
+          "Receive subsidy post-approval"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Project report",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://dahd.nic.in"
+      }
+    },
+    {
+      "scheme_name": "National Horticulture Mission",
+      "parent_scheme": "Horticulture Development",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote horticulture crops",
+        "Enhance farmer income through diversification"
+      ],
+      "benefits": {
+        "subsidy": "On planting material, infrastructure"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer engaged in horticulture"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state horticulture department",
+          "Submit project details",
+          "Receive assistance post-verification"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Horticulture project plan"
+      ],
+      "official_links": {
+        "guidelines": "https://nhm.nic.in"
+      }
+    },
+    {
+      "scheme_name": "Rashtriya Krishi Vikas Yojana",
+      "parent_scheme": "Agricultural Development",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote holistic agricultural development",
+        "Increase agricultural productivity"
+      ],
+      "benefits": {
+        "funding": "Project-based financial assistance"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer or agricultural group"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Submit project proposal to state agriculture department",
+          "Approval by state-level committee",
+          "Receive funds"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Project proposal",
+        "Land ownership documents"
+      ],
+      "official_links": {
+        "guidelines": "https://rkvy.nic.in"
+      }
+    },
+    {
+      "scheme_name": "National Bamboo Mission",
+      "parent_scheme": "Bamboo Cultivation",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote bamboo cultivation",
+        "Support rural livelihoods"
+      ],
+      "benefits": {
+        "subsidy": "On bamboo planting and processing units"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer or entrepreneur in bamboo sector"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state bamboo mission",
+          "Submit project details",
+          "Receive assistance"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Project plan"
+      ],
+      "official_links": {
+        "guidelines": "https://nbm.nic.in"
+      }
+    },
+    {
+      "scheme_name": "Sub-Mission on Agricultural Extension",
+      "parent_scheme": "Agricultural Extension",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Provide extension services to farmers",
+        "Enhance knowledge and skills"
+      ],
+      "benefits": {
+        "training": "Agricultural best practices",
+        "support": "Access to extension officers"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer seeking extension services"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Contact local agriculture extension office",
+          "Register for training programs",
+          "Participate in sessions"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents"
+      ],
+      "official_links": {
+        "guidelines": "https://agricoop.nic.in/en/ATMA"
+      }
+    },
+    {
+      "scheme_name": "Pradhan Mantri Krishi Sinchayee Yojana - Watershed Development",
+      "parent_scheme": "Watershed Management",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Land Resources",
+      "objectives": [
+        "Promote sustainable watershed management",
+        "Enhance soil and water conservation"
+      ],
+      "benefits": {
+        "funding": "For watershed development projects"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer in designated watershed areas"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state land resources department",
+          "Submit project details",
+          "Receive assistance"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Watershed project plan"
+      ],
+      "official_links": {
+        "guidelines": "https://pmksy.gov.in"
+      }
+    },
+    {
+      "scheme_name": "National Mission for Sustainable Agriculture",
+      "parent_scheme": "Sustainable Agriculture",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote climate-resilient agriculture",
+        "Enhance sustainability"
+      ],
+      "benefits": {
+        "support": "Financial and technical assistance"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer adopting sustainable practices"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state agriculture department",
+          "Submit sustainability plan",
+          "Receive assistance"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Sustainability project plan"
+      ],
+      "official_links": {
+        "guidelines": "https://nmsa.dac.gov.in"
+      }
+    },
+    {
+      "scheme_name": "Livestock Insurance Scheme",
+      "parent_scheme": "Animal Husbandry Support",
+      "ministry": "Ministry of Fisheries, Animal Husbandry & Dairying",
+      "department": "Department of Animal Husbandry and Dairying",
+      "objectives": [
+        "Provide insurance for livestock",
+        "Protect farmers from livestock loss"
+      ],
+      "benefits": {
+        "insurance_coverage": "Up to 50% premium subsidy"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer owning livestock"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through insurance providers or banks",
+          "Submit livestock details",
+          "Pay premium"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Livestock ownership proof",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://dahd.nic.in"
+      }
+    },
+    {
+      "scheme_name": "Agri-Clinics and Agri-Business Centres Scheme",
+      "parent_scheme": "Agri-Entrepreneurship",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote agri-entrepreneurship",
+        "Provide extension services"
+      ],
+      "benefits": {
+        "funding": "Up to ₹20 lakh for individuals, ₹100 lakh for groups"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Trained agricultural professional"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through MANAGE or banks",
+          "Submit business plan",
+          "Receive loan/subsidy"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Training certificate",
+        "Business plan"
+      ],
+      "official_links": {
+        "guidelines": "https://www.agriclinics.net"
+      }
+    },
+    {
+      "scheme_name": "National Beekeeping and Honey Mission",
+      "parent_scheme": "Beekeeping Promotion",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture and Farmers Welfare",
+      "objectives": [
+        "Promote beekeeping for pollination and income",
+        "Support honey production"
+      ],
+      "benefits": {
+        "subsidy": "On beehives and equipment"
+      },
+      "eligibility_criteria": [
+        "Resident of India",
+        "Farmer or entrepreneur in beekeeping"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through state agriculture department",
+          "Submit beekeeping plan",
+          "Receive assistance"
+        ]
+      },
+      "documents_required": [
+        "Aadhaar card",
+        "Land ownership documents",
+        "Beekeeping project plan"
+      ],
+      "official_links": {
+        "guidelines": "https://nbb.gov.in"
+      }
+    }
+  ]
+}

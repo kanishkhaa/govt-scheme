@@ -1,0 +1,1867 @@
+{
+  "women_schemes": [
+    {
+      "scheme_name": "Sukanya Samriddhi Yojana (SSY)",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Ministry of Finance",
+      "department": "Department of Economic Affairs",
+      "objectives": [
+        "Encourage savings for girl child’s education and marriage expenses",
+        "Promote financial security and empowerment of girls",
+        "Foster gender equality through financial inclusion"
+      ],
+      "benefits": {
+        "interest_rate": "8.2% per annum (compounded annually, for Q1 FY 2025-26)",
+        "tax_benefits": "Tax deduction up to ₹1.5 lakh under Section 80C, tax-exempt interest and maturity amount",
+        "investment_limits": "Minimum ₹250 per year, maximum ₹1.5 lakh per year",
+        "maturity_period": "21 years from account opening or upon marriage (whichever is earlier)",
+        "partial_withdrawal": "Up to 50% of balance after girl turns 18 or passes 10th standard for education"
+      },
+      "eligibility_criteria": [
+        "Girl child below 10 years at account opening",
+        "Account opened by parents or legal guardian",
+        "Resident Indian citizen",
+        "Maximum two accounts per family (three for twins/triplets)"
+      ],
+      "application_process": {
+        "mode": "Offline/Online",
+        "steps": [
+          "Visit a participating post office or authorized bank",
+          "Complete Sukanya Samriddhi Yojana application form",
+          "Submit required documents and initial deposit (minimum ₹250)",
+          "Account opened after verification, passbook issued"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate of the girl child",
+        "Identity proof of parent/guardian (Aadhaar, PAN, Voter ID, etc.)",
+        "Residence proof (driving license, passport, utility bill, etc.)",
+        "Photograph of parent/guardian and girl child",
+        "Sukanya Samriddhi Yojana application form"
+      ],
+      "official_links": {
+        "guidelines": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx"
+      }
+    },
+    {
+      "scheme_name": "Balika Samriddhi Yojana (BSY)",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Ministry of Women and Child Development",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Promote education and health of girl children in poor families",
+        "Discourage child marriage and promote gender equality",
+        "Provide financial support for socio-economic challenges"
+      ],
+      "benefits": {
+        "post_birth_grant": "₹500 one-time grant upon birth",
+        "educational_scholarship": "Annual scholarships from ₹300 to ₹1,000 for classes 1 to 10"
+      },
+      "eligibility_criteria": [
+        "Girl child born on or after August 15, 1997",
+        "Belongs to Economically Weaker Section (EWS) or Below Poverty Line (BPL) families",
+        "Family income not exceeding ₹2 lakh annually",
+        "Not receiving pension or other government financial support",
+        "Limited to two girls per family"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through local Anganwadi centers or district authorities",
+          "Submit application form with required documents",
+          "Verification by state authorities",
+          "Funds credited to beneficiary’s bank account"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate of the girl child",
+        "Identity proof of parent/guardian (PAN, Voter ID, etc.)",
+        "Residence proof (ration card, utility bill, etc.)",
+        "Income certificate",
+        "Proof of EWS/BPL status"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.nic.in/schemes/balika-samriddhi-yojana-bsy"
+      }
+    },
+    {
+      "scheme_name": "CBSE Udaan",
+      "parent_scheme": "Educational Support Schemes",
+      "ministry": "Ministry of Education",
+      "department": "Central Board of Secondary Education (CBSE)",
+      "objectives": [
+        "Increase enrollment of girls in prestigious engineering institutions",
+        "Provide coaching and financial support for entrance exams",
+        "Promote gender equality in technical education"
+      ],
+      "benefits": {
+        "coaching": "Free online/offline coaching for engineering entrance exams",
+        "financial_support": "Scholarships and study material for selected students",
+        "mentorship": "Access to tutorials, lectures, and peer-to-peer learning"
+      },
+      "eligibility_criteria": [
+        "Girl students in Class 11 or 12",
+        "Enrolled in CBSE-affiliated schools with PCM (Physics, Chemistry, Maths)",
+        "Minimum 70% marks in Class 10 and 80% in Science and Maths",
+        "Family income below ₹6 lakh annually"
+      ],
+      "application_process": {
+        "mode": "Online",
+        "steps": [
+          "Apply through CBSE Udaan portal",
+          "Submit academic and income documents",
+          "Selection based on merit and verification"
+        ]
+      },
+      "documents_required": [
+        "Class 10 mark sheet",
+        "Income certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "School enrollment certificate",
+        "Photograph"
+      ],
+      "official_links": {
+        "guidelines": "https://www.cbse.gov.in/cbsenew/udaan.html"
+      }
+    },
+    {
+      "scheme_name": "National Scheme of Incentive to Girls for Secondary Education (NSIGSE)",
+      "parent_scheme": "Educational Support Schemes",
+      "ministry": "Ministry of Education",
+      "department": "Department of School Education and Literacy",
+      "objectives": [
+        "Promote secondary education among girl students",
+        "Reduce dropout rates in secondary schools",
+        "Encourage girls from disadvantaged communities to continue education"
+      ],
+      "benefits": {
+        "incentive": "₹3,000 fixed deposit upon passing Class 8, withdrawable after Class 10"
+      },
+      "eligibility_criteria": [
+        "Girl students belonging to SC/ST or those who passed Class 8 from Kasturba Gandhi Balika Vidyalayas",
+        "Enrolled in Class 9 in government, government-aided, or local body schools",
+        "Below 16 years at the time of admission to Class 9"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through school authorities",
+          "Submit required documents to school",
+          "Verification by school and state education department",
+          "Incentive deposited in girl’s bank account"
+        ]
+      },
+      "documents_required": [
+        "Class 8 pass certificate",
+        "SC/ST certificate (if applicable)",
+        "School enrollment proof",
+        "Identity proof (Aadhaar, etc.)",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.education.gov.in/schemes/nsigse"
+      }
+    },
+    {
+      "scheme_name": "Mukhyamantri Kanya Suraksha Yojana",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Government of Bihar",
+      "department": "Department of Social Welfare",
+      "objectives": [
+        "Promote birth of girl children and gender equality",
+        "Provide financial support for girls’ future needs",
+        "Encourage savings for education and marriage"
+      ],
+      "benefits": {
+        "investment": "₹2,000 invested in girl’s name at birth",
+        "maturity_amount": "₹10,000 after 18 years"
+      },
+      "eligibility_criteria": [
+        "Girl child born on or after November 22, 2007",
+        "Resident of Bihar",
+        "Belongs to BPL families",
+        "Limited to two girls per family"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through local Anganwadi centers or district social welfare office",
+          "Submit application form with documents",
+          "Verification by state authorities",
+          "Funds invested in girl’s name"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate of the girl child",
+        "BPL certificate",
+        "Residence proof",
+        "Identity proof of parent/guardian (Aadhaar, etc.)"
+      ],
+      "official_links": {
+        "guidelines": "https://socialwelfare.bihar.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "M Mukhyamantri Kanya Utthan Yojana",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Government of Bihar",
+      "department": "Department of Social Welfare",
+      "objectives": [
+        "Promote education and empowerment of girl children",
+        "Provide financial assistance from birth to graduation",
+        "Prevent child marriage and support health and education"
+      ],
+      "benefits": {
+        "financial_assistance": "₹54,100 total (₹2,000 at birth, ₹1,000 for vaccinations, ₹2,000 for school enrollment, ₹10,000 for Class 10, ₹25,000 for Class 12, ₹14,100 for graduation)"
+      },
+      "eligibility_criteria": [
+        "Girl child born to Bihar residents",
+        "No income limit, applicable to all girls",
+        "Enrolled in school/college for respective benefits"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through Bihar government portal or Anganwadi centers",
+          "Submit documents for each stage (birth, school, college)",
+          "Verification by state authorities",
+          "Funds disbursed via DBT"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "School/college enrollment proof",
+        "Vaccination records (for early benefits)",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://socialwelfare.bihar.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Indira Gandhi Balika Suraksha Yojana",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Government of Himachal Pradesh",
+      "department": "Department of Social Justice and Empowerment",
+      "objectives": [
+        "Promote family planning and welfare of girl children",
+        "Provide financial incentives for families with one or two girls",
+        "Encourage education and health of girls"
+      ],
+      "benefits": {
+        "financial_incentive": "₹25,000 for one girl child, ₹20,000 per girl for two girls"
+      },
+      "eligibility_criteria": [
+        "Families with one or two girl children",
+        "Resident of Himachal Pradesh",
+        "Parents not receiving government pension or financial support",
+        "Annual family income below ₹2 lakh"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through district social welfare office",
+          "Submit application form with documents",
+          "Verification by state authorities",
+          "Incentive disbursed to family"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate(s) of girl child(ren)",
+        "Income certificate",
+        "Residence proof",
+        "Identity proof of parent/guardian (Aadhaar, etc.)"
+      ],
+      "official_links": {
+        "guidelines": "https://hpsocialwelfare.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Ladli Scheme",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Government of Haryana",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Improve child sex ratio and promote girl child welfare",
+        "Provide financial support for education and marriage",
+        "Encourage positive attitude towards girl children"
+      ],
+      "benefits": {
+        "financial_assistance": "₹5,000 per year for 5 years, ₹1 lakh at age 18"
+      },
+      "eligibility_criteria": [
+        "Girl child born on or after April 1, 2015",
+        "Resident of Haryana",
+        "Family registered with Anganwadi center",
+        "Limited to two girls per family"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Register at local Anganwadi center",
+          "Submit application form with documents",
+          "Verification by state authorities",
+          "Funds disbursed at specified intervals"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate of the girl child",
+        "Residence proof",
+        "Identity proof of parent/guardian (Aadhaar, etc.)",
+        "Anganwadi registration proof"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.haryana.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Dhanalakshmi Scheme",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Ministry of Women and Child Development",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Promote survival and education of girl children",
+        "Provide conditional cash transfers for health and education milestones",
+        "Reduce gender discrimination and child marriage"
+      ],
+      "benefits": {
+        "cash_transfers": "₹5,000 at birth, additional amounts for vaccination, school enrollment, and retention up to Class 8 (total up to ₹1 lakh)"
+      },
+      "eligibility_criteria": [
+        "Girl child from BPL families",
+        "Resident of select pilot districts",
+        "Meeting health and education milestones (e.g., vaccination, school attendance)"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through local Anganwadi centers or district authorities",
+          "Submit documents for each milestone",
+          "Verification by state authorities",
+          "Cash transfers credited to beneficiary’s account"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate",
+        "BPL certificate",
+        "Vaccination records",
+        "School enrollment/attendance proof",
+        "Identity proof (Aadhaar, etc.)"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.nic.in/"
+      }
+    },
+    {
+      "scheme_name": "Beti Bachao Beti Padhao (BBBP)",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Ministry of Women and Child Development",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Prevent gender-biased sex selection",
+        "Ensure survival, protection, and education of girl children",
+        "Promote gender equality and social empowerment"
+      ],
+      "benefits": {
+        "awareness_campaigns": "Nationwide campaigns for gender equality",
+        "multi_sectoral_interventions": "Coordination with health and education sectors for girl child welfare",
+        "financial_incentives": "Support for education in select districts"
+      },
+      "eligibility_criteria": [
+        "Girl children and their families",
+        "Residents of India, with focus on low Child Sex Ratio districts",
+        "No specific income criteria for awareness benefits"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Access benefits through local Anganwadi centers or schools",
+          "Register for specific incentives via district authorities",
+          "No formal application for awareness campaigns"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate (for specific incentives)",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.nic.in/bbbp-schemes"
+      }
+    },
+    {
+      "scheme_name": "Chief Minister’s Girl Child Protection Scheme",
+      "parent_scheme": "Women and Child Welfare Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Social Welfare and Women Empowerment Department",
+      "objectives": [
+        "Prevent gender discrimination by empowering girl children",
+        "Promote enrollment and retention of girls in school up to intermediate level",
+        "Encourage marriage after age 18 and promote family planning with two girl children",
+        "Provide social and financial empowerment to girl children"
+      ],
+      "benefits": {
+        "financial_assistance_one_girl": "₹50,000 fixed deposit for families with one girl child, maturing at age 18",
+        "financial_assistance_two_girls": "₹25,000 fixed deposit per girl for families with two girl children, maturing at age 18",
+        "additional_incentive": "₹1,800 monthly for 6 years for one girl child completing Class 8"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Family income below ₹72,000 annually (for one girl scheme) or ₹50,000 (for two girls scheme)",
+        "Girl child born on or after August 1, 2001 (one girl) or August 1, 2002 (two girls)",
+        "Parents must have undergone sterilization within age 35 for one girl scheme",
+        "Limited to one or two girl children per family"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through District Social Welfare Office or Block Development Office",
+          "Submit application form with required documents",
+          "Verification by authorities",
+          "Fixed deposit created with Tamil Nadu Power Finance and Infrastructure Development Corporation Limited"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate of the girl child",
+        "Income certificate",
+        "Residence proof",
+        "Sterilization certificate (for one girl scheme)",
+        "Identity proof of parent/guardian (Aadhaar, etc.)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tnsocialwelfare.tn.gov.in/en/schemes/girl-child-protection-scheme"
+      }
+    },
+    {
+      "scheme_name": "Moovalur Ramamirtham Ammaiyar Ninaivu Marriage Assistance Scheme",
+      "parent_scheme": "Marriage Assistance Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Social Welfare and Women Empowerment Department",
+      "objectives": [
+        "Provide financial assistance for marriage of poor and destitute women",
+        "Promote education among women by incentivizing higher studies",
+        "Support economically disadvantaged families"
+      ],
+      "benefits": {
+        "scheme_1": "₹25,000 and 8 grams of gold for non-graduates",
+        "scheme_2": "₹50,000 and 8 grams of gold for graduates or diploma holders",
+        "additional_support": "Assistance for marriage expenses"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Bride aged 18–40 years",
+        "Family income below ₹72,000 annually",
+        "First-time marriage (except for widows)",
+        "For Scheme 2: Completed degree/diploma from recognized institution"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through e-Sevai centres or District Social Welfare Office",
+          "Submit application form with documents",
+          "Verification by authorities",
+          "Assistance disbursed via bank transfer and gold provided"
+        ]
+      },
+      "documents_required": [
+        "Marriage invitation or certificate",
+        "Income certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Degree/diploma certificate (for Scheme 2)",
+        "Age proof of bride"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tnsocialwelfare.tn.gov.in/en/schemes/marriage-assistance-schemes"
+      }
+    },
+    {
+      "scheme_name": "Annai Teresa Ninaivu Marriage Assistance Scheme for Orphan Girls",
+      "parent_scheme": "Marriage Assistance Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Social Welfare and Women Empowerment Department",
+      "objectives": [
+        "Provide financial assistance for marriage of orphan girls",
+        "Support economically disadvantaged orphan brides",
+        "Promote social integration and empowerment"
+      ],
+      "benefits": {
+        "scheme_1": "₹25,000 and 8 grams of gold for non-graduates",
+        "scheme_2": "₹50,000 and 8 grams of gold for graduates or diploma holders"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Orphan girl aged 18–40 years",
+        "First-time marriage",
+        "For Scheme 2: Completed degree/diploma from recognized institution"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through District Social Welfare Office",
+          "Submit application form with documents",
+          "Verification by authorities",
+          "Assistance disbursed via bank transfer and gold provided"
+        ]
+      },
+      "documents_required": [
+        "Orphan certificate",
+        "Marriage invitation or certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Degree/diploma certificate (for Scheme 2)",
+        "Age proof"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tnsocialwelfare.tn.gov.in/en/schemes/marriage-assistance-schemes"
+      }
+    },
+    {
+      "scheme_name": "Free Supply of Sewing Machines",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Social Welfare and Women Empowerment Department",
+      "objectives": [
+        "Promote self-employment among poor women through tailoring skills",
+        "Enhance economic independence for women",
+        "Support destitute, deserted, widowed, or disabled women"
+      ],
+      "benefits": {
+        "sewing_machine": "Free sewing machine for eligible women"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Women aged 20–40 years",
+        "Annual family income below ₹72,000",
+        "Trained in tailoring",
+        "Destitute, deserted, widowed, or disabled women preferred"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through District Social Welfare Office",
+          "Submit application form with documents",
+          "Verification by authorities",
+          "Sewing machine distributed upon approval"
+        ]
+      },
+      "documents_required": [
+        "Income certificate",
+        "Tailoring training certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Proof of destitute/deserted/widowed/disabled status (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tnsocialwelfare.tn.gov.in/en/schemes/free-supply-sewing-machines"
+      }
+    },
+    {
+      "scheme_name": "Self Employment Loan Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Kerala",
+      "department": "Department of Social Justice",
+      "objectives": [
+        "Promote self-employment among women",
+        "Provide financial assistance for starting micro/small enterprises",
+        "Enhance economic independence for marginalized women"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹1,00,000 at 5% interest rate",
+        "subsidy": "15% subsidy on loan amount"
+      },
+      "eligibility_criteria": [
+        "Women residents of Kerala",
+        "Aged 18–55 years",
+        "Annual family income below ₹1,00,000",
+        "Preference for BPL, SC/ST, and marginalized communities"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Obtain application form from KSWDC offices or website",
+          "Submit completed form with documents to KSWDC office",
+          "Verification by KSWDC authorities",
+          "Loan disbursed upon approval"
+        ]
+      },
+      "documents_required": [
+        "Income certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Business plan/project proposal",
+        "BPL/SC/ST certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://kswdc.org/projects/self-employment/"
+      }
+    },
+    {
+      "scheme_name": "SMILE Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Kerala",
+      "department": "Department of Social Justice",
+      "objectives": [
+        "Support women entrepreneurs in establishing sustainable businesses",
+        "Provide low-interest loans for income-generating activities",
+        "Promote economic empowerment and skill development"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹5,00,000 at subsidized interest rates",
+        "training": "Entrepreneurship and skill development training"
+      },
+      "eligibility_criteria": [
+        "Women residents of Kerala",
+        "Aged 18–60 years",
+        "Registered with Self-Help Group or individual entrepreneur",
+        "Preference for economically backward women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through KSWDC offices or designated banks",
+          "Submit application with business proposal and documents",
+          "Verification and sanction by KSWDC",
+          "Loan disbursed via partner banks"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Business plan",
+        "Income certificate",
+        "SHG registration certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://kswdc.org/projects/smile-scheme/"
+      }
+    },
+    {
+      "scheme_name": "SHE Pad Project",
+      "parent_scheme": "Health and Hygiene Schemes",
+      "ministry": "Government of Kerala",
+      "department": "Department of Social Justice",
+      "objectives": [
+        "Promote menstrual hygiene among women and girls",
+        "Provide affordable sanitary napkins through women-led enterprises",
+        "Create employment opportunities for women in production units"
+      ],
+      "benefits": {
+        "sanitary_napkins": "Free or subsidized sanitary napkins for schoolgirls and women",
+        "employment": "Job opportunities in SHE Pad production units",
+        "awareness": "Menstrual hygiene education programs"
+      },
+      "eligibility_criteria": [
+        "Women and girls in Kerala",
+        "No specific age or income criteria for napkin distribution",
+        "Women entrepreneurs for production unit participation",
+        "Preference for BPL and rural women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "For napkins: Access through schools, Anganwadi centers, or KSWDC outlets",
+          "For production units: Apply through KSWDC for training and setup",
+          "Submit documents for enterprise participation",
+          "Verification by KSWDC authorities"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc., for enterprise participation)",
+        "Residence proof",
+        "Business proposal (for production units)",
+        "No documents required for napkin recipients"
+      ],
+      "official_links": {
+        "guidelines": "https://kswdc.org/projects/shepad-project/"
+      }
+    },
+    {
+      "scheme_name": "NORKA Vanitha Mithra Self Employment Loan Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Kerala",
+      "department": "Department of Non-Resident Keralites Affairs (NORKA)",
+      "objectives": [
+        "Support self-employment for women, including non-resident Keralites",
+        "Provide financial assistance for starting small businesses",
+        "Promote economic empowerment and reintegration"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹1,00,000 at low interest rates",
+        "training": "Skill development and entrepreneurial guidance"
+      },
+      "eligibility_criteria": [
+        "Women residents or non-resident Keralites returning to Kerala",
+        "Aged 18–55 years",
+        "Annual family income below ₹1,00,000",
+        "Preference for economically backward and returnee women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Obtain application form from KSWDC or NORKA offices",
+          "Submit form with documents to KSWDC/NORKA",
+          "Verification by authorities",
+          "Loan disbursed upon approval"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, passport, etc.)",
+        "Residence proof or NORKA registration",
+        "Income certificate",
+        "Business plan",
+        "Proof of returnee status (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://kswdc.org/latest-news/application-invited-for-norka-vanitha-mithra-self-employment-loan-scheme/"
+      }
+    },
+    {
+      "scheme_name": "Transgender Self Employment Loan Scheme",
+      "parent_scheme": "Gender Inclusivity Schemes",
+      "ministry": "Government of Kerala",
+      "department": "Department of Social Justice",
+      "objectives": [
+        "Promote economic empowerment of transgender individuals",
+        "Provide financial assistance for self-employment ventures",
+        "Support social inclusion and livelihood opportunities"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹1,00,000 at subsidized interest rates",
+        "subsidy": "15% subsidy on loan amount",
+        "training": "Skill development for entrepreneurship"
+      },
+      "eligibility_criteria": [
+        "Transgender individuals residing in Kerala",
+        "Aged 18–55 years",
+        "Annual income below ₹1,00,000",
+        "Preference for economically marginalized transgender persons"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Obtain application form from KSWDC website or offices",
+          "Submit form with documents to KSWDC",
+          "Verification by KSWDC authorities",
+          "Loan disbursed upon approval"
+        ]
+      },
+      "documents_required": [
+        "Transgender identity certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Business plan"
+      ],
+      "official_links": {
+        "guidelines": "https://kswdc.org/latest-news/applicants-selected-for-transgender-self-employment-loan-scheme/"
+      }
+    },
+    {
+      "scheme_name": "Stree Shakthi Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Karnataka",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Empower women economically and socially through self-help groups",
+        "Promote financial independence via income-generating activities",
+        "Encourage savings and access to credit facilities"
+      ],
+      "benefits": {
+        "interest_subsidy": "6% interest subsidy on bank loans availed by SHGs",
+        "incentives": "₹25,000 to ₹1,00,000 incentives for excess savings",
+        "revolving_fund": "Additional revolving fund for SHG operations"
+      },
+      "eligibility_criteria": [
+        "Women residents of Karnataka",
+        "Members of registered Stree Shakthi self-help groups",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Join or form a Stree Shakthi self-help group",
+          "Apply for loans through linked banks or financial institutions",
+          "Submit SHG registration and loan documents to authorities",
+          "Verification by district Women and Child Development office"
+        ]
+      },
+      "documents_required": [
+        "SHG registration certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Bank loan application details",
+        "Savings record of SHG"
+      ],
+      "official_links": {
+        "guidelines": "https://bangalorerural.nic.in/en/programmes-for-womens/"
+      }
+    },
+    {
+      "scheme_name": "Gelathi Special Treatment Units",
+      "parent_scheme": "Women Welfare Schemes",
+      "ministry": "Government of Karnataka",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Provide integrated support for women victims of atrocities",
+        "Offer counseling, medical aid, and police assistance under one roof",
+        "Promote rehabilitation and empowerment of affected women"
+      ],
+      "benefits": {
+        "support_services": "Counseling, medical aid, police assistance, and legal support",
+        "accessibility": "Units established in all four taluks of Bangalore Rural"
+      },
+      "eligibility_criteria": [
+        "Women victims of atrocities (e.g., domestic violence, sexual harassment)",
+        "Residents of Bangalore Rural district",
+        "No specific income or age criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Visit Gelathi Special Treatment Unit in nearest taluk",
+          "Provide details of incident to unit staff",
+          "Access counseling, medical, or legal services directly",
+          "No formal application required for immediate support"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc., if available)",
+        "Incident report (if applicable)",
+        "Medical certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://bangalorerural.nic.in/en/programmes-for-womens/"
+      }
+    },
+    {
+      "scheme_name": "Ujjawala Scheme",
+      "parent_scheme": "Women Safety and Rehabilitation Schemes",
+      "ministry": "Ministry of Women and Child Development",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Prevent trafficking of women and children for commercial sexual exploitation",
+        "Facilitate rescue, rehabilitation, and reintegration of victims",
+        "Provide vocational training and support for economic independence"
+      ],
+      "benefits": {
+        "rehabilitation": "Shelter, food, clothing, medical treatment, and counseling",
+        "vocational_training": "Skill development for income-generating activities",
+        "legal_aid": "Support for legal proceedings and repatriation (for cross-border victims)"
+      },
+      "eligibility_criteria": [
+        "Women and children victims of trafficking or commercial sexual exploitation",
+        "Referred by police, NGOs, or self-referral",
+        "No specific income or age criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Contact Ujjawala homes via district authorities or NGOs",
+          "Provide incident details or referral",
+          "Assessment and admission by authorities",
+          "Access to rehabilitation services"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc., if available)",
+        "Referral letter (if applicable)",
+        "Police report (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.nic.in/schemes/ujjawala"
+      }
+    },
+    {
+      "scheme_name": "Santhwana Scheme",
+      "parent_scheme": "Women Welfare Schemes",
+      "ministry": "Government of Karnataka",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Provide support to women victims of rape, sexual harassment, domestic violence, and dowry harassment",
+        "Offer counseling, legal assistance, and temporary shelter",
+        "Promote self-reliance through training and empowerment"
+      ],
+      "benefits": {
+        "support_services": "Counseling, legal assistance, and temporary shelter",
+        "training": "Skill development for self-reliance",
+        "financial_relief": "Immediate financial assistance for victims"
+      },
+      "eligibility_criteria": [
+        "Women victims of rape, sexual harassment, domestic violence, or dowry harassment",
+        "Residents of Karnataka",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Contact Santhwana centres via district Women and Child Development office",
+          "Provide incident details and supporting documents",
+          "Verification by authorities",
+          "Access to services and relief"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Incident report or FIR (if applicable)",
+        "Medical certificate (if applicable)",
+        "Residence proof"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.karnataka.gov.in/english"
+      }
+    },
+    {
+      "scheme_name": "Financial Relief for Victims of Atrocities",
+      "parent_scheme": "Women Welfare Schemes",
+      "ministry": "Government of Karnataka",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Provide financial assistance to women victims of atrocities",
+        "Support rehabilitation and recovery from trauma",
+        "Ensure immediate relief for affected women"
+      ],
+      "benefits": {
+        "immediate_relief": "₹25,000 as immediate financial assistance",
+        "relief_fund": "Up to ₹2,00,000 per case based on severity",
+        "death_relief": "₹1,00,000 in case of death due to atrocities or acid attack",
+        "corpus_fund": "₹500 lakh corpus fund at district level"
+      },
+      "eligibility_criteria": [
+        "Women victims of atrocities (e.g., domestic violence, acid attack)",
+        "Residents of Bangalore Rural district",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through District Women and Child Development office",
+          "Submit incident details and supporting documents",
+          "Verification by authorities",
+          "Relief disbursed via bank transfer"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Incident report or FIR",
+        "Medical certificate (for injury or death)",
+        "Residence proof",
+        "Death certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://bangalorerural.nic.in/en/programmes-for-womens/"
+      }
+    },
+    {
+      "scheme_name": "YSR Aasara",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Department of Rural Development",
+      "objectives": [
+        "Provide financial assistance to women in Self-Help Groups (SHGs)",
+        "Promote economic empowerment through debt redemption",
+        "Enhance financial inclusion and livelihood opportunities"
+      ],
+      "benefits": {
+        "financial_assistance": "Loan waiver and direct financial support up to ₹25,000 per SHG member",
+        "livelihood_support": "Access to training and market linkages for SHG enterprises"
+      },
+      "eligibility_criteria": [
+        "Women members of registered SHGs in Andhra Pradesh",
+        "Resident of Andhra Pradesh",
+        "Outstanding loans with banks as of specified cutoff date",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Register with local SHG and submit loan details",
+          "Apply through village/ward secretariat or district authorities",
+          "Verification of loan and SHG status by authorities",
+          "Financial assistance disbursed via Direct Benefit Transfer (DBT)"
+        ]
+      },
+      "documents_required": [
+        "SHG membership certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Bank loan documents",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.ap.gov.in/schemes/ysr-aasara/"
+      }
+    },
+    {
+      "scheme_name": "YSR Cheyutha",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Department of Social Welfare",
+      "objectives": [
+        "Provide financial support to women for economic empowerment",
+        "Promote entrepreneurship and livelihood opportunities",
+        "Support women from marginalized communities"
+      ],
+      "benefits": {
+        "financial_assistance": "₹75,000 over four years (₹18,750 annually) for women",
+        "market_linkages": "Support for starting businesses with private sector tie-ups"
+      },
+      "eligibility_criteria": [
+        "Women aged 45–60 years",
+        "Resident of Andhra Pradesh",
+        "Belonging to SC/ST/BC/Minority communities",
+        "Annual family income below ₹2,00,000"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through village/ward secretariat",
+          "Submit application form with documents",
+          "Verification by district authorities",
+          "Funds disbursed via DBT"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Caste certificate (for SC/ST/BC/Minority)",
+        "Income certificate",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.ap.gov.in/schemes/ysr-cheyutha/"
+      }
+    },
+    {
+      "scheme_name": "YSR Nethanna Nestham",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Department of Handlooms and Textiles",
+      "objectives": [
+        "Support women weavers and their families",
+        "Provide financial assistance for modernizing looms",
+        "Promote economic self-reliance in the handloom sector"
+      ],
+      "benefits": {
+        "financial_assistance": "₹24,000 annually per weaver family for loom modernization",
+        "training": "Skill upgradation and market linkage support"
+      },
+      "eligibility_criteria": [
+        "Women weavers or families with own handlooms",
+        "Resident of Andhra Pradesh",
+        "Registered with Handlooms and Textiles Department",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through district Handlooms and Textiles office",
+          "Submit application with proof of weaving activity",
+          "Verification by authorities",
+          "Funds disbursed via DBT"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Proof of loom ownership",
+        "Registration with Handlooms and Textiles Department",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.ap.gov.in/schemes/ysr-nethanna-nestham/"
+      }
+    },
+    {
+      "scheme_name": "Santhwana Scheme",
+      "parent_scheme": "Women Welfare Schemes",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Provide immediate support to women victims of violence",
+        "Offer counseling, legal aid, and medical assistance",
+        "Promote rehabilitation and empowerment of affected women"
+      ],
+      "benefits": {
+        "support_services": "Counseling, legal aid, medical support, and temporary shelter",
+        "financial_assistance": "Immediate relief up to ₹50,000 based on case severity"
+      },
+      "eligibility_criteria": [
+        "Women victims of domestic violence, sexual assault, or other atrocities",
+        "Resident of Andhra Pradesh",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Contact Santhwana centres via district Women and Child Development office",
+          "Provide incident details and supporting documents",
+          "Verification by authorities",
+          "Access to services and relief"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Incident report or FIR (if applicable)",
+        "Medical certificate (if applicable)",
+        "Residence proof"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.nic.in/schemes/santhwana"
+      }
+    },
+    {
+      "scheme_name": "Kalyana Lakshmi / Shaadi Mubarak",
+      "parent_scheme": "Marriage Assistance Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Women Development and Child Welfare",
+      "objectives": [
+        "Provide financial assistance for marriage of girls from economically weaker sections",
+        "Promote dignity and reduce financial burden on families",
+        "Support girls’ empowerment by easing marriage expenses"
+      ],
+      "benefits": {
+        "financial_assistance": "₹1,00,116 one-time grant for marriage",
+        "gold": "10 grams of gold for eligible beneficiaries"
+      },
+      "eligibility_criteria": [
+        "Unmarried girls above 18 years",
+        "Resident of Telangana",
+        "Parental annual income below ₹2,00,000",
+        "Applicable to SC/ST/BC/EWS communities"
+      ],
+      "application_process": {
+        "mode": "Online",
+        "steps": [
+          "Apply through Telangana ePass portal",
+          "Submit application form with required documents",
+          "Verification by district authorities",
+          "Funds disbursed via Direct Benefit Transfer (DBT)"
+        ]
+      },
+      "documents_required": [
+        "Marriage invitation or certificate",
+        "Income certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Caste certificate (for SC/ST/BC)",
+        "Age proof of bride"
+      ],
+      "official_links": {
+        "guidelines": "https://telanganaepass.cgg.gov.in/kalyana-lakshmi.do"
+      }
+    },
+    {
+      "scheme_name": "Arogya Lakshmi",
+      "parent_scheme": "Health and Nutrition Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Women Development and Child Welfare",
+      "objectives": [
+        "Combat malnutrition among pregnant and lactating women",
+        "Ensure healthy food access for women and children",
+        "Promote maternal and child health"
+      ],
+      "benefits": {
+        "nutrition_support": "One full meal daily at Anganwadi centres",
+        "supplementary_nutrition": "Nutritional supplements for pregnant and lactating women"
+      },
+      "eligibility_criteria": [
+        "Pregnant and lactating women",
+        "Resident of Telangana",
+        "Registered with Anganwadi centres",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Register at local Anganwadi centre",
+          "Provide pregnancy or lactation status details",
+          "Verification by Anganwadi workers",
+          "Access meals and supplements at centre"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Pregnancy certificate or child birth certificate",
+        "Anganwadi registration details"
+      ],
+      "official_links": {
+        "guidelines": "https://wdcw.tg.nic.in/schemes/arogya-lakshmi.html"
+      }
+    },
+    {
+      "scheme_name": "KCR Kit",
+      "parent_scheme": "Maternal and Child Welfare Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Health, Medical and Family Welfare",
+      "objectives": [
+        "Support new mothers and infants post-delivery",
+        "Reduce infant and maternal mortality",
+        "Promote institutional deliveries"
+      ],
+      "benefits": {
+        "kit_contents": "16 essential items including baby clothes, soap, diapers, and mosquito net",
+        "financial_assistance": "₹12,000 for girl child, ₹13,000 for boy child, additional ₹1,000 for twins"
+      },
+      "eligibility_criteria": [
+        "Women delivering in government hospitals",
+        "Resident of Telangana",
+        "No specific income criteria",
+        "Limited to two deliveries per woman"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Register at government hospital during delivery",
+          "Submit required documents post-delivery",
+          "Verification by hospital authorities",
+          "Kit and funds disbursed post-verification"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Delivery certificate from hospital",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://wdcw.tg.nic.in/schemes/kcr-kit.html"
+      }
+    },
+    {
+      "scheme_name": "Stree Nidhi",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Rural Development",
+      "objectives": [
+        "Provide microfinance to women Self-Help Groups (SHGs)",
+        "Promote financial independence and entrepreneurship",
+        "Support income-generating activities"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹1,00,000 at low interest rates",
+        "digital_finance": "Access to mobile banking and digital credit",
+        "training": "Skill development and financial literacy programs"
+      },
+      "eligibility_criteria": [
+        "Women members of registered SHGs",
+        "Resident of Telangana",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through Stree Nidhi portal or SHG federation",
+          "Submit loan application with SHG details",
+          "Verification by Stree Nidhi officials",
+          "Loan disbursed via bank transfer"
+        ]
+      },
+      "documents_required": [
+        "SHG membership certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Business plan (if applicable)",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.streenidhi.telangana.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Indiramma Mahila Shakti Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Telangana Minority Finance Corporation",
+      "objectives": [
+        "Promote self-employment among minority women",
+        "Provide financial assistance for starting businesses",
+        "Enhance economic empowerment through skill development"
+      ],
+      "benefits": {
+        "financial_assistance": "₹50,000 subsidy for 5,000 women to start businesses",
+        "sewing_machines": "Free domestic sewing machines for 10,490 women (₹6.04 crore allocated)"
+      },
+      "eligibility_criteria": [
+        "Minority women residents of Telangana",
+        "Aged 18–55 years",
+        "Annual family income below ₹1,50,000",
+        "Preference for economically backward women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Telangana Minority Finance Corporation offices",
+          "Submit application with documents",
+          "Transparent selection process by authorities",
+          "Assistance disbursed post-verification"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Minority certificate",
+        "Business plan (for financial assistance)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.telangana.gov.in/schemes/indiramma-mahila-shakti"
+      }
+    },
+    {
+      "scheme_name": "T-Aarogya Lakshmi",
+      "parent_scheme": "Health and Nutrition Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Women Development and Child Welfare",
+      "objectives": [
+        "Improve health and nutrition for women and children",
+        "Provide supplementary nutrition through Anganwadi centres",
+        "Reduce malnutrition and anemia in women"
+      ],
+      "benefits": {
+        "nutrition_support": "Supplementary nutrition including protein-rich meals",
+        "health_services": "Health check-ups and anemia screening at Anganwadi centres"
+      },
+      "eligibility_criteria": [
+        "Women and children registered with Anganwadi centres",
+        "Resident of Telangana",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Register at local Anganwadi centre",
+          "Provide health and identity details",
+          "Verification by Anganwadi workers",
+          "Access nutrition and health services"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Anganwadi registration details",
+        "Health records (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://wdcw.tg.nic.in/schemes/t-aarogya-lakshmi.html"
+      }
+    },
+    {
+      "scheme_name": "Amma Vodi",
+      "parent_scheme": "Educational Support Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Women Development and Child Welfare",
+      "objectives": [
+        "Promote education among girls from economically weaker sections",
+        "Reduce school dropout rates",
+        "Support families with school-going children"
+      ],
+      "benefits": {
+        "financial_assistance": "₹15,000 annually per child for school expenses",
+        "educational_support": "Free books and uniforms for girls in government schools"
+      },
+      "eligibility_criteria": [
+        "Mothers or guardians of school-going children",
+        "Resident of Telangana",
+        "Annual family income below ₹1,50,000",
+        "Children enrolled in government schools"
+      ],
+      "application_process": {
+        "mode": "Online",
+        "steps": [
+          "Apply through Telangana government portal",
+          "Submit application with school enrollment details",
+          "Verification by education department",
+          "Funds disbursed via DBT"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Child’s school enrollment certificate",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://www.telangana.gov.in/schemes/amma-vodi"
+      }
+    },
+    {
+      "scheme_name": "SHE Teams",
+      "parent_scheme": "Women Safety Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Department of Home",
+      "objectives": [
+        "Prevent harassment and crimes against women",
+        "Ensure women’s safety in public spaces",
+        "Promote rapid response to gender-based violence"
+      ],
+      "benefits": {
+        "safety_services": "24/7 patrolling and rapid response by SHE Teams",
+        "awareness": "Public campaigns on women’s safety",
+        "legal_support": "Assistance in filing complaints and legal action"
+      },
+      "eligibility_criteria": [
+        "Women facing harassment or safety concerns",
+        "Resident of Telangana",
+        "No specific income or age criteria"
+      ],
+      "application_process": {
+        "mode": "Offline/Online",
+        "steps": [
+          "Contact SHE Teams via helpline (100 or 87126 57777)",
+          "Report incident in person or via WhatsApp/email",
+          "Immediate response and follow-up by SHE Teams",
+          "No formal application required for assistance"
+        ]
+      },
+      "documents_required": [
+        "Incident details (if applicable)",
+        "Identity proof (Aadhaar, etc., optional)",
+        "Police complaint (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.telanganapolice.gov.in/she-teams.html"
+      }
+    },
+    {
+      "scheme_name": "Financial Assistance for Business Ventures",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Telangana Minority Finance Corporation",
+      "objectives": [
+        "Promote entrepreneurship among minority women",
+        "Provide financial support for small businesses and street vending",
+        "Enhance economic independence"
+      ],
+      "benefits": {
+        "financial_assistance": "₹50,000 subsidy for 5,000 women under Indiramma Minority Mahila Yojana"
+      },
+      "eligibility_criteria": [
+        "Minority women residents of Telangana",
+        "Aged 18–55 years",
+        "Annual family income below ₹1,50,000",
+        "Intention to start small business or street vending"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Telangana Minority Finance Corporation",
+          "Submit application with business plan and documents",
+          "Verification by authorities",
+          "Subsidy disbursed post-approval"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Minority certificate",
+        "Business plan"
+      ],
+      "official_links": {
+        "guidelines": "https://www.telangana.gov.in/schemes/indiramma-minority-mahila-yojana"
+      }
+    },
+    {
+      "scheme_name": "Free Supply of Sewing Machines",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Telangana",
+      "department": "Telangana Minority Finance Corporation",
+      "objectives": [
+        "Promote self-employment through tailoring skills",
+        "Support economically backward women",
+        "Enhance livelihood opportunities"
+      ],
+      "benefits": {
+        "sewing_machines": "Free domestic sewing machines for 10,490 women (₹6.04 crore allocated)"
+      },
+      "eligibility_criteria": [
+        "Women residents of Telangana",
+        "Aged 18–55 years",
+        "Annual family income below ₹1,50,000",
+        "Trained in tailoring",
+        "Preference for minority and BPL women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Telangana Minority Finance Corporation",
+          "Submit application with documents",
+          "Transparent selection by authorities",
+          "Sewing machines distributed post-approval"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Tailoring training certificate",
+        "Minority certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.telangana.gov.in/schemes/indiramma-mahila-shakti"
+      }
+    },
+    {
+      "scheme_name": "Nari Gaurav Niti",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Promote gender equality and women’s empowerment",
+        "Provide financial and skill development support to women",
+        "Encourage women’s participation in economic activities through SHGs"
+      ],
+      "benefits": {
+        "financial_assistance": "Grants and subsidies for SHG-based enterprises",
+        "training": "Skill development and capacity-building programs",
+        "market_linkages": "Access to markets for SHG products"
+      },
+      "eligibility_criteria": [
+        "Women residents of Gujarat",
+        "Members of registered Self-Help Groups",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Join or form an SHG under Department of Women and Child Development",
+          "Apply through district WCD office or SHG federation",
+          "Submit documents and project proposal",
+          "Verification and disbursement by authorities"
+        ]
+      },
+      "documents_required": [
+        "SHG registration certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Project proposal for enterprise",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.gujarat.gov.in/nari-gaurav-niti"
+      }
+    },
+    {
+      "scheme_name": "Swayamsiddha Yojana",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Promote self-employment among women",
+        "Provide financial assistance for micro-enterprises",
+        "Enhance economic independence for rural women"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹1,00,000 at subsidized interest rates",
+        "subsidy": "15% subsidy on loan amount",
+        "training": "Skill training for entrepreneurship"
+      },
+      "eligibility_criteria": [
+        "Women residents of Gujarat",
+        "Aged 18–55 years",
+        "Annual family income below ₹1,50,000",
+        "Preference for BPL and rural women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through district WCD office or banks",
+          "Submit application with business plan and documents",
+          "Verification by authorities",
+          "Loan disbursed via partner banks"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Business plan",
+        "BPL certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.gujarat.gov.in/schemes"
+      }
+    },
+    {
+      "scheme_name": "Gaurav Nari Niti Vocational Training",
+      "parent_scheme": "Skill Development Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Enhance employability of women through vocational training",
+        "Support women in starting income-generating activities",
+        "Promote skill development for economic empowerment"
+      ],
+      "benefits": {
+        "training": "Free vocational training in tailoring, beauty parlour, and computer skills",
+        "stipend": "Monthly stipend during training for eligible candidates",
+        "certification": "Skill certification upon course completion"
+      },
+      "eligibility_criteria": [
+        "Women residents of Gujarat",
+        "Aged 18–45 years",
+        "No specific income criteria",
+        "Preference for unemployed and rural women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through district WCD office or training centres",
+          "Submit application with required documents",
+          "Selection based on eligibility",
+          "Training provided at designated centres"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Educational certificate (if applicable)",
+        "Income certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.gujarat.gov.in/vocational-training"
+      }
+    },
+    {
+      "scheme_name": "Sakhi One-Stop Centre",
+      "parent_scheme": "Women Welfare Schemes",
+      "ministry": "Ministry of Women and Child Development",
+      "department": "Department of Women and Child Development",
+      "objectives": [
+        "Provide integrated support for women facing violence",
+        "Offer medical, legal, and psychological assistance",
+        "Ensure safety and rehabilitation of women in distress"
+      ],
+      "benefits": {
+        "support_services": "Counseling, legal aid, medical support, and temporary shelter",
+        "helpline": "Access to 181 women’s helpline for emergency support"
+      },
+      "eligibility_criteria": [
+        "Women facing violence or distress",
+        "Resident of Gujarat",
+        "No specific income or age criteria"
+      ],
+      "application_process": {
+        "mode": "Offline/Online",
+        "steps": [
+          "Contact Sakhi One-Stop Centre via 181 helpline or in-person",
+          "Provide incident details",
+          "Access services directly or through referral",
+          "No formal application required for immediate support"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc., if available)",
+        "Incident report or FIR (if applicable)",
+        "Medical certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://wcd.nic.in/sakhi-one-stop-centres"
+      }
+    },
+    {
+      "scheme_name": "Mukhyamantri Nari Shakti Yojana",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Social Justice and Empowerment",
+      "objectives": [
+        "Promote entrepreneurship among women",
+        "Provide financial assistance for small businesses",
+        "Support women’s economic independence"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹2,00,000 at low interest rates",
+        "subsidy": "20% subsidy on loan amount",
+        "training": "Entrepreneurship and skill development programs"
+      },
+      "eligibility_criteria": [
+        "Women residents of Gujarat",
+        "Aged 18–60 years",
+        "Annual family income below ₹2,00,000",
+        "Preference for SC/ST/BPL women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through district Social Justice and Empowerment office",
+          "Submit application with business plan and documents",
+          "Verification by authorities",
+          "Loan disbursed via banks"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Business plan",
+        "Caste certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://sje.gujarat.gov.in/schemes"
+      }
+    },
+    {
+      "scheme_name": "Saraswati Sadhana Yojana",
+      "parent_scheme": "Educational Support Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Education",
+      "objectives": [
+        "Promote education among girl students",
+        "Provide free bicycles to encourage school attendance",
+        "Reduce dropout rates in rural areas"
+      ],
+      "benefits": {
+        "bicycle_distribution": "Free bicycles for girl students in Class 9",
+        "educational_support": "Access to school transportation"
+      },
+      "eligibility_criteria": [
+        "Girl students in Class 9",
+        "Enrolled in government or aided schools in Gujarat",
+        "Resident of Gujarat",
+        "No specific income criteria"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through school authorities",
+          "Submit enrollment and residence proof",
+          "Verification by education department",
+          "Bicycles distributed at schools"
+        ]
+      },
+      "documents_required": [
+        "School enrollment certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof"
+      ],
+      "official_links": {
+        "guidelines": "https://gujaratindia.gov.in/schemes/saraswati-sadhana-yojana"
+      }
+    },
+    {
+      "scheme_name": "Kasturba Gandhi Balika Vidyalaya (KGBV)",
+      "parent_scheme": "Educational Support Schemes",
+      "ministry": "Ministry of Education",
+      "department": "Department of School Education and Literacy",
+      "objectives": [
+        "Provide quality education to girls from disadvantaged communities",
+        "Reduce gender disparities in education",
+        "Promote secondary education in rural areas"
+      ],
+      "benefits": {
+        "education": "Free education, boarding, and lodging for girls",
+        "stipends": "Monthly stipends for educational expenses",
+        "vocational_training": "Skill development programs"
+      },
+      "eligibility_criteria": [
+        "Girls from SC/ST/OBC/minority communities",
+        "Aged 11–16 years",
+        "Enrolled in Classes 6–12 in KGBV schools",
+        "Resident of Gujarat"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through nearest KGBV school",
+          "Submit application with documents",
+          "Selection based on eligibility",
+          "Admission to KGBV school"
+        ]
+      },
+      "documents_required": [
+        "Birth certificate",
+        "Caste certificate (if applicable)",
+        "Residence proof",
+        "Identity proof (Aadhaar, etc.)"
+      ],
+      "official_links": {
+        "guidelines": "https://www.education.gov.in/kgbv"
+      }
+    },
+    {
+      "scheme_name": "Gujarat Women Economic Development Corporation (GWEDC) Microfinance Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Social Justice and Empowerment",
+      "objectives": [
+        "Provide microfinance to women for small businesses",
+        "Promote financial inclusion through SHGs",
+        "Support women entrepreneurs in rural and urban areas"
+      ],
+      "benefits": {
+        "loan_amount": "Up to ₹50,000 at low interest rates",
+        "subsidy": "10% subsidy on loan amount",
+        "training": "Financial literacy and business management training"
+      },
+      "eligibility_criteria": [
+        "Women members of SHGs",
+        "Resident of Gujarat",
+        "Annual family income below ₹1,20,000",
+        "Preference for marginalized communities"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through GWEDC or SHG federation",
+          "Submit loan application with documents",
+          "Verification by GWEDC authorities",
+          "Loan disbursed via banks"
+        ]
+      },
+      "documents_required": [
+        "SHG membership certificate",
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Business plan"
+      ],
+      "official_links": {
+        "guidelines": "https://sje.gujarat.gov.in/gwedc"
+      }
+    },
+    {
+      "scheme_name": "Free Sewing Machine Scheme",
+      "parent_scheme": "Women Empowerment Schemes",
+      "ministry": "Government of Gujarat",
+      "department": "Department of Social Justice and Empowerment",
+      "objectives": [
+        "Promote self-employment through tailoring skills",
+        "Support economically disadvantaged women",
+        "Enhance livelihood opportunities"
+      ],
+      "benefits": {
+        "sewing_machines": "Free sewing machines for eligible women"
+      },
+      "eligibility_criteria": [
+        "Women residents of Gujarat",
+        "Aged 18–50 years",
+        "Annual family income below ₹1,20,000",
+        "Trained in tailoring",
+        "Preference for BPL/SC/ST women"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through district Social Justice and Empowerment office",
+          "Submit application with documents",
+          "Verification by authorities",
+          "Sewing machines distributed post-approval"
+        ]
+      },
+      "documents_required": [
+        "Identity proof (Aadhaar, etc.)",
+        "Residence proof",
+        "Income certificate",
+        "Tailoring training certificate",
+        "Caste certificate (if applicable)"
+      ],
+      "official_links": {
+        "guidelines": "https://sje.gujarat.gov.in/schemes"
+      }
+    }
+  ]
+}

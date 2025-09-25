@@ -200,14 +200,9 @@ const SchemeDisplay = () => {
             Discover government schemes tailored specifically for your profile and needs
           </p>
           {userProfile && (
-            <p className="text-lg text-blue-600 mt-2">Welcome, {userProfile.name}!</p>
+            <p className="text-lg font-bold text-blue-600 mt-2">Welcome, {userProfile.name}!</p>
           )}
-          {query && (
-            <div className="mt-6 inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full border border-blue-200">
-              <Search className="w-5 h-5 text-blue-600 mr-2" />
-              <span className="text-blue-800 font-medium">Query: {query}</span>
-            </div>
-          )}
+          
         </div>
 
         {/* Rest of your existing JSX remains the same */}

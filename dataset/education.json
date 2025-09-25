@@ -1,0 +1,1190 @@
+{
+    "education_schemes":[
+  {
+    "scheme_name": "Prime Minister’s Special Scholarship Scheme For The Students Of Union Territories Of Jammu & Kashmir And Ladakh",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "All India Council for Technical Education (AICTE)",
+    "objectives": [
+      "Provide financial assistance to students from J&K and Ladakh for higher education outside the UTs",
+      "Support meritorious students in securing admission in government colleges/institutions"
+    ],
+    "benefits": {
+      "general_degree": {
+        "number_of_scholarships": 2070,
+        "academic_fee_upper_limit": "₹30,000/-",
+        "maintenance_charges": "₹1,00,000/- per annum"
+      },
+      "professional_engineering": {
+        "number_of_scholarships": 2830,
+        "academic_fee_upper_limit": "₹1,25,000/-",
+        "maintenance_charges": "₹1,00,000/- per annum"
+      },
+      "medical_bds": {
+        "number_of_scholarships": 100,
+        "academic_fee_upper_limit": "₹3,00,000/-",
+        "maintenance_charges": "₹1,00,000/- per annum"
+      },
+      "disbursement": "Academic fees paid directly to institution; maintenance allowance via DBT in 9-10 installments"
+    },
+    "eligibility_criteria": [
+      "Domicile of Union Territories of J&K or Ladakh",
+      "Passed Class 12th from JKBOSE or CBSE-affiliated schools in J&K or Ladakh",
+      "Family income not exceeding ₹8,00,000 per annum",
+      "Admitted through AICTE counseling under supernumerary quota (except medical courses)",
+      "For lateral entry: Passed Diploma in Engineering from recognized polytechnic institutes in J&K or Ladakh"
+    ],
+    "exclusions": [
+      "Candidates pursuing courses through Open Universities",
+      "Students availing other scholarship schemes",
+      "Candidates admitted through Management Quota",
+      "Candidates pursuing Diploma or Post Graduate courses",
+      "Family income exceeding ₹8,00,000 per annum",
+      "Not applying through AICTE portal"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit https://www.aicte-india.org/bureaus/jk/2021-2022",
+        "Click on 'PMSSS 2021-22 Registration' or 'Diploma Registration (2022-23)'",
+        "Fill mandatory fields including personal details, educational qualifications, and income details",
+        "Register and verify via email link",
+        "Sign in at https://aicte-jk-scholarship-gov.in/, provide required details, and upload documents",
+        "Submit application"
+      ]
+    },
+    "documents_required": [
+      "Domicile certificate of J&K or Ladakh",
+      "Class 10th and 12th certificates",
+      "Polytechnic Diploma certificate (for lateral entry)",
+      "Income certificate",
+      "Caste certificate (if applicable)",
+      "Disability certificate (if applicable)",
+      "Joining report from allotted college",
+      "Bank details",
+      "Aadhaar card",
+      "Photograph"
+    ],
+    "official_links": {
+      "guidelines": "https://www.aicte-india.org/bureaus/jk/2021-2022"
+    }
+  },
+  {
+    "scheme_name": "Swami Vivekananda Single Girl Child Fellowship for Research in Social Sciences",
+    "parent_scheme": "Fellowship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Support higher education of single girl child in Social Sciences",
+      "Promote small family norms",
+      "Recognize and promote single girl child norm in society"
+    ],
+    "benefits": {
+      "fellowship": "₹25,000/- per month for initial two years; ₹28,000/- per month for remaining tenure",
+      "contingency": "₹10,000/- per annum for initial two years; ₹20,500/- per annum for remaining tenure",
+      "escort_reader_assistance": "₹2,000/- per month for PWD candidates",
+      "tenure": "5 years or until Ph.D. thesis submission, whichever is earlier"
+    },
+    "eligibility_criteria": [
+      "Single girl child without siblings (twin/fraternal daughters eligible)",
+      "Admitted to Ph.D. in Social Sciences in recognized Universities/Colleges/Institutes",
+      "Age up to 40 years for general category, 45 years for SC/ST/OBC/PWD",
+      "Pursuing regular, full-time Ph.D. program"
+    ],
+    "exclusions": [
+      "Candidates with siblings (if male sibling exists)",
+      "Pursuing Ph.D. in distance education mode"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Apply through UGC website: https://www.ugc.gov.in/",
+        "Fill and submit application form as per advertised instructions",
+        "Upload required documents"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "Proof of identity",
+      "Proof of age (Birth certificate or Class 10th marksheet)",
+      "Bank details",
+      "Passport-size photograph",
+      "Caste certificate (if applicable)",
+      "Disability certificate (if applicable)",
+      "Transgender ID card (if applicable)",
+      "Affidavit on ₹50/- stamp paper confirming single girl child status"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "CBSE Merit Scholarship Scheme For Single Girl Child",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "Central Board of Secondary Education (CBSE)",
+    "objectives": [
+      "Recognize efforts of parents in promoting girls' education",
+      "Encourage meritorious single girl students to continue education in Classes 11th and 12th"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹500/- per month",
+      "duration": "Maximum 2 years",
+      "payment_mode": "Through ECS/NEFT"
+    },
+    "eligibility_criteria": [
+      "Single girl child of her family",
+      "Secured 60% or more marks in CBSE Class 10th examination",
+      "Studying in Class 11th or 12th in CBSE-affiliated school",
+      "Tuition fee not exceeding ₹1,500/- per month (₹6,000/- for NRI applicants)",
+      "Indian national"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit https://www.cbse.gov.in/",
+        "Register as new user or proceed with renewal",
+        "Fill roll number and date of birth as per Class 10th marksheet",
+        "Fill and attest undertaking and affidavit as per guidelines",
+        "Upload scanned undertaking and affidavit in PDF format",
+        "Submit application and print confirmation page",
+        "For renewal, courier confirmation page to CBSE Scholarship Office"
+      ]
+    },
+    "documents_required": [
+      "Caste certificate (if applicable)",
+      "Income certificate",
+      "Admission proof",
+      "Fee structure details",
+      "Passport-size photographs",
+      "Scanned signature",
+      "Student’s ID card",
+      "Class 11th marksheet (for renewal)",
+      "Aadhaar-linked bank account details",
+      "Affidavit on ₹50/- stamp paper confirming single girl child status"
+    ],
+    "official_links": {
+      "guidelines": "https://www.cbse.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "National Scholarship For Post Graduate Studies",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "Department of Higher Education",
+    "objectives": [
+      "Provide financial assistance to meritorious students from economically weaker sections for postgraduate studies"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹15,000/- per month for 10 months annually",
+      "duration": "For duration of postgraduate program"
+    },
+    "eligibility_criteria": [
+      "Pursuing first postgraduate degree",
+      "Enrolled in first year of full-time postgraduate program",
+      "Under 30 years old",
+      "Pursuing recognized postgraduate degree program"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit National Scholarship Portal",
+        "Register as new applicant with mobile OTP",
+        "Fill application form with personal and academic details",
+        "Upload required documents",
+        "Submit application"
+      ]
+    },
+    "documents_required": [
+      "Attested mark sheets and certificates from Class 9th onwards",
+      "Provisional or final admission letter to PG course",
+      "Proof of identity (Aadhaar, Voter ID, Passport, PAN Card, Driving License)",
+      "Bank details",
+      "Two passport-size photographs"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Pradhan Mantri Uchchatar Shiksha Protsahan Yojana: Central Sector Interest Subsidy Scheme",
+    "parent_scheme": "Education Loan Schemes",
+    "ministry": "Ministry of Education",
+    "department": "Department of Higher Education",
+    "objectives": [
+      "Provide interest subsidy during moratorium period for education loans to economically weaker students",
+      "Support higher education in professional/technical courses"
+    ],
+    "benefits": {
+      "interest_subsidy": "Full interest subsidy during moratorium period (course period + 1 year)",
+      "loan_amount": "Up to ₹10,00,000/-",
+      "no_collateral": "For loans up to ₹7.5 lakhs"
+    },
+    "eligibility_criteria": [
+      "Loans taken under IBA Model Education Loan Scheme",
+      "Gross parental/family income up to ₹4.5 lakhs per annum",
+      "Enrolled in NAAC/NBA accredited institutions or CFTIs for professional/technical courses",
+      "Admissible only once for UG or PG degree courses"
+    ],
+    "application_process": {
+      "mode": "Online/Offline",
+      "steps": [
+        "Visit nearest bank branch where education loan was availed",
+        "Submit application for interest subsidy with required documents",
+        "Nodal bank (Canara Bank) disburses subsidy via DBT through PFMS portal"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "PAN card",
+      "Income proof",
+      "Educational certificates",
+      "Proof of admission",
+      "Bank account details"
+    ],
+    "official_links": {
+      "guidelines": "https://www.education.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "AICTE – Saksham Scholarship Scheme For Specially-Abled Student (Diploma)",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "All India Council for Technical Education (AICTE)",
+    "objectives": [
+      "Support specially-abled students to pursue technical education",
+      "Encourage preparation for a successful future through technical knowledge"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹50,000/- per annum",
+      "duration": "Up to 3 years for first-year students; 2 years for lateral entry"
+    },
+    "eligibility_criteria": [
+      "Admitted to first or second year of diploma course in AICTE-approved institution",
+      "Disability of not less than 40%",
+      "Family income not exceeding ₹8,00,000/- per annum"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit https://scholarships.gov.in/",
+        "Register as new user, accept terms, and fill details",
+        "Login with application ID and password",
+        "Fill application form and upload documents",
+        "Submit application"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "SSC/10th certificate and marksheet",
+      "HSC/12th certificate (for degree level)",
+      "ITI certificate (for lateral entry diploma)",
+      "Category certificate (if applicable)",
+      "Study/Bonafide certificate",
+      "Annual family income certificate",
+      "Promotion certificate (for renewal)"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Post Graduate Indira Gandhi Scholarship For Single Girl Child",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Support postgraduate education of single girl children",
+      "Promote small family norms"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹36,200/- per annum",
+      "number_of_scholarships": "3000 annually",
+      "duration": "2 years for PG course"
+    },
+    "eligibility_criteria": [
+      "Single girl child without siblings (twin/fraternal daughters eligible)",
+      "Admitted to first year of regular, full-time Master’s degree course",
+      "Age not exceeding 30 years",
+      "Pursuing non-professional course"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Apply through National Scholarship Portal",
+        "Institution verifies online application",
+        "Submit required documents"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "Proof of admission to Master’s degree course",
+      "Joining report (Annexure-I)",
+      "Affidavit for single girl child status (Annexure-II)",
+      "Bank passbook",
+      "Birth certificate or Class 10th marksheet"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Free Education For Sports Medal Winners / Participants Of National/International Events",
+    "parent_scheme": "Education Support Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Assist medal-winning sportspersons in pursuing higher education",
+      "Motivate excellence in sports and academics"
+    ],
+    "benefits": {
+      "olympics_world_championship": {
+        "tuition_fee": "Actual",
+        "m_phil_phd_mba": "₹7,500/- per month + Actual",
+        "hostel_facilities": "Actual",
+        "kit": "₹15,000/- per annum"
+      },
+      "commonwealth_asian_saf": {
+        "tuition_fee": "75% of Actual for national level",
+        "m_phil_phd_mba": "₹5,000/- to ₹7,500/- per month + Actual",
+        "hostel_facilities": "Actual",
+        "kit": "₹6,000/- to ₹10,000/- per annum"
+      }
+    },
+    "eligibility_criteria": [
+      "Medal winners of national games or participants in recognized international sporting events",
+      "Admitted to recognized Universities/Colleges/Institutions"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Download prescribed application form",
+        "Fill and attach certificate of participation/medal",
+        "Submit to designated authority"
+      ]
+    },
+    "documents_required": [
+      "Application in prescribed format",
+      "Certificate of participation/medal (attested)",
+      "Statement of selected students and receipt of scholarship",
+      "Progress report after first year",
+      "Utilization certificate",
+      "Certificate for scholarship continuance"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Savitribai Jyotirao Phule Fellowship For Single Girl Child",
+    "parent_scheme": "Fellowship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Support higher education of single girl children in any stream",
+      "Promote small family norms",
+      "Recognize single girl child norm in society"
+    ],
+    "benefits": {
+      "fellowship": "₹31,000/- per month (JRF) for 2 years; ₹35,000/- per month (SRF) for remaining tenure",
+      "contingency": "₹10,000/- to ₹25,000/- per annum",
+      "escort_reader_assistance": "₹3,000/- per month for Divyang scholars",
+      "tenure": "5 years or until Ph.D. thesis submission"
+    },
+    "eligibility_criteria": [
+      "Single girl child pursuing Ph.D. in any stream",
+      "Registered in regular, full-time Ph.D. program",
+      "Age up to 40 years (general), 45 years (SC/ST/OBC/PWD)"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit https://frg.ugc.ac.in/",
+        "Register as new user, fill details, and upload photo/signature",
+        "Login with credentials, fill eligibility and PG/Ph.D. details",
+        "Submit application with affidavit for single girl child status"
+      ]
+    },
+    "documents_required": [
+      "Passport-size photograph and signature",
+      "Research proposal (up to 5 MB)",
+      "Abstract (up to 1 MB)",
+      "Signed auto-generated form by HoD/Registrar",
+      "Affidavit on ₹100/- stamp paper for single girl child status"
+    ],
+    "official_links": {
+      "guidelines": "https://frg.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Pre Matric Scholarship For Students With Disabilities",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Social Justice and Empowerment",
+    "department": "Department of Empowerment of Persons with Disabilities (DEPwD)",
+    "objectives": [
+      "Support students with disabilities in Classes 9th and 10th",
+      "Enable SwDs to pursue education and earn a livelihood"
+    ],
+    "benefits": {
+      "maintenance_allowance": {
+        "day_scholars": "₹500/- per month",
+        "hostellers": "₹800/- per month"
+      },
+      "book_grant": "₹1,000/- per annum",
+      "disability_allowances": {
+        "visually_impaired": "₹4,000/- per annum",
+        "hearing_impaired": "₹2,000/- per annum",
+        "physically_disabled": "₹2,000/- per annum",
+        "intellectual_disabilities": "₹4,000/- per annum",
+        "other_disabilities": "₹2,000/- per annum"
+      }
+    },
+    "eligibility_criteria": [
+      "Studying in Class 9th or 10th in government or recognized school",
+      "Disability percentage of 40% or above",
+      "Family income not exceeding ₹2,00,000/- per annum",
+      "Not availing other government scholarships",
+      "Not the third sibling receiving this scholarship"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit https://scholarships.gov.in/",
+        "Register as new user, fill details, and submit",
+        "Login with application ID and password",
+        "Fill application form and upload documents",
+        "Submit application"
+      ]
+    },
+    "documents_required": [
+      "Photograph",
+      "Proof of age",
+      "Disability certificate",
+      "Income certificate",
+      "Tuition fee receipt",
+      "Last academic qualification certificate",
+      "Bank details"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Junior Research Fellowship",
+    "parent_scheme": "Fellowship Schemes",
+    "ministry": "Ministry of Science and Technology",
+    "department": "Department of Biotechnology (DBT)",
+    "objectives": [
+      "Provide financial support for doctoral research in biotechnology and life sciences"
+    ],
+    "benefits": {
+      "fellowship_amount": "₹31,000/- per month for first 2 years; ₹35,000/- per month for next 3 years",
+      "tenure": "5 years"
+    },
+    "eligibility_criteria": [
+      "Indian citizen",
+      "Master’s degree in biotechnology or related field",
+      "Cleared GAT or NET exam",
+      "Age not exceeding 28 years (general/EWS) or 33 years (SC/ST/PH)",
+      "Pursuing full-time doctoral research"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Qualify Biotechnology Eligibility Test (BET)",
+        "Apply online on DBT website in July-August",
+        "Upload required documents",
+        "Appear for interview",
+        "Check final selection list on DBT website"
+      ]
+    },
+    "documents_required": [
+      "BET exam scorecard",
+      "Research proposal",
+      "No Objection Certificate (if applicable)",
+      "Passport-size photograph",
+      "Signature",
+      "Date of birth proof",
+      "Academic transcripts",
+      "Category certificate (if applicable)",
+      "PWD certificate (if applicable)"
+    ],
+    "official_links": {
+      "guidelines": "https://dbtindia.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Institutions of Eminence Scheme",
+    "parent_scheme": "Education Support Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Empower Higher Educational Institutions to become world-class",
+      "Enhance affordable access to high-quality education"
+    ],
+    "benefits": {
+      "financial_assistance": "Up to ₹1,000 crore for government institutions",
+      "additional_benefits": [
+        "Freedom to mobilize resources from industry/alumni",
+        "Admit up to 30% foreign students",
+        "Fix fees for foreign and domestic students",
+        "Flexible curriculum and syllabus",
+        "Exemption from government approvals for academic collaborations"
+      ]
+    },
+    "eligibility_criteria": [
+      "10 selected institutions (mix of technical, management, and central universities)",
+      "Top 50 in NIRF category or top 500 in global rankings (Times, QS, Shanghai)"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Central government institutions apply through controlling Ministry/Department",
+        "State public universities apply through state government",
+        "Submit 15-year strategic vision plan and 5-year implementation plan"
+      ]
+    },
+    "documents_required": [
+      "Organization details",
+      "Financial strength details",
+      "Land details",
+      "Governance structure",
+      "Five-year implementation plan",
+      "Alumni engagement plan",
+      "Sustainability plan",
+      "Affiliation plan"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Pradhan Mantri Vidyalaxmi (PM-Vidyalaxmi) Scheme",
+    "parent_scheme": "Education Loan Schemes",
+    "ministry": "Ministry of Education",
+    "department": "Department of Higher Education",
+    "objectives": [
+      "Provide financial support to meritorious students for higher education",
+      "Ensure no financial constraints prevent pursuit of quality education"
+    ],
+    "benefits": {
+      "loan_type": "Collateral-free, guarantor-free education loans",
+      "loan_amount": "No upper limit, covers course fees and associated expenses",
+      "credit_guarantee": "75% for loans up to ₹7,50,000/-",
+      "interest_subvention": "3% for loans up to ₹10,00,000/- for family income up to ₹8,00,000/-",
+      "repayment_period": "Up to 15 years excluding moratorium"
+    },
+    "eligibility_criteria": [
+      "Indian citizen, aged 18-23 years",
+      "Merit-based admission to one of 860 QHEIs",
+      "Pursuing technical/professional course",
+      "Passed 10th and 12th from government school",
+      "Not receiving other government scholarships",
+      "Family income up to ₹8,00,000/- for interest subvention"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit PM-Vidyalaxmi website, register with mobile/email OTP",
+        "Fill application form, choose bank/branch, and upload documents",
+        "Submit application and track status",
+        "Apply for interest subvention post-loan sanction"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "PAN card",
+      "Address proof",
+      "Self-attested marksheets",
+      "Entrance exam result",
+      "Offer letter with fee structure",
+      "Income certificate or Annexure 6"
+    ],
+    "official_links": {
+      "guidelines": "https://www.education.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "National Scheme Of Incentive To Girls For Secondary Education",
+    "parent_scheme": "Incentive Schemes",
+    "ministry": "Ministry of Education",
+    "department": "Department of School Education & Literacy",
+    "objectives": [
+      "Promote enrollment of girls aged 14-18 in secondary education",
+      "Reduce dropout rates and retain girls up to Class 12th"
+    ],
+    "benefits": {
+      "incentive_amount": "₹3,000/- as fixed deposit",
+      "withdrawal": "No premature withdrawal, matures at age 18"
+    },
+    "eligibility_criteria": [
+      "Girl child from SC/ST or passed Class 8th from Kasturba Gandhi Balika Vidyalayas",
+      "Enrolled in Class 9th in government, government-aided, or local body schools",
+      "Unmarried"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Register on National Scholarship Portal",
+        "Login, fill application form, and upload documents",
+        "Submit application",
+        "Track payment status via PFMS"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "Domicile certificate",
+      "Income certificate",
+      "Class 10th scorecard",
+      "Certificate of two-year continuation in Class 9th",
+      "Fee receipts",
+      "Bank account proof",
+      "Disability certificate (if applicable)"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Post Graduate Scholarship for GATE/GPAT Qualified Students for Pursuing M.Tech/M.E./M.Pharm-UGC",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Attract young talent to pursue postgraduate education in technical fields"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹12,400/- per month",
+      "contingency": "₹5,000/- per annum",
+      "duration": "24 months or course duration"
+    },
+    "eligibility_criteria": [
+      "GATE/GPAT qualified",
+      "Admitted to M.E./M.Tech./M.Pharm or integrated dual degree program",
+      "Full-time scholar"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "University submits claim on UGC portal",
+        "Upload undertaking and GATE/GPAT scorecard",
+        "Register on Canara Bank UGC portal",
+        "Scholarship disbursed via DBT"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "Passport-size photograph",
+      "Proof of age",
+      "Marksheets/grade cards and degrees",
+      "GATE/GPAT scorecard",
+      "Caste certificate (if applicable)",
+      "Disability certificate (if applicable)",
+      "Income certificate (if applicable)",
+      "Bank account details"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Pragati Scholarship Scheme For Girl Students (Technical Diploma)",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "All India Council for Technical Education (AICTE)",
+    "objectives": [
+      "Empower women through technical education",
+      "Support girl students in pursuing diploma courses"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹50,000/- per annum",
+      "duration": "Up to 3 years for first-year students; 2 years for lateral entry"
+    },
+    "eligibility_criteria": [
+      "Girl student pursuing first or second year of technical diploma",
+      "Family income not exceeding ₹8,00,000/- per annum",
+      "Maximum two girl children per family",
+      "From specified UTs/North Eastern States"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Register on National Scholarship Portal",
+        "Login, fill application form, and upload documents",
+        "Submit application",
+        "Track payment status via PFMS"
+      ]
+    },
+    "documents_required": [
+      "SSC/10th certificate",
+      "HSC/12th certificate (for degree level)",
+      "ITI certificate (for lateral entry diploma)",
+      "Diploma certificate (for lateral entry degree)",
+      "Bank passbook",
+      "Category certificate",
+      "Aadhaar card",
+      "Study certificate",
+      "Annual family income certificate",
+      "Parent’s declaration",
+      "Bank mandate form"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Post Graduate Scholarships for Professional Courses for SC/ST Candidates",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Provide financial assistance to SC/ST students for postgraduate professional courses"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹7,800/- per month for ME/M.Tech; ₹4,500/- per month for other courses",
+      "duration": "2-3 years depending on course"
+    },
+    "eligibility_criteria": [
+      "Belong to SC/ST category",
+      "Graduate degree in relevant subject",
+      "Admitted to first year of full-time postgraduate professional course",
+      "Enrolled in recognized university/institution"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Apply on National Scholarship Portal after UGC advertisement",
+        "Fill application form, upload documents",
+        "Institution verifies application",
+        "Scholarship disbursed via DBT"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "Passport-size photograph",
+      "Proof of age",
+      "Marksheets/grade cards and degrees",
+      "Caste certificate",
+      "Disability certificate (if applicable)"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Post Graduate Merit Scholarship Scheme For University Rank Holders At Under-Graduate Level",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "University Grants Commission (UGC)",
+    "objectives": [
+      "Promote and nurture talent",
+      "Reward meritorious students for pursuing postgraduate studies"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹2,000/- per month",
+      "number_of_scholarships": "1800 for General Courses, 575 for Honours Courses",
+      "duration": "2 years"
+    },
+    "eligibility_criteria": [
+      "First or second rank holder in General Courses or first rank in Honours Courses at UG level",
+      "Minimum 60% marks at UG level",
+      "Admitted to regular, full-time Master’s degree course",
+      "Age not exceeding 30 years"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit https://www.ugc.ac.in/",
+        "Select scheme under e-SARTS Scholarships-Fellowships",
+        "Fill application form and upload documents",
+        "Submit before deadline"
+      ]
+    },
+    "documents_required": [
+      "Attested copy of UG degree",
+      "Matriculation certificate",
+      "Verification certificate from institute",
+      "Provisional rank certificate from university"
+    ],
+    "official_links": {
+      "guidelines": "https://www.ugc.ac.in/"
+    }
+  },
+  {
+    "scheme_name": "Pragati Scholarship Scheme For Girl Students (Technical Degree)",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "All India Council for Technical Education (AICTE)",
+    "objectives": [
+      "Empower women through technical education",
+      "Support girl students in pursuing degree courses"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹50,000/- per annum",
+      "duration": "Up to 4 years for first-year students; 3 years for lateral entry"
+    },
+    "eligibility_criteria": [
+      "Girl student pursuing first or second year of technical degree",
+      "Family income not exceeding ₹8,00,000/- per annum",
+      "Maximum two girl children per family",
+      "From specified UTs/North Eastern States"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Register on National Scholarship Portal",
+        "Login, fill application form, and upload documents",
+        "Submit application",
+        "Track payment status via PFMS"
+      ]
+    },
+    "documents_required": [
+      "SSC/10th certificate",
+      "HSC/12th certificate",
+      "ITI certificate (for lateral entry diploma)",
+      "Diploma certificate (for lateral entry degree)",
+      "Bank passbook",
+      "Category certificate",
+      "Aadhaar card",
+      "Study certificate",
+      "Annual family income certificate",
+      "Parent’s declaration",
+      "Bank mandate form"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "AICTE-Swanath Scholarship Scheme For Students",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "All India Council for Technical Education (AICTE)",
+    "objectives": [
+      "Support orphans, wards of Covid-19 deceased parents, and wards of martyred Armed Forces personnel",
+      "Encourage pursuit of education in AICTE-approved institutions"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹50,000/- per annum",
+      "number_of_scholarships": "2000 (1000 for Degree, 1000 for Diploma)",
+      "duration": "Up to 4 years for degree; 3 years for diploma"
+    },
+    "eligibility_criteria": [
+      "Orphan, or ward of parents deceased due to Covid-19, or ward of martyred Armed Forces personnel",
+      "Family income not exceeding ₹8,00,000/- per annum",
+      "Studying in AICTE-approved degree/diploma courses",
+      "Not receiving other government scholarships"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Register on AICTE portal",
+        "Login, fill application form, and upload documents",
+        "Submit application"
+      ]
+    },
+    "documents_required": [
+      "Death certificates or certificate from Tehsildar/SDM (for orphans)",
+      "Death certificate mentioning Covid-19 cause (if applicable)",
+      "Shaheed certificate (if applicable)",
+      "Bonafide certificate",
+      "10th and 12th marksheets",
+      "Category certificate",
+      "Income certificate"
+    ],
+    "official_links": {
+      "guidelines": "https://www.aicte-india.org/"
+    }
+  },
+  {
+    "scheme_name": "Post Graduate Scholarship Scheme for GATE/GPAT Qualified Students-AICTE",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "All India Council for Technical Education (AICTE)",
+    "objectives": [
+      "Support GATE/CEED qualified students in postgraduate technical programs"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹12,400/- per month",
+      "duration": "24 months or course duration",
+      "leaves": "15 days casual, 30 days medical, maternity leave as per norms"
+    },
+    "eligibility_criteria": [
+      "Valid GATE/CEED score",
+      "Admitted to full-time M.E./M.Tech./M.Arch./M.Des. program",
+      "Within AICTE-approved intake"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Institute uploads student details on AICTE portal",
+        "Student collects Unique ID, logs in at https://pgscholarship.aicte-india.org/",
+        "Upload documents and submit",
+        "Institute verifies and approves candidature"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "Passport-size photograph",
+      "Proof of age",
+      "Marksheets/grade cards and degrees",
+      "GATE/CEED scorecard",
+      "Caste certificate (if applicable)",
+      "Disability certificate (if applicable)",
+      "Income certificate (if applicable)",
+      "Bank account details"
+    ],
+    "official_links": {
+      "guidelines": "https://www.aicte-india.org/schemes/students-development-schemes/PG-Scholarship-Scheme"
+    }
+  },
+  {
+    "scheme_name": "National Means-Cum-Merit Scholarship Scheme",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Education",
+    "department": "Department of School Education & Literacy",
+    "objectives": [
+      "Award scholarships to meritorious students of economically weaker sections",
+      "Reduce dropout rates at Class 8th and encourage secondary education"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹12,000/- per annum (₹1,000/- per month)",
+      "number_of_scholarships": "1,00,000 annually",
+      "duration": "Up to Class 12th"
+    },
+    "eligibility_criteria": [
+      "Parental income not exceeding ₹3,50,000/- per annum",
+      "Regular student entering Class 9th in government/government-aided/local body school",
+      "Minimum 55% marks in Class 7th (50% for SC/ST)",
+      "Pass State-level MAT and SAT with minimum 40% marks (32% for SC/ST)"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Register on National Scholarship Portal",
+        "Login, fill application form, and upload documents",
+        "Submit application",
+        "Track payment status via PFMS"
+      ]
+    },
+    "documents_required": [
+      "Class 7th marksheet",
+      "Caste certificate",
+      "Income certificate",
+      "Disability certificate (if applicable)",
+      "Domicile certificate"
+    ],
+    "official_links": {
+      "guidelines": "https://scholarships.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Sanskrit Research Scholarship Scheme",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Uttarakhand",
+    "department": "Department of Sanskrit Education",
+    "objectives": [
+      "Promote advanced academic research in Sanskrit",
+      "Support Ph.D. scholars in completing doctoral research"
+    ],
+    "benefits": {
+      "scholarship_amount": "₹40,000/- per year",
+      "total_beneficiaries": "20 annually",
+      "duration": "Up to 3 years"
+    },
+    "eligibility_criteria": [
+      "Belong to General, SC, ST, or EWS category",
+      "High marks in NET exam",
+      "Registered for Ph.D. in Sanskrit at recognized university in Uttarakhand"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Obtain application form from Uttarakhand Sanskrit Academy",
+        "Fill form and attach self-attested documents",
+        "Submit to Uttarakhand Sanskrit Academy",
+        "Selection based on NET scores and reservations"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar card",
+      "NET exam marksheet",
+      "Educational certificates",
+      "Ph.D. registration certificate",
+      "Bank account details",
+      "Caste certificate (if applicable)"
+    ],
+    "official_links": {
+      "guidelines": "Uttarakhand Sanskrit Academy website"
+    }
+  },
+  {
+    "scheme_name": "National Overseas Scholarship For Students With Disabilities",
+    "parent_scheme": "Scholarship Schemes",
+    "ministry": "Ministry of Social Justice and Empowerment",
+    "department": "Department of Empowerment of Persons with Disabilities (DEPwD)",
+    "objectives": [
+      "Support students with disabilities for Master’s or Ph.D. abroad",
+      "Enable SwDs to overcome barriers and pursue higher education"
+    ],
+    "benefits": {
+      "maintenance_allowance": {
+        "usa_other_countries": "$15,400",
+        "uk": "£9,900"
+      },
+      "contingency_allowance": {
+        "usa_other_countries": "$1,500",
+        "uk": "£1,100"
+      },
+      "equipment_allowance": "₹1,500",
+      "tuition_fees": "Actual",
+      "visa_fees": "Actual",
+      "poll_tax": "Actual",
+      "medical_insurance": "Actual",
+      "air_passage": "Economy class by national carrier"
+    },
+    "eligibility_criteria": [
+      "Admitted to Master’s/Ph.D. in accredited foreign university",
+      "Disability percentage of 40% or above",
+      "Age 35 years or less",
+      "Family income not exceeding ₹6,00,000/- per annum",
+      "Maximum two children with disabilities per family"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Download form from http://disabilityaffairs.gov.in/",
+        "Fill and send with documents to DEPwD, New Delhi",
+        "Applications accepted throughout the year"
+      ]
+    },
+    "documents_required": [
+      "Birth certificate or Class 10th certificate",
+      "Disability certificate",
+      "Voter ID",
+      "Aadhaar card",
+      "Proof of residence",
+      "PAN card (applicant and parents/guardian)",
+      "Educational certificates and marksheets",
+      "Income certificate",
+      "Admission papers from foreign university",
+      "Certificate of not availing other scholarships"
+    ],
+    "official_links": {
+      "guidelines": "http://disabilityaffairs.gov.in/"
+    }
+  },
+  {
+    "scheme_name": "Educational Assistance to the Children Studying in 1st to 7th and 8th to 10th Class",
+    "parent_scheme": "Educational Assistance Schemes",
+    "ministry": "Maharashtra",
+    "department": "Maharashtra Building And Other Construction Workers Welfare Board (MBOCWW)",
+    "objectives": [
+      "Provide financial assistance to children of registered construction workers for school education"
+    ],
+    "benefits": {
+      "1st_to_7th_class": "₹2,500/- per year",
+      "8th_to_10th_class": "₹5,000/- per year",
+      "beneficiaries": "Up to two children or wife of registered male worker"
+    },
+    "eligibility_criteria": [
+      "Worker registered with MBOCWW",
+      "Children or wife enrolled in Classes 1st to 10th",
+      "Maximum two beneficiaries per family"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Download form from MBOCWW website",
+        "Fill form and attach self-attested documents",
+        "Submit to Labor Commissioner/Government Labor Officer",
+        "Obtain receipt of submission"
+      ]
+    },
+    "documents_required": [
+      "Passport-size photo",
+      "Aadhaar card",
+      "MBOCWW identity card",
+      "Bank passbook",
+      "School certificate of 75% attendance",
+      "Proof of residence (Aadhaar, Passport, Driving License, Ration Card, Electricity Bill, or Gram Panchayat Certificate)"
+    ],
+    "official_links": {
+      "guidelines": "MBOCWW official website"
+    }
+  },
+  {
+  "scheme_name": "Scheme for Grant of Additional Scholarship to the Students of Other Backward Classes of Andaman and Nicobar Islands, for Pursuing Higher Studies Anywhere in India after Secondary Level (Except Class XI & XII)",
+  "parent_scheme": "Educational Schemes",
+  "ministry": "Andaman and Nicobar Administration",
+  "department": "Department of Social Welfare",
+  "objectives": [
+    "Provide additional financial assistance (scholarship) to OBC students of non-creamy layer for pursuing higher education after Secondary (X)/Senior Secondary (XII)",
+    "Supplement the cost of education in Government-recognized Polytechnic/ITI/College/University anywhere in India"
+  ],
+  "benefits": {
+    "scholarship_value": "₹1000 per month for 10 months in an academic session",
+    "disbursement": [
+      "Directly credited to Aadhaar-linked bank account",
+      "Admissible only to students who passed the previous academic session",
+      "Dependent on fund availability in a financial year"
+    ]
+  },
+  "eligibility_criteria": [
+    "Belong to non-creamy layer of OBC as per Notification dated 16th December 2005 and amendments",
+    "Domicile of Andaman and Nicobar Islands",
+    "Passed Secondary (Class X) or Senior Secondary (Class XII) from a recognized Board",
+    "Pursuing higher education in a recognized Institution/University",
+    "Limited to two children of the same parent/guardian (except in case of multiple births in second live birth)",
+    "Eligible courses include: Degree (Graduation/Post-Graduation), M.Phil, Ph.D., Post-Doctoral Programmes, Post-Graduate Diploma in Management/Medicine, Commercial Pilot License, CA/ICWA/CS/ICFA, Pharmacy, Nursing, LLB, BFS, Para-medical, Mass Communication, Hotel Management, etc.",
+    "Post Matriculation non-degree courses like ITI, 3-year Diploma in Polytechnic",
+    "Students pursuing Post-graduate courses in Medicine must not practice during the course",
+    "Scholarship awarded on a year-to-year basis, subject to passing the stage/year/semesters",
+    "Scholarship stopped if student fails a class for more than one year",
+    "Scholarship cancelled and recoverable if obtained by false statements",
+    "Scholarship refundable if studies are discontinued"
+  ],
+  "exclusions": [
+    "Students repeating the same stage/level of education in a different subject/stream (e.g., B.Sc. after B.A, M.A. in another subject)",
+    "Students pursuing another professional course after completing one (e.g., LLB after B.T/B.Ed)",
+    "Courses funded by Central/State Government or UT Administration (e.g., Aircraft Maintenance Engineering, Private Pilot Licence, Defence Academies, Pre-Examination Training Centre, distance education courses)"
+  ],
+  "renewal": [
+    "Renewed yearly if scholar secures promotion to the next higher class",
+    "Renewable for next academic year with medical certificate or sufficient proof for inability to appear in annual examination",
+    "Eligible for scholarship in promoted class per University/Institution regulations"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on NSP Portal (https://scholarships.gov.in/) using 'New Registration' icon",
+      "Receive Student Registration ID after successful registration",
+      "Login using 'Fresh Application' icon with Student Registration ID",
+      "Fill and submit the application form via 'Application Form' icon",
+      "Receive system-generated registration number for future reference",
+      "Applications invited in May-June via advertisement in leading newspapers and other media"
+    ]
+  },
+  "documents_required": [
+    "Passport-size photograph",
+    "Certificates of Class X/XII, Diploma/Degree of qualifying examination",
+    "Caste Certificate signed by Revenue Officer (not below Tehsildar)",
+    "Non-creamy Layer Certificate signed by Revenue Officer (not below Tehsildar)",
+    "Income Certificate",
+    "Receipt of acknowledgment of scholarship from previous year (for renewal)",
+    "Copy of marks statement counter-signed by Head of Institution (for renewal)",
+    "Copy of Aadhaar Card",
+    "First page of bank passbook",
+    "Other documents as required"
+  ],
+  "official_links": {
+    "guidelines": "https://scholarships.gov.in"
+  }
+}
+]
+}
+
+
+
+
+

@@ -1,0 +1,1068 @@
+{
+    "healthcare_schemes":[
+  {
+    "scheme_name": "Asangathit Karmakar Gambhir Bimari Chikitsa Sahayata Yojana",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Chhattisgarh",
+    "department": "Labour Department",
+    "objectives": [
+      "Provide financial assistance for medical treatment of serious illnesses",
+      "Support unorganized workers with healthcare needs"
+    ],
+    "benefits": {
+      "financial_assistance": "Up to ₹50,000 for medical treatment of serious illnesses like kidney, cancer, sickle cell anemia, heart disease, AIDS, and paralysis",
+      "condition": "Actual cost if less than ₹50,000"
+    },
+    "eligibility_criteria": [
+      "Registered with the State Board for at least 90 days",
+      "Age between 18 and 60 years",
+      "Registered as a beneficiary of unorganized workers under Section 10 of the Act",
+      "Not availed benefits from similar government schemes"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit the official Chhattisgarh Labour Department website",
+        "Click 'Apply' under 'Chhattisgarh Unorganized Workers State Social Security Board'",
+        "For unregistered applicants: Select 'Asangathit Marmakaar Mandal', 'Asangathit Shramik Panjikaran', and 'Aavedan', then fill and submit the registration form",
+        "For registered applicants: Select 'Yojana', provide district name and registration number, select scheme, fill details, and submit"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Registration Card",
+      "Disease details by Vikas Khand Adhikari/Surgeon/Chief Medical Officer/Health Officer",
+      "Approximate expenses details by related Medical Officer"
+    ],
+    "official_links": {
+      "website": "https://labour.cg.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Distress Relief Fund For The Differently Abled (Medical Treatment)",
+    "parent_scheme": "Social Welfare Schemes",
+    "ministry": "Government of Kerala",
+    "department": "Department of Social Justice",
+    "objectives": [
+      "Provide financial assistance for medical treatment and surgery for disabled persons",
+      "Support those handicapped due to accidents",
+      "Cover purposes not addressed by existing schemes for the handicapped"
+    ],
+    "benefits": {
+      "financial_assistance": "₹5,000 per person per year for medical treatment, including surgery"
+    },
+    "eligibility_criteria": [
+      "Resident of Kerala",
+      "Disabled or handicapped due to an accident",
+      "Annual income not exceeding ₹20,000 in rural areas or ₹22,375 in urban areas",
+      "Disabilities include: Blind, Deaf and Dumb, Orthopedically Handicapped, Mentally Challenged, or BPL with 40% or more disability"
+    ],
+    "application_process": {
+      "mode": "Online and Offline",
+      "steps": [
+        "Visit SUNEETHI-Online Service Application Portal for one-time registration",
+        "Fill in details like Name, Email ID, Mobile Number, and verify with OTP",
+        "Create profile with mandatory details",
+        "Login, update personal, contact, identity, and bank details",
+        "Select the scheme, fill the application form, and submit"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card or Voter ID Card",
+      "Mobile number",
+      "Email ID",
+      "Passport-size photo",
+      "Doctor’s certificate confirming treatment necessity",
+      "Original Income Certificate",
+      "Bank account details (copy of bank passbook)",
+      "Other documents as required"
+    ],
+    "official_links": {
+      "guidelines": "https://suneethi.kerala.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Atal Mission For Rejuvenation And Urban Transformation (AMRUT)",
+    "parent_scheme": "Urban Development Schemes",
+    "ministry": "Ministry of Housing & Urban Affairs",
+    "department": "Urban Development",
+    "objectives": [
+      "Ensure access to tap water and sewerage connections for every household",
+      "Increase city amenity value through greenery and open spaces",
+      "Reduce pollution by promoting public and non-motorized transport"
+    ],
+    "benefits": {
+      "components": [
+        "Capacity building",
+        "Reform implementation",
+        "Water supply systems (augmentation, treatment, metering)",
+        "Sewerage and septage management",
+        "Storm water drainage",
+        "Urban transport (ferry vessels, buses, footpaths, BRTS)",
+        "Green spaces and parks development"
+      ]
+    },
+    "eligibility_criteria": [
+      "Open scheme with no specific eligibility criteria",
+      "Covers 500 cities including those with population over one lakh, capital cities, heritage cities, and select others"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "No individual application required",
+        "Projects executed by Urban Local Bodies (ULBs)",
+        "State Government may involve parastatal agencies via tripartite MoU",
+        "ULBs responsible for maintenance of created assets"
+      ]
+    },
+    "documents_required": [],
+    "official_links": {
+      "guidelines": "https://amrut.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Assam Arogya Nidhi Scheme",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Assam",
+    "department": "Health & Family Welfare Department",
+    "objectives": [
+      "Provide financial assistance for treatment of life-threatening diseases",
+      "Support treatment for injuries from natural or manmade disasters"
+    ],
+    "benefits": {
+      "financial_assistance": "Up to ₹3,00,000 for treatment of life-threatening diseases and accident-related injuries",
+      "disbursement": "Direct bank transfer to beneficiary or hospital, with advance payment up to ₹3,00,000 to hospitals"
+    },
+    "eligibility_criteria": [
+      "Resident of Assam",
+      "Family income less than ₹5,00,000 per annum",
+      "No age limit",
+      "Excludes government employees or pensioners and their families",
+      "Treatment in government or registered private hospitals"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Download application form from https://nhm.assam.gov.in/schemes/assam-arogya-nidhi",
+        "Submit completed form to NHM, Assam or Joint Director of Health Services",
+        "Expert Committee verifies and recommends eligible cases",
+        "Financial assistance provided via Direct Bank Transfer"
+      ]
+    },
+    "documents_required": [
+      "Attested photograph of the patient",
+      "Attested income certificate by Revenue Circle Officer",
+      "Attested identity and address proof (Voter ID, Aadhaar, Driving License)",
+      "Original bills, vouchers, receipts",
+      "Medical documents certified by treating doctor/hospital",
+      "Discharge summary/prescription (attested)",
+      "Bank passbook copy",
+      "PMJAY/AAA card copy (if applicable)"
+    ],
+    "official_links": {
+      "guidelines": "https://nhm.assam.gov.in/schemes/assam-arogya-nidhi"
+    }
+  },
+  {
+    "scheme_name": "Theka Shramik Evan Hamaal Shramik Baahy Rogi Chikitsa Sahaayata Yojana",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Chhattisgarh",
+    "department": "Labour Department",
+    "objectives": [
+      "Provide financial assistance for medical treatment of unorganized workers"
+    ],
+    "benefits": {
+      "financial_assistance": "₹2,000 for medical treatment"
+    },
+    "eligibility_criteria": [
+      "Registered worker in any district of Chhattisgarh",
+      "Age between 18 and 60 years",
+      "Not availed benefits from similar state government schemes"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit the official Chhattisgarh Labour Department website",
+        "Click 'Apply' under 'Chhattisgarh Unorganized Workers State Social Security Board'",
+        "For unregistered applicants: Select 'Asangathit Marmakaar Mandal', 'Asangathit Shramik Panjikaran', and 'Aavedan', then fill and submit the registration form",
+        "For registered applicants: Select 'Yojana', provide district name and registration number, select scheme, fill details, and submit"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Registration Card",
+      "Disease details by Vikas Khand Adhikari/Surgeon/Chief Medical Officer/Health Officer"
+    ],
+    "official_links": {
+      "website": "https://labour.cg.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Swachh Bharat Mission – Urban 2.0",
+    "parent_scheme": "Sanitation Schemes",
+    "ministry": "Ministry of Housing & Urban Affairs",
+    "department": "Urban Development",
+    "objectives": [
+      "Promote sanitation through construction of household and community toilets",
+      "Improve solid waste management",
+      "Raise public awareness and capacity building"
+    ],
+    "benefits": {
+      "financial_support": [
+        "₹6,667 for toilet construction in specified states",
+        "₹12,000 in hilly and north-eastern states",
+        "₹5,333 in Union Territories"
+      ],
+      "components": [
+        "Household toilets",
+        "Community and public toilets",
+        "Solid waste management",
+        "IEC & Public Awareness",
+        "Capacity building"
+      ]
+    },
+    "eligibility_criteria": [
+      "Households without access to individual toilets or with insanitary toilets",
+      "80% of urban households engaging in open defecation"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Create Applicant Login ID on IHHL portal using Name, Mobile Number, Email, Address, ID Type, ID Number",
+        "Enter geographical particulars (State, District, ULB Name, Ward No.)",
+        "Provide toilet owner’s particulars (Name, Gender, Father/Husband’s Name, Mobile No, Address, Toilet Status, Aadhaar, Bank Details, Photograph)",
+        "Submit application to generate IHHL Application Acknowledgement slip"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank account details (Passbook)",
+      "Photograph"
+    ],
+    "official_links": {
+      "guidelines": "https://swachhbharatmission.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Grant of Financial Assistance to Poor Scheduled Caste Pregnant & Lactating Women",
+    "parent_scheme": "Social Welfare Schemes",
+    "ministry": "Government of Puducherry",
+    "department": "Adi Dravidar Welfare Department",
+    "objectives": [
+      "Support the well-being of Scheduled Caste pregnant and lactating mothers and their children"
+    ],
+    "benefits": {
+      "financial_assistance": "₹12,000 (₹2,000/month for three months pre-natal and three months post-natal, for up to two deliveries)"
+    },
+    "eligibility_criteria": [
+      "Citizen of India",
+      "Resident of Puducherry for at least 3 years",
+      "Belong to Scheduled Caste",
+      "Female and pregnant",
+      "Apply between 6 months of pregnancy and within 3 months post-delivery",
+      "Annual income of applicant and spouse not exceeding ₹2,00,000"
+    ],
+    "application_process": {
+      "mode": "Offline and Online",
+      "steps": [
+        "Visit Adi Dravidar Welfare Department office for application form",
+        "Fill mandatory fields, attach self-attested documents",
+        "Submit to concerned authority",
+        "Obtain receipt/acknowledgment with submission details"
+      ]
+    },
+    "documents_required": [
+      "Residence-cum-nativity Certificate",
+      "Aadhaar Card",
+      "Caste Certificate",
+      "Passport-size photograph",
+      "Discharge Summary/Birth Certificate",
+      "Medical Certificate from authorized health center",
+      "Ration Card",
+      "Bank Passbook"
+    ],
+    "official_links": {
+      "guidelines": "https://www.py.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Thayi Bhagya Scheme (Comprehensive Maternal Healthcare)",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Karnataka",
+    "department": "Health and Family Welfare Department",
+    "objectives": [
+      "Provide cashless delivery services for BPL pregnant women",
+      "Address shortage of specialist doctors in rural areas through public-private partnerships"
+    ],
+    "benefits": {
+      "services": "Free delivery services, checkups, and medicines in registered private hospitals",
+      "financial_incentive": [
+        "₹3,00,000 per 100 deliveries for private hospitals (with ₹30,000 advance)",
+        "₹1,50,000 per 100 deliveries for government hospitals"
+      ],
+      "limit": "First two live deliveries"
+    },
+    "eligibility_criteria": [
+      "Resident of Karnataka",
+      "Belong to BPL family",
+      "Hospitals must have 10 inpatient beds, operation theater, delivery room, 24-hour specialist availability, and blood bank linkage"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Register with Junior Female Health Assistant of the area",
+        "Receive ANC card for identification",
+        "Avail benefits at registered hospitals",
+        "Contact head office at prs-hfw@karnataka.gov.in for queries"
+      ]
+    },
+    "documents_required": [
+      "Domicile certificate",
+      "BPL card or Ration card",
+      "Caste certificate",
+      "Aadhaar Card",
+      "ANC registration number indicating first or second delivery"
+    ],
+    "official_links": {
+      "guidelines": "https://www.karnataka.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Nirmaan Shramik Mrtyu Evan Divyaang Sahaayata Yojana",
+    "parent_scheme": "Welfare Schemes for Construction Workers",
+    "ministry": "Government of Chhattisgarh",
+    "department": "Labour Department",
+    "objectives": [
+      "Provide financial assistance to families of construction workers in case of death or disability"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "₹1,00,000 for normal death",
+        "₹5,00,000 for death at work location",
+        "₹2,50,000 for permanent disability at work location"
+      ]
+    },
+    "eligibility_criteria": [
+      "Construction workers aged 18 to 60 years",
+      "Registered under Section 12 of the Building and Other Construction Workers Act, 1996",
+      "Excludes deaths due to suicide, substance abuse, crime, or riots",
+      "Not applicable for family member deaths",
+      "Not eligible if benefited under silicosis assistance scheme"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit Chhattisgarh Labour Department website",
+        "Click 'Apply' under Building and Other Construction Workers",
+        "Provide district and registration number, select scheme",
+        "Fill and submit online form with required documents",
+        "Note application number for tracking",
+        "Check status via 'Check the application status' option"
+      ]
+    },
+    "documents_required": [
+      "Registration certificate",
+      "Aadhaar Card",
+      "Bank passbook",
+      "Nominee’s Aadhaar Card",
+      "Address proof",
+      "Mobile number",
+      "Death certificate or permanent disability certificate",
+      "Age certificate",
+      "Class 10th marksheet"
+    ],
+    "official_links": {
+      "website": "https://labour.cg.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Safai Karmakar Prasuti Sahayata Yojana",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Chhattisgarh",
+    "department": "Labour Department",
+    "objectives": [
+      "Empower unorganized workers with financial assistance for maternity"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "₹4,200 in third month and ₹2,800 in eighth month of pregnancy for female employees",
+        "₹3,000 as paternity leave for male employees after child’s birth"
+      ],
+      "limit": "Benefits for up to two children"
+    },
+    "eligibility_criteria": [
+      "Registered worker (male or female)",
+      "Benefits limited to two children"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit Chhattisgarh Labour Department website",
+        "Click 'Apply' under 'Chhattisgarh Unorganized Workers State Social Security Board'",
+        "For unregistered applicants: Select 'Asangathit Marmakaar Mandal', 'Asangathit Shramik Panjikaran', and 'Aavedan', then fill and submit registration form",
+        "For registered applicants: Select 'Yojana', provide district name and registration number, select scheme, fill details, and submit"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Labor registration Card",
+      "Permanent Residence Certificate",
+      "Copy of ration card"
+    ],
+    "official_links": {
+      "website": "https://labour.cg.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Delhi Arogya Nidhi",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Delhi",
+    "department": "Directorate General of Health Services",
+    "objectives": [
+      "Provide financial assistance for treatment of diseases in government hospitals"
+    ],
+    "benefits": {
+      "financial_assistance": "Up to ₹1,50,000 for treatment in government hospitals"
+    },
+    "eligibility_criteria": [
+      "Possess a National Food Security Card",
+      "Resident of Delhi for the last 3 years with domicile proof",
+      "Treatment in government hospitals in Delhi"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Download application form from official website",
+        "Fill form with required details",
+        "Attach photocopies of documents, bring originals for verification",
+        "Submit undertaking for signature verification",
+        "Submit to Patient Welfare Cell, Directorate of Health Services, Karkardooma, Delhi"
+      ]
+    },
+    "documents_required": [
+      "Proof of continuous residence in Delhi for 3 years (National Food Security Card, Voter ID, Birth certificate for minors, Electoral roll extract, Aadhaar Card)",
+      "Original Estimate Certificate signed by Consultant/Medical Superintendent/CMO",
+      "Two attested photographs of the patient",
+      "Copy of National Food Security Card",
+      "Photocopies of treatment record",
+      "Undertaking for signature verification"
+    ],
+    "official_links": {
+      "guidelines": "https://health.delhigovt.nic.in"
+    }
+  },
+  {
+    "scheme_name": "Indian Community Welfare Fund",
+    "parent_scheme": "Welfare Schemes for Overseas Indians",
+    "ministry": "Ministry of External Affairs",
+    "department": "Overseas Indian Affairs",
+    "objectives": [
+      "Assist Overseas Indian nationals in distress situations",
+      "Support emergency evacuations and community welfare activities"
+    ],
+    "benefits": {
+      "assistance_types": [
+        "Transportation of mortal remains or local cremation/burial",
+        "Boarding and lodging for distressed nationals",
+        "Air passage to India for stranded nationals",
+        "Legal assistance for minor crimes or false implications",
+        "Payment of small fines/penalties",
+        "Emergency medical care for accidents or serious conditions",
+        "Support for cultural programs, Indian language teaching, and student welfare activities",
+        "Improvement in consular services"
+      ]
+    },
+    "eligibility_criteria": [
+      "Overseas Indian national in distress",
+      "Excludes Persons of Indian Origin and OCI Card Holders for individual financial assistance"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Apply through Indian Missions/Posts abroad",
+        "For compensation claims: Submit application as per nation-specific guidelines",
+        "Refer to sample forms from Embassy of India, Kuwait or Jeddah"
+      ]
+    },
+    "documents_required": [
+      "Death Certificate",
+      "Bank details of the deceased",
+      "Insurance Number of the deceased",
+      "Marriage Certificate (spouse) or Birth Certificate (children)",
+      "Original Passport of the deceased with photocopy",
+      "Power of attorney from next-of-kin",
+      "Legal Heir Certificate",
+      "Police or medical reports as relevant",
+      "NOC from other heirs (if multiple)"
+    ],
+    "official_links": {
+      "guidelines": "https://www.mea.gov.in/images/pdf/compendium.pdf",
+      "sample_forms": [
+        "https://indembkwt.gov.in/pdf/Application%20for%20seeking%20financial%20assistance%20from%20ICWF.pdf",
+        "https://www.cgijeddah.gov.in/web_files/779810210-Form%20for%20ICWF%20assitaance.pdf"
+      ]
+    }
+  },
+  {
+    "scheme_name": "Full Medical Checkup Assistance Scheme",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Gujarat",
+    "department": "Labour, Skill Development & Employment Department",
+    "objectives": [
+      "Conduct health check-ups for organized sector workers"
+    ],
+    "benefits": {
+      "health_checkup": "Full medical check-up costing ₹1,950 per worker (25% or ₹487.50 paid by organization)"
+    },
+    "eligibility_criteria": [
+      "Workers with Labour Welfare Fund paid regularly for the last one year",
+      "Male workers above 45 years, female workers above 35 years",
+      "Benefit provided once a year",
+      "Medical examination within 30 days of approval"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit Sanman Portal: https://sanman.gujarat.gov.in",
+        "Register under 'Citizen Login' with Aadhaar and Labour Welfare Fund Account Number",
+        "Login, select scheme, read instructions",
+        "Fill application form, upload documents",
+        "Submit and receive confirmation email with application number"
+      ]
+    },
+    "documents_required": [
+      "Passport-size photograph",
+      "Identity card issued by contractor",
+      "Aadhaar Card",
+      "Labour Welfare Fund Account Number",
+      "Bonafide certificate",
+      "Other documents as required"
+    ],
+    "official_links": {
+      "guidelines": "https://sanman.gujarat.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Maternity Benefit",
+    "parent_scheme": "Welfare Schemes for Construction Workers",
+    "ministry": "Government of West Bengal",
+    "department": "Labour Department",
+    "objectives": [
+      "Provide financial support during maternity for registered construction workers"
+    ],
+    "benefits": {
+      "financial_assistance": "₹6,000, limited to two times in beneficiary’s lifetime"
+    },
+    "eligibility_criteria": [
+      "Resident of West Bengal",
+      "Registered building/construction worker for at least 1 year",
+      "Aged 18 to 60 years",
+      "Engaged in construction work for at least 90 days in a year",
+      "Pregnant female member or wife of male member"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Obtain Form-27 for registration from Assistant Labour Commissioners",
+        "Submit registration form with documents",
+        "For scheme: Obtain Form-XII, attach documents, and submit to Assistant Labour Commissioners",
+        "Pay ₹20 registration fee and ₹30 yearly subscription"
+      ]
+    },
+    "documents_required": [
+      "Four passport-size photographs",
+      "Attested proof of age",
+      "Identity Card of the member",
+      "Medical Certificate",
+      "Other documents as required"
+    ],
+    "official_links": {
+      "guidelines": "https://wblabour.gov.in",
+      "helpline": "1800-103-0009"
+    }
+  },
+  {
+    "scheme_name": "Odisha State Treatment Fund",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Government of Odisha",
+    "department": "Health and Family Welfare Department",
+    "objectives": [
+      "Provide financial assistance for treatment of life-threatening disorders and diseases"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "Up to ₹3,00,000 per case",
+        "District Head Quarters Hospitals: Up to ₹30,000",
+        "CDMO with Collector approval: Up to ₹50,000",
+        "Above ₹3,00,000 requires Chief Minister’s approval"
+      ],
+      "top-up": "Top-up to RSBY coverage"
+    },
+    "eligibility_criteria": [
+      "Below poverty line or annual family income not exceeding ₹40,000 (rural) or ₹60,000 (urban)",
+      "BPL card, AAY card, or income certificate required",
+      "RSBY cardholders eligible",
+      "Unknown accident victims or referred patients from registered destitute homes/orphanages eligible",
+      "Inpatient treatment in government/empanelled private hospitals"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Submit prescribed application form with documents to Nodal Officer",
+        "For government hospitals: Committee approves up to ₹1,00,000; above requires further approval",
+        "For district hospitals: Committee approves up to ₹30,000; CDMO can approve up to ₹50,000",
+        "For private hospitals: Referral from government medical college/CDMO required, except in emergencies"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Voter Card",
+      "BPL card",
+      "AAY ration card",
+      "RSBY card",
+      "Annual family income certificate by Tahasildar",
+      "Other documents as specified on https://health.odisha.gov.in/citizen-e-services/odisha-state-treatment-fund-ostf"
+    ],
+    "official_links": {
+      "guidelines": "https://health.odisha.gov.in/citizen-e-services/odisha-state-treatment-fund-ostf"
+    }
+  },
+  {
+    "scheme_name": "Khushi Scheme",
+    "parent_scheme": "Health and Hygiene Schemes",
+    "ministry": "Government of Odisha",
+    "department": "Health and Family Welfare Department",
+    "objectives": [
+      "Promote menstrual hygiene among school girls",
+      "Reduce school dropout rates",
+      "Empower women through local production of sanitary products"
+    ],
+    "benefits": {
+      "services": [
+        "Free sanitary napkins for girls in classes 6 to 12",
+        "Subsidized napkins for rural women at ₹6 for 6 napkins",
+        "Awareness campaigns on menstrual hygiene",
+        "Support for local production and employment"
+      ]
+    },
+    "eligibility_criteria": [
+      "Resident of Odisha",
+      "School girls from classes 6 to 12"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "No application required",
+        "School girls receive sanitary napkins at school",
+        "Rural women contact ASHA workers or visit PHCs/community health centers"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Proof of Residence",
+      "School ID Card"
+    ],
+    "official_links": {
+      "guidelines": "https://health.odisha.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Mobile Lab Scheme (P.B.O.C.W.W.B)",
+    "parent_scheme": "Welfare Schemes for Construction Workers",
+    "ministry": "Government of Punjab",
+    "department": "Labour Department",
+    "objectives": [
+      "Provide financial assistance for treatment of silicosis for registered construction workers"
+    ],
+    "benefits": {
+      "financial_assistance": "Up to ₹1,50,000 for silicosis treatment after exhausting ₹50,000 from Bhagat Puran Singh Sehat Beema Yojna"
+    },
+    "eligibility_criteria": [
+      "Resident of Punjab",
+      "Registered building/construction worker",
+      "Aged 18 to 60 years",
+      "Engaged in construction work for at least 90 days in a year",
+      "Monthly income ₹15,000 or below",
+      "Not a member of EPF/NPS/ESIC or other welfare funds",
+      "Not an income tax payer",
+      "Diagnosed with silicosis",
+      "Exhausted ₹50,000 health card benefit"
+    ],
+    "application_process": {
+      "mode": "Online and Offline",
+      "steps": [
+        "Register at Sewa Kendra or with Registering Officers/Labour Inspector",
+        "Pay ₹25 registration fee and ₹10 monthly contribution",
+        "Apply for scheme benefits at Sewa Kendra or with Registering Officers",
+        "Check application status online at https://pbocwwb.in"
+      ]
+    },
+    "documents_required": [
+      "Age proof (or self-declaration)",
+      "Residence proof",
+      "Aadhaar Card (if available)",
+      "Bank account details",
+      "Detail of dependents",
+      "Employer’s Certificate (Form No. 28)",
+      "Nomination Form (Form No. 27)",
+      "Medical Certificate for silicosis",
+      "Proof of expenditure on treatment"
+    ],
+    "official_links": {
+      "guidelines": "https://pbocwwb.in",
+      "helpline": "+91 172-2540125",
+      "email": "bocwhq@gmail.com"
+    }
+  },
+  {
+    "scheme_name": "Scheme to Provide Relief in Case of Death or Disability of Registered Building Workers",
+    "parent_scheme": "Welfare Schemes for Construction Workers",
+    "ministry": "Government of Andhra Pradesh",
+    "department": "Labour, Employment, Training & Factories Department",
+    "objectives": [
+      "Provide financial relief for accidental death, permanent disability, or natural death of registered construction workers"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "₹5,00,000 for accidental death",
+        "₹5,00,000 for permanent disability",
+        "₹60,000 for natural death"
+      ]
+    },
+    "eligibility_criteria": [
+      "Nominee/dependent of deceased or disabled construction worker",
+      "Worker registered with Andhra Pradesh Building and Other Construction Workers Welfare Board"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Visit A.P. Building & Other Construction Workers Welfare Board office",
+        "Obtain and fill prescribed application form",
+        "Attach self-attested documents",
+        "Submit to Assistant Labour Officer/Assistant Commissioner of Labour",
+        "Obtain receipt/acknowledgment"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card of worker and nominee",
+      "Accident Report",
+      "Medical Certificate for permanent disability",
+      "Death Certificate for natural or accidental death",
+      "Bank account details",
+      "Registration Card under BOCW Act",
+      "Other documents as required"
+    ],
+    "official_links": {
+      "guidelines": "https://labour.ap.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana",
+    "parent_scheme": "Health Insurance Schemes",
+    "ministry": "Ministry of Health & Family Welfare",
+    "department": "Health",
+    "objectives": [
+      "Provide universal health coverage for secondary and tertiary care hospitalization",
+      "Cover 10.74 crore poor and vulnerable families"
+    ],
+    "benefits": {
+      "health_cover": "₹5,00,000 per family per year for listed conditions",
+      "services": [
+        "Medical examination, treatment, consultation",
+        "Pre- and post-hospitalization care",
+        "Medicines, diagnostics, implants, accommodation, food services",
+        "Complications during treatment"
+      ],
+      "features": "No cap on family size or age, covers pre-existing diseases"
+    },
+    "eligibility_criteria": [
+      "Rural: Families meeting at least one of six deprivation criteria or automatic inclusion criteria (destitute, manual scavengers, tribal groups, bonded labour)",
+      "Urban: 11 occupational categories (e.g., ragpicker, domestic worker, construction worker)",
+      "Exclusions: Owners of vehicles, mechanized farming equipment, Kisan cards, government employees, high-income earners, or those with refrigerators/landlines"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Visit hospital or Community Service Centre (CSC)",
+        "Arogya Mitra searches beneficiary list using name, location, ration card, mobile, or RSBY URN",
+        "Verify identity with Aadhaar or government ID and ration card",
+        "Upload scanned documents for individual and family identification",
+        "Submit records to trust/insurance company for approval",
+        "Receive e-card upon approval by State Health Agency"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card or PAN Card",
+      "Proof of address",
+      "Contact details (mobile, email)",
+      "Caste Certificate",
+      "Income Certificate",
+      "Document proving family status (joint or nuclear)"
+    ],
+    "official_links": {
+      "guidelines": "https://pmjay.gov.in",
+      "application": "https://www.umang.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Rastriya Arogya Nidhi - Health Minister’s Cancer Patient Fund",
+    "parent_scheme": "Health and Welfare Schemes",
+    "ministry": "Ministry of Health & Family Welfare",
+    "department": "Health",
+    "objectives": [
+      "Provide financial assistance to BPL patients for cancer treatment at Regional Cancer Centres"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "Up to ₹5,00,000 for treatment",
+        "Up to ₹15,00,000 for exceptional cases with Ministry approval"
+      ],
+      "treatments": [
+        "Radiation therapy",
+        "Anti-cancer chemotherapy",
+        "Bone marrow transplantation",
+        "Diagnostic procedures (including PET scan)",
+        "Surgery for operable malignant tumors"
+      ]
+    },
+    "eligibility_criteria": [
+      "Below poverty line",
+      "Suffering from cancer",
+      "Treatment at one of 27 Regional Cancer Centres",
+      "Excludes Central/State Govt./PSU employees",
+      "Excludes cases where free treatment is available"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Download prescribed application form",
+        "Complete form and get it signed by treating doctor and Medical Superintendent",
+        "Submit form with required documents to concerned government hospital"
+      ]
+    },
+    "documents_required": [
+      "Prescribed application form signed by treating doctor and Medical Superintendent",
+      "Income certificate by Block/Mandal Development Officer/Tehsildar/SDM",
+      "Attested copy of Ration Card"
+    ],
+    "official_links": {
+      "guidelines": "https://main.mohfw.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Financial Assistance for Medical (JKBOCWWB)",
+    "parent_scheme": "Welfare Schemes for Construction Workers",
+    "ministry": "Government of Jammu and Kashmir",
+    "department": "Labour Department",
+    "objectives": [
+      "Provide financial aid for medical needs of registered construction workers"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "₹5,000 for injury treatment",
+        "₹10,000 for temporary disability",
+        "₹75,000 for permanent disability",
+        "₹1,00,000 for chronic disease treatment"
+      ]
+    },
+    "eligibility_criteria": [
+      "Resident of Jammu & Kashmir",
+      "Registered building/construction worker",
+      "Aged 18 to 60 years",
+      "Engaged in construction work for at least 90 days in the last 12 months",
+      "Suffering from injury, disability, or chronic disease",
+      "Annual registration renewal"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit JKBOCWWB website for registration",
+        "Complete registration form, verify OTP, and receive Login ID/password",
+        "Login, select 'Construction Worker’s Registration', fill form, upload documents, pay fee",
+        "For scheme: Login, select 'Scheme Registration', choose scheme, fill details, submit",
+        "Track status online or via registered mobile number"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card or Voter Card",
+      "Passport-size photograph",
+      "Attested work experience document",
+      "Proof of residence",
+      "Ration Card",
+      "Bank account details",
+      "Caste Certificate (if applicable)",
+      "Proof of age",
+      "Medical Officer certificate",
+      "Original bill of treatment expenditure"
+    ],
+    "official_links": {
+      "guidelines": "https://jkbocwwb.in"
+    }
+  },
+  {
+    "scheme_name": "Payment of Death Benefit (HPBOCWWB)",
+    "parent_scheme": "Welfare Schemes for Construction Workers",
+    "ministry": "Government of Himachal Pradesh",
+    "department": "Himachal Pradesh Building and Other Construction Workers Welfare Board",
+    "objectives": [
+      "Provide financial support to nominees/legal heirs of deceased registered workers"
+    ],
+    "benefits": {
+      "financial_assistance": [
+        "₹4,00,000 for accidental death",
+        "₹2,00,000 for natural death"
+      ]
+    },
+    "eligibility_criteria": [
+      "Nominee/legal heir of deceased worker",
+      "Deceased worker registered with HPBOCWWB",
+      "Active membership at the time of death"
+    ],
+    "application_process": {
+      "mode": "Online and Offline",
+      "steps": [
+        "Visit HPBOCWWB website, click 'Apply for Benefits'",
+        "Enter beneficiary details and date of birth, search",
+        "Select scheme, fill details, upload documents",
+        "Submit application",
+        "Track status online or via registered mobile number"
+      ]
+    },
+    "documents_required": [
+      "Aadhaar Card or Voter Card",
+      "Passport-size photograph",
+      "Undertaking",
+      "Work Slip copy",
+      "Proof of residence",
+      "Ration Card",
+      "Bank account details",
+      "Caste Certificate",
+      "Age proof",
+      "Labour Card",
+      "Death Certificate",
+      "Identity proof of nominee/legal heir"
+    ],
+    "official_links": {
+      "guidelines": "https://hpbocwwb.in"
+    }
+  },
+  {
+    "scheme_name": "Chief Minister’s Health Insurance Scheme - Nagaland",
+    "parent_scheme": "Health Insurance Schemes",
+    "ministry": "Government of Nagaland",
+    "department": "Health and Family Welfare Department",
+    "objectives": [
+      "Provide cashless hospitalization for employees, pensioners, and general residents"
+    ],
+    "benefits": {
+      "health_cover": [
+        "₹20,00,000 per family per annum for CMHIS (EP) beneficiaries",
+        "₹5,00,000 per family per annum for CMHIS (GEN) beneficiaries"
+      ],
+      "services": "Covers surgical, medical, and limited daycare packages in empanelled hospitals"
+    },
+    "eligibility_criteria": [
+      "Permanent and indigenous residents of Nagaland",
+      "CMHIS (EP): Government employees, pensioners, or dependents with valid documents",
+      "CMHIS (GEN): Indigenous Inhabitant or Permanent Resident not covered by AB PM-JAY"
+    ],
+    "application_process": {
+      "mode": "Online",
+      "steps": [
+        "Visit CMHIS Nagaland website",
+        "Register with required details",
+        "Submit application with documents to CSC or empanelled hospital",
+        "Verification by insurance provider",
+        "Approval/rejection based on eligibility"
+      ]
+    },
+    "documents_required": [
+      "Valid Mobile Phone number",
+      "Indigenous Inhabitant Certificate (IIC) or Permanent Residential Certificate (PRC) issued after 2016 (for CMHIS GEN)",
+      "Ration Card (for CMHIS GEN)",
+      "Photo ID card, Engagement/Appointment Order, or Letter from controlling officer (for employees without PIMS)",
+      "PPO book pages, PIMS code, or dependency documents (for CMHIS EP)"
+    ],
+    "official_links": {
+      "guidelines": "https://cmhis.nagaland.gov.in",
+      "helpline": "14555",
+      "email": "nagaland.nhpm@gmail.com"
+    }
+  },
+  {
+    "scheme_name": "Tripura Journalist Health Insurance Scheme",
+    "parent_scheme": "Health Insurance Schemes",
+    "ministry": "Government of Tripura",
+    "department": "Directorate of Information & Cultural Affairs",
+    "objectives": [
+      "Financially protect journalists from health-related monetary burdens"
+    ],
+    "benefits": {
+      "health_cover": "Up to ₹3,00,000 for listed diseases as recommended by committee"
+    },
+    "eligibility_criteria": [
+      "Permanent resident of Tripura",
+      "Accredited journalist by state government or PIB",
+      "Aged 21 to 65 years",
+      "Not covered under Ayushman Bharat or other Central/State health insurance schemes"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Apply to Director, Information and Cultural Affairs Department, Agartala",
+        "Verification by Sub-Divisional Magistrate and other agencies",
+        "Application reviewed by Tripura Journalist Health Insurance Scheme Recommendation Committee",
+        "Approval by State Government for enrollment"
+      ]
+    },
+    "documents_required": [
+      "Proof of Age/DOB",
+      "Proof of Residence",
+      "Bank Details",
+      "Income Certificate",
+      "Proof of health-related situations"
+    ],
+    "official_links": {
+      "guidelines": "https://ica.tripura.gov.in"
+    }
+  },
+  {
+    "scheme_name": "Financial Incentives To Mothers Who Deliver A Girl Child (Mamta)",
+    "parent_scheme": "Social Welfare Schemes",
+    "ministry": "Government of Goa",
+    "department": "Directorate of Women And Child Development",
+    "objectives": [
+      "Improve female child sex ratio in the state"
+    ],
+    "benefits": {
+      "financial_incentive": [
+        "₹10,000 one-time payment at birth of a girl child",
+        "₹5,000 balance for those who received 1st installment under old scheme"
+      ],
+      "limit": "Maximum of two deliveries"
+    },
+    "eligibility_criteria": [
+      "Mother who delivered a live girl child in a registered medical institution",
+      "Resident of Goa for at least 3 years or married to a Goa resident",
+      "Application within 45 days of delivery",
+      "No social/economic status restrictions"
+    ],
+    "application_process": {
+      "mode": "Offline",
+      "steps": [
+        "Apply in prescribed format to Child Development Project Officer at ICDS Block Office",
+        "Submit within 45 days of delivery with required documents"
+      ]
+    },
+    "documents_required": [
+      "Certified/Self-Attested Aadhaar Card",
+      "Certified/Self-Attested Birth Report/Certificate from Registered Institution",
+      "Proof of 3-year residency in Goa or marriage certificate with husband’s residential certificate",
+      "Pre-receipt in duplicate (Annexure-2 for new beneficiaries, Annexure-3 for 1st installment recipients)"
+    ],
+    "official_links": {
+      "guidelines": "https://www.goa.gov.in"
+    }
+  }
+]
+}

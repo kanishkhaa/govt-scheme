@@ -1,0 +1,720 @@
+{
+  "transport_and_infrastructure_schemes": [
+    {
+      "scheme_name": "Scheme of Assistance for the Prevention of Alcoholism & Substance (Drugs) Abuse and for Social Defence Services: General Grant-in-Aid Programme for Financial Assistance in the Field of Social Defence",
+      "parent_scheme": "Social Defence Schemes",
+      "ministry": "Ministry of Social Justice and Empowerment",
+      "department": "Department of Social Justice and Empowerment",
+      "objectives": [
+        "Support innovative/pilot initiatives for welfare and empowerment",
+        "Address needs not covered under regular schemes"
+      ],
+      "benefits": {
+        "financial_assistance": "Grants for social defence initiatives"
+      },
+      "eligibility_criteria": [
+        "Organizations or initiatives aligned with Ministry’s target groups",
+        "Innovative or pilot projects in social defence"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Ministry of Social Justice and Empowerment",
+          "Submit project proposal and required documents",
+          "Evaluation by ministry authorities"
+        ]
+      },
+      "documents_required": [
+        "Project proposal",
+        "Organization registration certificate",
+        "Identity proof of applicant",
+        "Financial plan details"
+      ],
+      "official_links": {
+        "guidelines": "https://socialjustice.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Asangathit Karmakar Samachar-Patr Hawker Cycle Sahayata Yojana",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Chhattisgarh",
+      "department": "Department of Labour",
+      "objectives": [
+        "Provide free cycles to unorganized workers (newspaper hawkers)",
+        "Empower unorganized workers through mobility support"
+      ],
+      "benefits": {
+        "free_cycle": "Provision of free bicycles"
+      },
+      "eligibility_criteria": [
+        "Resident of Chhattisgarh",
+        "Unorganized worker (newspaper hawker)"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Labour",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Identity proof",
+        "Residence proof",
+        "Proof of occupation as newspaper hawker"
+      ],
+      "official_links": {
+        "guidelines": "https://labour.cg.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Financial Assistance To Institutions/Societies Belonging To Scheduled Castes/Backward Classes",
+      "parent_scheme": "Infrastructure Support Schemes",
+      "ministry": "Government of Haryana",
+      "department": "Department of Welfare of Scheduled Castes & Backward Classes",
+      "objectives": [
+        "Provide financial assistance for infrastructure development",
+        "Support institutions/societies of Scheduled Castes/Backward Classes"
+      ],
+      "benefits": {
+        "financial_assistance": "Support for construction of buildings"
+      },
+      "eligibility_criteria": [
+        "Registered institutions/societies of SC/Backward Classes",
+        "Resident of Haryana"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Welfare of SC & BC",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "SC/Backward Class certificate",
+        "Institution/society registration certificate",
+        "Building construction plan",
+        "Identity proof"
+      ],
+      "official_links": {
+        "guidelines": "https://haryanascbc.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "HRIDAY: Heritage City Development & Augmentation Yojana",
+      "parent_scheme": "Urban Development Schemes",
+      "ministry": "Ministry of Tourism",
+      "department": "Department of Tourism",
+      "objectives": [
+        "Promote urban planning and economic growth through heritage conservation",
+        "Develop infrastructure in heritage cities"
+      ],
+      "benefits": {
+        "infrastructure_development": "Funding for heritage city infrastructure"
+      },
+      "eligibility_criteria": [
+        "Designated heritage cities under the scheme",
+        "Projects aligned with urban planning and heritage conservation"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Submit project proposal to Ministry of Tourism",
+          "Include infrastructure development plans",
+          "Evaluation by ministry authorities"
+        ]
+      },
+      "documents_required": [
+        "Project proposal",
+        "Heritage city designation proof",
+        "Infrastructure development plan",
+        "Financial estimates"
+      ],
+      "official_links": {
+        "guidelines": "https://tourism.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Pradhan Mantri Kisan Urja Suraksha Evam Utthan Mahabhiyan Scheme For Farmers",
+      "parent_scheme": "Agricultural Infrastructure Schemes",
+      "ministry": "Ministry of New and Renewable Energy",
+      "department": "Department of New and Renewable Energy",
+      "objectives": [
+        "Subsidize farmers for installing solar irrigation pumps",
+        "Enhance agricultural productivity through renewable energy"
+      ],
+      "benefits": {
+        "subsidy": "60% subsidy on solar irrigation pumps"
+      },
+      "eligibility_criteria": [
+        "Farmers in India",
+        "Require solar irrigation pumps for cultivation"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through PM-KUSUM portal or state nodal agencies",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Identity proof",
+        "Land ownership proof",
+        "Application for solar pump installation",
+        "Bank account details"
+      ],
+      "official_links": {
+        "guidelines": "https://pmkusum.mnre.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Agricultural Marketing Infrastructure",
+      "parent_scheme": "Agricultural Infrastructure Schemes",
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "department": "Department of Agriculture, Cooperation and Farmers Welfare",
+      "objectives": [
+        "Develop agricultural value chain infrastructure",
+        "Enhance farmers’ income through storage and marketing facilities"
+      ],
+      "benefits": {
+        "infrastructure_support": "Funding for storage and marketing infrastructure"
+      },
+      "eligibility_criteria": [
+        "Farmers, promoters, or organizations involved in agricultural marketing",
+        "Projects focused on post-harvest value chain"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through ISAM portal or state agriculture department",
+          "Submit project proposal and documents",
+          "Evaluation by authorities"
+        ]
+      },
+      "documents_required": [
+        "Project proposal for infrastructure",
+        "Land ownership or lease documents",
+        "Identity proof",
+        "Financial plan"
+      ],
+      "official_links": {
+        "guidelines": "https://agricoop.nic.in/"
+      }
+    },
+    {
+      "scheme_name": "Infrastructure Subsidy under Motivation of Entrepreneurs to Start Industries and Fiscal Assistance to Industries",
+      "parent_scheme": "Industrial Development Schemes",
+      "ministry": "Government of Puducherry",
+      "department": "Industries and Commerce Department",
+      "objectives": [
+        "Encourage industrial units through infrastructure subsidies",
+        "Support building investments for industrial growth"
+      ],
+      "benefits": {
+        "subsidy": "25% subsidy on building investments"
+      },
+      "eligibility_criteria": [
+        "Industrial units in Puducherry",
+        "Investment made on building infrastructure"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Industries and Commerce Department",
+          "Submit investment and building details",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Proof of industrial unit registration",
+        "Building investment details",
+        "Identity proof",
+        "Residence proof"
+      ],
+      "official_links": {
+        "guidelines": "https://industries.puducherry.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Shravan Kumar Shramik Parivar Tirth Yatra Yojana",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Uttar Pradesh",
+      "department": "Department of Labour",
+      "objectives": [
+        "Provide financial assistance for pilgrimage travel",
+        "Support families of construction workers"
+      ],
+      "benefits": {
+        "financial_assistance": "Support for pilgrimage travel expenses"
+      },
+      "eligibility_criteria": [
+        "Resident of Uttar Pradesh",
+        "Family of registered construction workers"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Labour",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Construction worker registration proof",
+        "Identity proof",
+        "Residence proof",
+        "Pilgrimage travel plan"
+      ],
+      "official_links": {
+        "guidelines": "https://uplabour.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Scheme for Grant of Financial Assistance for Administering Road Safety Advocacy and Awards for the Outstanding Work Done in the Field of Road Safety",
+      "parent_scheme": "Road Safety Schemes",
+      "ministry": "Ministry of Road Transport & Highways",
+      "department": "Department of Road Transport & Highways",
+      "objectives": [
+        "Promote road safety awareness",
+        "Reward agencies for outstanding road safety work"
+      ],
+      "benefits": {
+        "financial_assistance": "Grants for road safety advocacy",
+        "awards": "Recognition for outstanding contributions"
+      },
+      "eligibility_criteria": [
+        "NGOs, cooperative societies, or trusts involved in road safety",
+        "Demonstrated road safety initiatives"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Ministry of Road Transport & Highways",
+          "Submit road safety project details",
+          "Evaluation by ministry"
+        ]
+      },
+      "documents_required": [
+        "Organization registration certificate",
+        "Road safety project details",
+        "Identity proof of applicant",
+        "Financial plan"
+      ],
+      "official_links": {
+        "guidelines": "https://morth.nic.in/"
+      }
+    },
+    {
+      "scheme_name": "Rashtriya Gram Swaraj Abhiyan",
+      "parent_scheme": "Rural Development Schemes",
+      "ministry": "Ministry of Panchayati Raj",
+      "department": "Department of Panchayati Raj",
+      "objectives": [
+        "Strengthen Panchayati Raj System in rural areas",
+        "Develop infrastructure and governance capacity"
+      ],
+      "benefits": {
+        "infrastructure_support": "Funding for rural governance infrastructure"
+      },
+      "eligibility_criteria": [
+        "Panchayati Raj institutions in rural India",
+        "Projects for governance and infrastructure development"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Ministry of Panchayati Raj",
+          "Submit project proposal and documents",
+          "Evaluation by authorities"
+        ]
+      },
+      "documents_required": [
+        "Panchayat registration proof",
+        "Infrastructure project proposal",
+        "Financial estimates",
+        "Identity proof of applicant"
+      ],
+      "official_links": {
+        "guidelines": "https://panchayat.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Pilgrimage Rejuvenation and Spiritual Augmentation Drive (PRASHAD)",
+      "parent_scheme": "Tourism Infrastructure Schemes",
+      "ministry": "Ministry of Tourism",
+      "department": "Department of Tourism",
+      "objectives": [
+        "Develop infrastructure at pilgrimage sites",
+        "Enhance religious tourism experience"
+      ],
+      "benefits": {
+        "infrastructure_development": "Funding for pilgrimage site infrastructure"
+      },
+      "eligibility_criteria": [
+        "Designated pilgrimage sites under PRASHAD",
+        "Projects for infrastructure and tourism enhancement"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Submit project proposal to Ministry of Tourism",
+          "Include infrastructure development plans",
+          "Evaluation by ministry authorities"
+        ]
+      },
+      "documents_required": [
+        "Project proposal",
+        "Pilgrimage site designation proof",
+        "Infrastructure development plan",
+        "Financial estimates"
+      ],
+      "official_links": {
+        "guidelines": "https://tourism.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Mukhyamantri Prakhand Parivahan Yojana",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Bihar",
+      "department": "Department of Transport",
+      "objectives": [
+        "Provide transportation facilities connecting blocks and remote Panchayats",
+        "Encourage entrepreneurship among SC/ST/Backward Classes through bus purchase subsidies"
+      ],
+      "benefits": {
+        "subsidy": "Financial support for purchasing buses"
+      },
+      "eligibility_criteria": [
+        "Resident of Bihar",
+        "Belong to SC/ST/Backward Classes",
+        "Entrepreneur intending to operate bus services"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Transport",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "SC/ST/Backward Class certificate",
+        "Bus purchase plan",
+        "Identity proof",
+        "Residence proof"
+      ],
+      "official_links": {
+        "guidelines": "https://state.bihar.gov.in/transport/"
+      }
+    },
+    {
+      "scheme_name": "District Central Cooperative Banks and through its Branches: Small Road Transport Operators Loan (SRTO Loan)",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Co-operation, Food and Consumer Protection Department",
+      "objectives": [
+        "Provide financial support to small-scale road transport operators",
+        "Enhance transport infrastructure through loans"
+      ],
+      "benefits": {
+        "loan": "Up to ₹10,00,000 at 13% interest rate"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Small-scale road transport operator"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through District Central Cooperative Banks",
+          "Submit required documents",
+          "Loan approval by bank authorities"
+        ]
+      },
+      "documents_required": [
+        "Identity proof",
+        "Residence proof",
+        "Business plan for transport operations",
+        "Financial documents"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Fair Recreational Activity and Non-Competitive Involvement in Sports Urban Connect Scheme (F.R.A.N.C.I.S Urban Connect Scheme)",
+      "parent_scheme": "Urban Infrastructure Schemes",
+      "ministry": "Government of Goa",
+      "department": "Department of Sports and Youth Affairs",
+      "objectives": [
+        "Develop safe play areas in urban communities",
+        "Promote healthy recreation and sports"
+      ],
+      "benefits": {
+        "infrastructure_support": "Funding for developing urban play areas"
+      },
+      "eligibility_criteria": [
+        "Urban communities or local bodies in Goa",
+        "Projects for safe play area development"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Sports and Youth Affairs",
+          "Submit project proposal and documents",
+          "Evaluation by authorities"
+        ]
+      },
+      "documents_required": [
+        "Project proposal for play areas",
+        "Land ownership or lease documents",
+        "Identity proof",
+        "Financial estimates"
+      ],
+      "official_links": {
+        "guidelines": "https://www.goa.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Travel Concession To The Differently Abled Persons In State Owned Transport Corporation Buses",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Tamil Nadu",
+      "department": "Transport Department",
+      "objectives": [
+        "Provide travel concessions for differently abled persons",
+        "Enhance accessibility in state-owned buses"
+      ],
+      "benefits": {
+        "concession": "Discounted or free travel in state transport buses"
+      },
+      "eligibility_criteria": [
+        "Resident of Tamil Nadu",
+        "Person with disability certified by medical authority"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Transport Department or state bus corporations",
+          "Submit disability certificate and documents",
+          "Issuance of concession pass"
+        ]
+      },
+      "documents_required": [
+        "Disability certificate",
+        "Identity proof",
+        "Residence proof",
+        "Photograph"
+      ],
+      "official_links": {
+        "guidelines": "https://www.tn.gov.in/transport/"
+      }
+    },
+    {
+      "scheme_name": "Jharkhand Petrol Subsidy Scheme",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Jharkhand",
+      "department": "Food, Public Distribution & Consumer Affairs Department",
+      "objectives": [
+        "Provide petrol subsidy for two-wheelers",
+        "Support NFSA/Jharkhand State Food Security Scheme beneficiaries"
+      ],
+      "benefits": {
+        "subsidy": "₹250 per month for two-wheeler fuel"
+      },
+      "eligibility_criteria": [
+        "Resident of Jharkhand",
+        "Beneficiary of NFSA or Jharkhand State Food Security Scheme",
+        "Owner of a two-wheeler"
+      ],
+      "application_process": {
+        "mode": "Online/Offline",
+        "steps": [
+          "Apply through Food, Public Distribution & Consumer Affairs Department",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "NFSA or JSFSS beneficiary proof",
+        "Two-wheeler registration certificate",
+        "Identity proof",
+        "Residence proof"
+      ],
+      "official_links": {
+        "guidelines": "https://food.jharkhand.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Subsidy to Purchase E-Bike for Journalists",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Goa",
+      "department": "Department of Information and Publicity",
+      "objectives": [
+        "Provide financial assistance for e-bike purchase",
+        "Support journalists’ mobility and reduce pollution"
+      ],
+      "benefits": {
+        "subsidy": "Subsidized rate for purchasing e-bikes"
+      },
+      "eligibility_criteria": [
+        "Resident of Goa",
+        "Registered journalist based in Goa"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Information and Publicity",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Journalist accreditation proof",
+        "Identity proof",
+        "Residence proof",
+        "E-bike purchase plan"
+      ],
+      "official_links": {
+        "guidelines": "https://www.goa.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Grant of Fuel Subsidy to Differently Abled Persons Who Are Owning Motorised Vehicles",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Puducherry",
+      "department": "Department of Social Welfare",
+      "objectives": [
+        "Provide fuel subsidy for differently abled persons",
+        "Support mobility for motorized vehicle owners"
+      ],
+      "benefits": {
+        "subsidy": "Up to 50% of fuel cost"
+      },
+      "eligibility_criteria": [
+        "Resident of Puducherry",
+        "Person with disability owning a motorized vehicle"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Social Welfare",
+          "Submit disability certificate and vehicle details",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Disability certificate",
+        "Vehicle registration certificate",
+        "Fuel expenditure receipts",
+        "Identity proof"
+      ],
+      "official_links": {
+        "guidelines": "https://socialwelfare.puducherry.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Infrastructure Development Subsidy (For IT/ITES) under Motivation of Entrepreneurs to Start Industries and Fiscal Assistance to Capital Intensive Industries",
+      "parent_scheme": "Industrial Development Schemes",
+      "ministry": "Government of Puducherry",
+      "department": "Industries and Commerce Department",
+      "objectives": [
+        "Support infrastructure for IT/ITES industries",
+        "Provide subsidies for building investments"
+      ],
+      "benefits": {
+        "subsidy": "30% subsidy on building investment, up to ₹1,00,00,000 for 50,000 sq.ft."
+      },
+      "eligibility_criteria": [
+        "Infrastructure developers or IT/ITES industries in Puducherry",
+        "Minimum 50,000 sq.ft. constructed area"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Industries and Commerce Department",
+          "Submit building investment details",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Proof of industry registration",
+        "Building construction details",
+ "Identity proof",
+        "Financial estimates"
+      ],
+      "official_links": {
+        "guidelines": "https://industries.puducherry.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "Grant-in-aid Scheme to Village Education Committees/Urban Education Committees for minor repairs of Government School buildings",
+      "parent_scheme": "Educational Infrastructure Schemes",
+      "ministry": "Government of Goa",
+      "department": "Directorate of Education",
+      "objectives": [
+        "Provide grants for minor repairs of government school buildings",
+        "Support Village/Urban Education Committees"
+      ],
+      "benefits": {
+        "grant": "Financial assistance for minor school building repairs"
+      },
+      "eligibility_criteria": [
+        "Village/Urban Education Committees in Goa",
+        "Government schools requiring minor repairs"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Directorate of Education",
+          "Submit repair details and documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Committee registration proof",
+        "School repair proposal",
+        "Identity proof",
+        "Financial estimates"
+      ],
+      "official_links": {
+        "guidelines": "https://education.goa.gov.in/"
+      }
+    },
+    {
+      "scheme_name": "E-Rickshaw Kalyan Yojana",
+      "parent_scheme": "Transport Support Schemes",
+      "ministry": "Government of Uttarakhand",
+      "department": "Department of Transport",
+      "objectives": [
+        "Promote cleaner transportation through e-rickshaws",
+        "Generate employment opportunities for entrepreneurs"
+      ],
+      "benefits": {
+        "financial_assistance": "Subsidies and incentives for e-rickshaw purchase"
+      },
+      "eligibility_criteria": [
+        "Resident of Uttarakhand",
+        "Individuals/entrepreneurs operating e-rickshaws in urban/semi-urban areas"
+      ],
+      "application_process": {
+        "mode": "Offline",
+        "steps": [
+          "Apply through Department of Transport",
+          "Submit required documents",
+          "Verification by authorities"
+        ]
+      },
+      "documents_required": [
+        "Identity proof",
+        "Residence proof",
+        "E-rickshaw purchase plan",
+        "Financial documents"
+      ],
+      "official_links": {
+        "guidelines": "https://transport.uk.gov.in/"
+      }
+    }
+  ]
+}
