@@ -4,9 +4,10 @@ import Landing from './pages/landing';
 import Dashboard from './pages/dashboard';
 import Sidebar from './components/Sidebar';
 import ProfileForm from './pages/profileform';
-import Scheme from './pages/scheme';
+import { SchemeDisplay, SchemeDetail } from './pages/scheme';
 import Eligibility from './pages/eligibility';
-
+import Profile from './pages/profile';
+import Application from './pages/application';
 function App() {
   const location = useLocation();
 
@@ -28,8 +29,11 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profileform" element={<ProfileForm />} />
-          <Route path="/scheme" element={<Scheme />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/scheme" element={<SchemeDisplay />} />
+          <Route path="/scheme/:id" element={<SchemeDetail />} />
           <Route path="/eligibility" element={<Eligibility/>} />
+          <Route path="/application" element={<Application/>} />
         </Routes>
       </div>
 

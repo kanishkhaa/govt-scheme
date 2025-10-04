@@ -1,10 +1,12 @@
+// Update to ProfileForm.jsx - add localStorage save in handleSubmit
+
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, Briefcase, MapPin, DollarSign, Calendar, Users } from 'lucide-react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Add this import
+import { useNavigate } from 'react-router-dom';
 
 const ProfileForm = () => {
-  const navigate = useNavigate(); // Add this hook
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -42,7 +44,7 @@ const ProfileForm = () => {
 
   const nextStep = () => {
     if (currentStep === 1 && !validateStep()) return;
-    setCurrentStep(prev => Math.min(prev + 1, 3)); // Changed from 4 to 3
+    setCurrentStep(prev => Math.min(prev + 1, 3));
   };
 
   const prevStep = () => {
@@ -59,10 +61,13 @@ const ProfileForm = () => {
       };
       delete submitData.customState;
       
+      // Save to localStorage for persistence
+      localStorage.setItem('userProfile', JSON.stringify(submitData));
+      
       // Call the API to get recommendations
       const response = await axios.post('http://localhost:5000/recommend', submitData);
       
-      // Store the recommendations and profile data in localStorage or sessionStorage
+      // Store the recommendations and profile data in localStorage
       const recommendationData = {
         profile: submitData,
         recommendations: response.data.recommendations,
@@ -70,8 +75,7 @@ const ProfileForm = () => {
         message: response.data.message
       };
       
-      // Store in sessionStorage (you can also use localStorage)
-      sessionStorage.setItem('recommendationData', JSON.stringify(recommendationData));
+      localStorage.setItem('recommendationData', JSON.stringify(recommendationData));
       
       // Navigate to scheme display page
       navigate('/scheme', { state: recommendationData });
@@ -83,12 +87,12 @@ const ProfileForm = () => {
     }
   };
 
+  // ... rest of the component remains the same
   const renderStepIndicator = () => {
     const steps = [
       { id: 1, title: 'Profile Details', description: 'Basic information' },
       { id: 2, title: 'Review', description: 'Verify details' },
       { id: 3, title: 'Complete', description: 'All done!' }
-      // Removed the 4th step
     ];
 
     return (

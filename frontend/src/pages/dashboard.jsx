@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { 
   MapPin, 
   Bell, 
@@ -15,18 +16,179 @@ import {
   Award,
   Target
 } from 'lucide-react';
+
 const Dashboard = () => {
-  const [username] = useState('John Doe');
+  const [username, setUsername] = useState('John Doe');
+  const [profile, setProfile] = useState(null);
+  const [schemes, setSchemes] = useState([]);
+  const [bookmarked, setBookmarked] = useState(new Set());
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Functions copied from SchemeDisplay
+  const extractSchemeName = (rawName, desc) => {
+    if (!rawName) return 'Unknown Scheme';
+    
+    const lowerRaw = rawName.toLowerCase();
+    if (lowerRaw.includes('state') || lowerRaw.includes('doc')) {
+      const lowerDesc = desc.toLowerCase();
+      const schemeRegex = /(?:free|new|tn|muft)\s+([a-z\s]+?scheme(?:\s+\d{4})?)/i;
+      const match = lowerDesc.match(schemeRegex);
+      if (match && match[1]) {
+        let clean = match[1]
+          .trim()
+          .replace(/\s+/g, ' ')
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(' ');
+        if (!clean.toLowerCase().endsWith('scheme')) {
+          clean += ' Scheme';
+        }
+        return clean;
+      }
+      return 'Government Education Scheme';
+    }
+    
+    let cleanName = rawName
+      .replace(/^AP\s+|YSR\s+/i, '')
+      .replace(/\s+(?:2020|Phase\s+\d+)$/i, '')
+      .replace(/Apply Online Form|Download/i, '')
+      .replace(/[_-]/g, ' ')
+      .trim()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    
+    return cleanName || 'Government Scheme';
+  };
+
+  const processSchemes = (recommendations) => {
+    return recommendations.map((scheme, index) => ({
+      ...scheme,
+      id: index + 1,
+      cleanName: extractSchemeName(scheme.scheme_name, scheme.description),
+      rating: Math.min(5, Math.max(1, Math.round(scheme.similarity * 5))),
+      category: getCategoryFromDescription(scheme.description),
+      benefits: extractBenefits(scheme.description),
+      eligibility: extractEligibility(scheme.description)
+    }));
+  };
+
+  const fetchRecommendations = async (profileData) => {
+    setLoading(true);
+    try {
+      const response = await axios.post('http://localhost:5000/recommend', profileData);
+      const processedSchemes = processSchemes(response.data.recommendations);
+      setSchemes(processedSchemes);
+      localStorage.setItem('userSchemes', JSON.stringify(processedSchemes));
+    } catch (err) {
+      console.error('Failed to fetch recommendations:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getCategoryFromDescription = (description) => {
+    const desc = description.toLowerCase();
+    if (desc.includes('education') || desc.includes('scholarship') || desc.includes('student')) return 'Education';
+    if (desc.includes('health') || desc.includes('medical') || desc.includes('insurance')) return 'Healthcare';
+    if (desc.includes('agriculture') || desc.includes('farmer') || desc.includes('crop')) return 'Agriculture';
+    if (desc.includes('employment') || desc.includes('skill') || desc.includes('job')) return 'Employment';
+    if (desc.includes('housing') || desc.includes('home') || desc.includes('shelter')) return 'Housing';
+    if (desc.includes('women') || desc.includes('girl') || desc.includes('mother')) return 'Women Welfare';
+    return 'General Welfare';
+  };
+
+  const extractBenefits = (description) => {
+    const benefits = [];
+    if (description.includes('free')) benefits.push('Free of Cost');
+    if (description.includes('subsidy')) benefits.push('Subsidized');
+    if (description.includes('loan')) benefits.push('Financial Support');
+    if (description.includes('insurance')) benefits.push('Insurance Coverage');
+    return benefits.length > 0 ? benefits : ['Government Support'];
+  };
+
+  const extractEligibility = (description) => {
+    if (description.includes('women') || description.includes('girl')) return 'For Women';
+    if (description.includes('student')) return 'For Students';
+    if (description.includes('farmer')) return 'For Farmers';
+    if (description.includes('poor') || description.includes('bpl')) return 'For BPL Families';
+    return 'Check Eligibility';
+  };
+
+  // Updated function for amounts based on real benefits
+  const getAmount = (scheme) => {
+    const lowerDesc = scheme.description.toLowerCase();
+    if (lowerDesc.includes('1000 monthly')) return 12000; // 1000*12
+    if (lowerDesc.includes('tuition waiver') || lowerDesc.includes('full tuition')) return 50000;
+    if (lowerDesc.includes('6000 per annum')) return 6000;
+    if (lowerDesc.includes('breakfast')) return 5000;
+    if (lowerDesc.includes('skill development')) return 15000;
+    const amounts = {
+      'Education': 15000,
+      'Healthcare': 500000,
+      'Agriculture': 6000,
+      'Employment': 10000,
+      'Housing': 250000,
+      'Women Welfare': 50000,
+      'General Welfare': 20000
+    };
+    return amounts[scheme.category] || 10000;
+  };
 
   useEffect(() => {
+    const loadData = async () => {
+      const recDataStr = localStorage.getItem('recommendationData');
+      if (recDataStr) {
+        const data = JSON.parse(recDataStr);
+        setProfile(data.profile);
+        setUsername(data.profile.name);
+        const processed = processSchemes(data.recommendations);
+        setSchemes(processed);
+        localStorage.setItem('userSchemes', JSON.stringify(processed));
+      } else {
+        const stored = localStorage.getItem('userSchemes');
+        if (stored) {
+          const processed = JSON.parse(stored);
+          setSchemes(processed);
+        } else {
+          const defaultProfile = {
+            name: 'John Doe',
+            age_group: 'student',
+            gender: 'male',
+            occupation: 'student',
+            income_level: 'low',
+            state: 'tamil nadu'
+          };
+          setProfile(defaultProfile);
+          setUsername(defaultProfile.name);
+          await fetchRecommendations(defaultProfile);
+        }
+      }
+
+      const storedBook = localStorage.getItem('bookmarkedSchemes');
+      if (storedBook) {
+        setBookmarked(new Set(JSON.parse(storedBook)));
+      }
+    };
+
+    loadData();
     setIsLoaded(true);
   }, []);
+
+  const appliedCount = schemes.filter(s => localStorage.getItem(`applied_${s.id}`) === 'yes').length;
+  const bookmarkedCount = bookmarked.size;
+  const totalDiscovered = schemes.length;
+  const ongoingCount = bookmarkedCount;
+  const benefitsSum = schemes.reduce((sum, s) => sum + getAmount(s), 0);
+  const benefitsValue = `₹${benefitsSum.toLocaleString()}`;
+  const rejectedCount = 0;
+  const incompleteCount = totalDiscovered - appliedCount - bookmarkedCount;
 
   const statsCards = [
     {
       title: 'Total Schemes Discovered',
-      value: '24',
+      value: totalDiscovered.toString(),
       icon: <FileText className="w-8 h-8" />,
       gradient: 'from-emerald-400 via-emerald-500 to-emerald-600',
       bgColor: 'bg-emerald-50',
@@ -36,7 +198,7 @@ const Dashboard = () => {
     },
     {
       title: 'Schemes Applied',
-      value: '8',
+      value: appliedCount.toString(),
       icon: <TrendingUp className="w-8 h-8" />,
       gradient: 'from-purple-400 via-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
@@ -46,7 +208,7 @@ const Dashboard = () => {
     },
     {
       title: 'Ongoing Schemes',
-      value: '5',
+      value: ongoingCount.toString(),
       icon: <Clock className="w-8 h-8" />,
       gradient: 'from-orange-400 via-orange-500 to-orange-600',
       bgColor: 'bg-orange-50',
@@ -56,7 +218,7 @@ const Dashboard = () => {
     },
     {
       title: 'Benefits Available',
-      value: '₹1,25,000',
+      value: benefitsValue,
       icon: <Gift className="w-8 h-8" />,
       gradient: 'from-rose-400 via-rose-500 to-rose-600',
       bgColor: 'bg-rose-50',
@@ -66,7 +228,7 @@ const Dashboard = () => {
     },
     {
       title: 'Rejected/Expired',
-      value: '2',
+      value: rejectedCount.toString(),
       icon: <XCircle className="w-8 h-8" />,
       gradient: 'from-slate-400 via-slate-500 to-slate-600',
       bgColor: 'bg-slate-50',
@@ -76,7 +238,7 @@ const Dashboard = () => {
     },
     {
       title: 'Incomplete',
-      value: '1',
+      value: incompleteCount.toString(),
       icon: <Clock className="w-8 h-8" />,
       gradient: 'from-amber-400 via-amber-500 to-amber-600',
       bgColor: 'bg-amber-50',
@@ -86,44 +248,28 @@ const Dashboard = () => {
     }
   ];
 
-  const recentSchemes = [
-    {
-      id: 1,
-      name: 'PM Kisan Samman Nidhi',
-      category: 'Agriculture',
-      status: 'Applied',
-      date: '2024-06-10',
-      amount: '₹6,000',
-      priority: 'high'
-    },
-    {
-      id: 2,
-      name: 'Pradhan Mantri Awas Yojana',
-      category: 'Housing',
-      status: 'Under Review',
-      date: '2024-06-08',
-      amount: '₹2,50,000',
-      priority: 'medium'
-    },
-    {
-      id: 3,
-      name: 'Ayushman Bharat',
-      category: 'Healthcare',
-      status: 'Eligible',
-      date: '2024-06-05',
-      amount: '₹5,00,000',
-      priority: 'high'
-    },
-    {
-      id: 4,
-      name: 'Skill India Mission',
-      category: 'Education',
-      status: 'Ongoing',
-      date: '2024-06-03',
-      amount: '₹10,000',
-      priority: 'low'
-    }
-  ];
+  // Compute recentSchemes based on viewed - no static fallback
+  const viewedStr = localStorage.getItem('viewedSchemes') || '[]';
+  const viewed = JSON.parse(viewedStr);
+  const viewedRecent = viewed
+    .filter(v => schemes.some(s => s.id === v.id))
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, 4)
+    .map(v => {
+      const s = schemes.find(ss => ss.id === v.id);
+      if (!s) return null;
+      return {
+        id: s.id,
+        name: s.cleanName,
+        category: s.category,
+        status: localStorage.getItem(`applied_${s.id}`) === 'yes' ? 'Applied' : bookmarked.has(s.id) ? 'Bookmarked' : 'Viewed',
+        date: new Date(v.timestamp).toISOString().split('T')[0],
+        amount: `₹${getAmount(s).toLocaleString()}`,
+        priority: s.similarity > 0.8 ? 'high' : s.similarity > 0.6 ? 'medium' : 'low'
+      };
+    }).filter(Boolean);
+
+  const recentSchemes = viewedRecent;
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -131,6 +277,9 @@ const Dashboard = () => {
       case 'Under Review': return 'bg-amber-100 text-amber-800 border-amber-200 shadow-amber-100';
       case 'Eligible': return 'bg-blue-100 text-blue-800 border-blue-200 shadow-blue-100';
       case 'Ongoing': return 'bg-purple-100 text-purple-800 border-purple-200 shadow-purple-100';
+      case 'Bookmarked': return 'bg-indigo-100 text-indigo-800 border-indigo-200 shadow-indigo-100';
+      case 'Viewed': return 'bg-teal-100 text-teal-800 border-teal-200 shadow-teal-100';
+      case 'Suggested': return 'bg-gray-100 text-gray-800 border-gray-200 shadow-gray-100';
       default: return 'bg-gray-100 text-gray-800 border-gray-200 shadow-gray-100';
     }
   };
@@ -139,9 +288,21 @@ const Dashboard = () => {
     switch (priority) {
       case 'high': return <Award className="w-4 h-4 text-rose-600" />;
       case 'medium': return <Target className="w-4 h-4 text-amber-600" />;
+      case 'low': return null;
       default: return null;
     }
   };
+
+  if (loading && schemes.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-20 h-20 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6 mx-auto"></div>
+          <p className="text-xl text-gray-600">Loading your dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen transition-all duration-1000 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 text-gray-900 relative overflow-hidden">
@@ -270,52 +431,59 @@ const Dashboard = () => {
           
           {/* Schemes List */}
           <div className="p-8">
-            <div className="space-y-6">
-              {recentSchemes.map((scheme, index) => (
-                <div
-                  key={scheme.id}
-                  className={`relative p-6 rounded-2xl border transition-all duration-700 hover:scale-105 hover:-translate-y-2 cursor-pointer group border-gray-200/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white/80 hover:border-blue-300/50 shadow-sm hover:shadow-xl overflow-hidden ${isLoaded ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'}`}
-                  style={{
-                    animationDelay: `${1.2 + index * 0.1}s`
-                  }}
-                >
-                  {/* Background Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
-                  
-                  <div className="flex items-center justify-between relative z-10">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-4 mb-4">
-                        <h3 className="font-bold text-xl transition-all duration-300 group-hover:text-blue-600">
-                          {scheme.name}
-                        </h3>
-                        {getPriorityIcon(scheme.priority)}
-                        <span className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 shadow-sm ${getStatusColor(scheme.status)}`}>
-                          {scheme.status}
-                        </span>
+            {recentSchemes.length > 0 ? (
+              <div className="space-y-6">
+                {recentSchemes.map((scheme, index) => (
+                  <div
+                    key={scheme.id}
+                    className={`relative p-6 rounded-2xl border transition-all duration-700 hover:scale-105 hover:-translate-y-2 cursor-pointer group border-gray-200/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white/80 hover:border-blue-300/50 shadow-sm hover:shadow-xl overflow-hidden ${isLoaded ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'}`}
+                    style={{
+                      animationDelay: `${1.2 + index * 0.1}s`
+                    }}
+                  >
+                    {/* Background Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
+                    
+                    <div className="flex items-center justify-between relative z-10">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-4 mb-4">
+                          <h3 className="font-bold text-xl transition-all duration-300 group-hover:text-blue-600">
+                            {scheme.name}
+                          </h3>
+                          {getPriorityIcon(scheme.priority)}
+                          <span className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 shadow-sm ${getStatusColor(scheme.status)}`}>
+                            {scheme.status}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-8 text-sm text-gray-600">
+                          <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                            <FileText className="w-4 h-4" />
+                            <span className="font-medium">{scheme.category}</span>
+                          </span>
+                          <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                            <Calendar className="w-4 h-4" />
+                            <span className="font-medium">{scheme.date}</span>
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center space-x-8 text-sm text-gray-600">
-                        <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
-                          <FileText className="w-4 h-4" />
-                          <span className="font-medium">{scheme.category}</span>
-                        </span>
-                        <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
-                          <Calendar className="w-4 h-4" />
-                          <span className="font-medium">{scheme.date}</span>
-                        </span>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-110">
+                          {scheme.amount}
+                        </p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-110">
-                        {scheme.amount}
-                      </p>
-                    </div>
+                    
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
                   </div>
-                  
-                  {/* Hover Glow Effect */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <Eye className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600 text-lg font-medium">No recent viewed schemes. Start exploring recommendations!</p>
+              </div>
+            )}
           </div>
         </div>
       </main>
