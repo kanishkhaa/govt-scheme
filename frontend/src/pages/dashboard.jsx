@@ -26,6 +26,8 @@ const Dashboard = () => {
   const [bookmarked, setBookmarked] = useState(new Set());
   const [isLoaded, setIsLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showAppliedSchemes, setShowAppliedSchemes] = useState(false);
+  const [showBookmarkedSchemes, setShowBookmarkedSchemes] = useState(false);
 
   const navigate = useNavigate();
 
@@ -185,49 +187,51 @@ const Dashboard = () => {
   const ongoingCount = bookmarkedCount;
   const benefitsSum = schemes.reduce((sum, s) => sum + getAmount(s), 0);
   const benefitsValue = `₹${benefitsSum.toLocaleString()}`;
-  const rejectedCount = 0;
-  const incompleteCount = totalDiscovered - appliedCount - bookmarkedCount;
 
   const statsCards = [
     {
-      title: 'Schemes Available',
+      title: 'Available Schemes',
       value: '1524',
       icon: <FileText className="w-8 h-8" />,
       gradient: 'from-blue-400 via-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-600',
       iconBg: 'bg-gradient-to-br from-blue-400 to-blue-600',
-      sparkle: true
+      sparkle: true,
+      onClick: () => navigate('/application')
     },
     {
-      title: 'Schemes Recommended',
+      title: 'Recommended Schemes',
       value: totalDiscovered.toString(),
       icon: <Check className="w-8 h-8" />,
       gradient: 'from-emerald-400 via-emerald-500 to-emerald-600',
       bgColor: 'bg-emerald-50',
       textColor: 'text-emerald-600',
       iconBg: 'bg-gradient-to-br from-emerald-400 to-emerald-600',
-      sparkle: true
+      sparkle: true,
+      onClick: () => navigate('/scheme')
     },
     {
-      title: 'Schemes Applied',
+      title: 'Applied Schemes',
       value: appliedCount.toString(),
       icon: <TrendingUp className="w-8 h-8" />,
       gradient: 'from-purple-400 via-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
       textColor: 'text-purple-600',
       iconBg: 'bg-gradient-to-br from-purple-400 to-purple-600',
-      sparkle: false
+      sparkle: true,
+      onClick: () => setShowAppliedSchemes(true)
     },
     {
-      title: 'Save for Later',
+      title: 'Saved for Later',
       value: ongoingCount.toString(),
       icon: <Clock className="w-8 h-8" />,
       gradient: 'from-orange-400 via-orange-500 to-orange-600',
       bgColor: 'bg-orange-50',
       textColor: 'text-orange-600',
       iconBg: 'bg-gradient-to-br from-orange-400 to-orange-600',
-      sparkle: false
+      sparkle: true,
+      onClick: () => setShowBookmarkedSchemes(true)
     },
     {
       title: 'Benefits Available',
@@ -238,16 +242,6 @@ const Dashboard = () => {
       textColor: 'text-rose-600',
       iconBg: 'bg-gradient-to-br from-rose-400 to-rose-600',
       sparkle: true
-    },
-    {
-      title: 'Incomplete',
-      value: incompleteCount.toString(),
-      icon: <Clock className="w-8 h-8" />,
-      gradient: 'from-amber-400 via-amber-500 to-amber-600',
-      bgColor: 'bg-amber-50',
-      textColor: 'text-amber-600',
-      iconBg: 'bg-gradient-to-br from-amber-400 to-amber-600',
-      sparkle: false
     }
   ];
 
@@ -272,6 +266,30 @@ const Dashboard = () => {
     }).filter(Boolean);
 
   const recentSchemes = viewedRecent;
+
+  const appliedSchemes = schemes
+    .filter(s => localStorage.getItem(`applied_${s.id}`) === 'yes')
+    .map(s => ({
+      id: s.id,
+      name: s.cleanName,
+      category: s.category,
+      status: 'Applied',
+      date: new Date().toISOString().split('T')[0], // Use current date as placeholder
+      amount: `₹${getAmount(s).toLocaleString()}`,
+      priority: s.similarity > 0.8 ? 'high' : s.similarity > 0.6 ? 'medium' : 'low'
+    }));
+
+  const bookmarkedSchemes = schemes
+    .filter(s => bookmarked.has(s.id))
+    .map(s => ({
+      id: s.id,
+      name: s.cleanName,
+      category: s.category,
+      status: 'Bookmarked',
+      date: new Date().toISOString().split('T')[0], // Use current date as placeholder
+      amount: `₹${getAmount(s).toLocaleString()}`,
+      priority: s.similarity > 0.8 ? 'high' : s.similarity > 0.6 ? 'medium' : 'low'
+    }));
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -301,6 +319,11 @@ const Dashboard = () => {
 
   const handleViewAllClick = () => {
     navigate('/application');
+  };
+
+  const handleBackClick = () => {
+    setShowAppliedSchemes(false);
+    setShowBookmarkedSchemes(false);
   };
 
   if (loading && schemes.length === 0) {
@@ -357,137 +380,311 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="px-6 pb-12 max-w-7xl mx-auto relative z-10">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {statsCards.map((card, index) => (
-            <div
-              key={index}
-              className={`relative p-8 rounded-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-3 cursor-pointer group bg-white/90 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl overflow-hidden ${isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}
-              style={{
-                animationDelay: `${index * 0.15}s`
-              }}
-            >
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+        {showAppliedSchemes ? (
+          <div className={`rounded-3xl transition-all duration-1000 hover:shadow-2xl bg-white/90 backdrop-blur-xl border border-white/50 shadow-xl relative overflow-hidden ${isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.9s'}}>
+            {/* Header Section */}
+            <div className="relative">
+              {/* Header Gradient Background */}
+              <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 rounded-t-3xl"></div>
               
-              {/* Sparkle Effect */}
-              {card.sparkle && (
-                <div className="absolute top-4 right-4">
-                  <Sparkles className="w-5 h-5 text-blue-400 animate-pulse" />
-                </div>
-              )}
-
-              <div className="flex items-start justify-between relative z-10">
-                <div className="flex-1">
-                  <p className="text-lg font-semibold mb-4 text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
-                    {card.title}
-                  </p>
-                  <p className="text-4xl font-bold transition-all duration-500 group-hover:scale-110 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                    {card.value}
-                  </p>
-                </div>
-                <div className={`p-5 rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 ${card.iconBg} shadow-lg`}>
-                  <div className="text-white transition-all duration-300">
-                    {card.icon}
+              <div className="p-8 border-b border-gray-200/50 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl shadow-lg">
+                      <TrendingUp className="w-7 h-7 text-white" />
+                      <div className="absolute inset-0 bg-white/20 rounded-2xl animate-pulse"></div>
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+                        Applied Schemes
+                      </h2>
+                      <p className="text-sm text-gray-500 mt-1">Track your applied schemes</p>
+                    </div>
                   </div>
-                </div>
-              </div>
-              
-              {/* Progress Bar */}
-              <div className={`mt-6 h-2 rounded-full bg-gradient-to-r ${card.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 shadow-lg`}></div>
-              
-              {/* Hover Glow Effect */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
-            </div>
-          ))}
-        </div>
-
-        {/* Recently Viewed Schemes */}
-        <div className={`rounded-3xl transition-all duration-1000 hover:shadow-2xl bg-white/90 backdrop-blur-xl border border-white/50 shadow-xl relative overflow-hidden ${isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.9s'}}>
-          {/* Header Section */}
-          <div className="relative">
-            {/* Header Gradient Background */}
-            <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 rounded-t-3xl"></div>
-            
-            <div className="p-8 border-b border-gray-200/50 relative z-10">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="relative p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl shadow-lg">
-                    <Eye className="w-7 h-7 text-white" />
-                    <div className="absolute inset-0 bg-white/20 rounded-2xl animate-pulse"></div>
-                  </div>
-                  <div>
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
-                      Recently Viewed Schemes
-                    </h2>
-                    <p className="text-sm text-gray-500 mt-1">Track your application progress</p>
-                  </div>
-                </div>
-                <button 
-                  onClick={handleViewAllClick}
-                  className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-500 hover:scale-105 group shadow-lg hover:shadow-xl overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500"></div>
-                  <span className="font-semibold relative z-10">View All</span>
-                  <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-2 relative z-10" />
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          {/* Schemes List */}
-          <div className="p-8">
-            {recentSchemes.length > 0 ? (
-              <div className="space-y-6">
-                {recentSchemes.map((scheme, index) => (
-                  <div
-                    key={scheme.id}
-                    className={`relative p-6 rounded-2xl border transition-all duration-700 hover:scale-105 hover:-translate-y-2 cursor-pointer group border-gray-200/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white/80 hover:border-blue-300/50 shadow-sm hover:shadow-xl overflow-hidden ${isLoaded ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'}`}
-                    style={{
-                      animationDelay: `${1.2 + index * 0.1}s`
-                    }}
+                  <button 
+                    onClick={handleBackClick}
+                    className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-500 hover:scale-105 group shadow-lg hover:shadow-xl overflow-hidden"
                   >
-                    {/* Background Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
-                    
-                    <div className="flex items-center justify-between relative z-10">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-4 mb-4">
-                          <h3 className="font-bold text-xl transition-all duration-300 group-hover:text-blue-600">
-                            {scheme.name}
-                          </h3>
-                          {getPriorityIcon(scheme.priority)}
-                          <span className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 shadow-sm ${getStatusColor(scheme.status)}`}>
-                            {scheme.status}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-8 text-sm text-gray-600">
-                          <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
-                            <FileText className="w-4 h-4" />
-                            <span className="font-medium">{scheme.category}</span>
-                          </span>
-                          <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
-                            <Calendar className="w-4 h-4" />
-                            <span className="font-medium">{scheme.date}</span>
-                          </span>
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500"></div>
+                    <span className="font-semibold relative z-10">Back to Dashboard</span>
+                    <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-2 relative z-10" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Applied Schemes List */}
+            <div className="p-8">
+              {appliedSchemes.length > 0 ? (
+                <div className="space-y-6">
+                  {appliedSchemes.map((scheme, index) => (
+                    <div
+                      key={scheme.id}
+                      className={`relative p-6 rounded-2xl border transition-all duration-700 hover:scale-105 hover:-translate-y-2 cursor-pointer group border-gray-200/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white/80 hover:border-blue-300/50 shadow-sm hover:shadow-xl overflow-hidden ${isLoaded ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'}`}
+                      style={{
+                        animationDelay: `${1.2 + index * 0.1}s`
+                      }}
+                    >
+                      {/* Background Gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
+                      
+                      <div className="flex items-center justify-between relative z-10">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-4 mb-4">
+                            <h3 className="font-bold text-xl transition-all duration-300 group-hover:text-blue-600">
+                              {scheme.name}
+                            </h3>
+                            {getPriorityIcon(scheme.priority)}
+                            <span className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 shadow-sm ${getStatusColor(scheme.status)}`}>
+                              {scheme.status}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-8 text-sm text-gray-600">
+                            <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                              <FileText className="w-4 h-4" />
+                              <span className="font-medium">{scheme.category}</span>
+                            </span>
+                            <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                              <Calendar className="w-4 h-4" />
+                              <span className="font-medium">{scheme.date}</span>
+                            </span>
+                          </div>
                         </div>
                       </div>
                       
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
                     </div>
-                    
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <Eye className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg font-medium">No recent viewed schemes. Start exploring recommendations!</p>
-              </div>
-            )}
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <TrendingUp className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600 text-lg font-medium">No schemes applied yet. Start applying to schemes!</p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        ) : showBookmarkedSchemes ? (
+          <div className={`rounded-3xl transition-all duration-1000 hover:shadow-2xl bg-white/90 backdrop-blur-xl border border-white/50 shadow-xl relative overflow-hidden ${isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.9s'}}>
+            {/* Header Section */}
+            <div className="relative">
+              {/* Header Gradient Background */}
+              <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 rounded-t-3xl"></div>
+              
+              <div className="p-8 border-b border-gray-200/50 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl shadow-lg">
+                      <Clock className="w-7 h-7 text-white" />
+                      <div className="absolute inset-0 bg-white/20 rounded-2xl animate-pulse"></div>
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+                        Saved for Later
+                      </h2>
+                      <p className="text-sm text-gray-500 mt-1">View your bookmarked schemes</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={handleBackClick}
+                    className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-500 hover:scale-105 group shadow-lg hover:shadow-xl overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500"></div>
+                    <span className="font-semibold relative z-10">Back to Dashboard</span>
+                    <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-2 relative z-10" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bookmarked Schemes List */}
+            <div className="p-8">
+              {bookmarkedSchemes.length > 0 ? (
+                <div className="space-y-6">
+                  {bookmarkedSchemes.map((scheme, index) => (
+                    <div
+                      key={scheme.id}
+                      className={`relative p-6 rounded-2xl border transition-all duration-700 hover:scale-105 hover:-translate-y-2 cursor-pointer group border-gray-200/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white/80 hover:border-blue-300/50 shadow-sm hover:shadow-xl overflow-hidden ${isLoaded ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'}`}
+                      style={{
+                        animationDelay: `${1.2 + index * 0.1}s`
+                      }}
+                    >
+                      {/* Background Gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
+                      
+                      <div className="flex items-center justify-between relative z-10">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-4 mb-4">
+                            <h3 className="font-bold text-xl transition-all duration-300 group-hover:text-blue-600">
+                              {scheme.name}
+                            </h3>
+                            {getPriorityIcon(scheme.priority)}
+                            <span className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 shadow-sm ${getStatusColor(scheme.status)}`}>
+                              {scheme.status}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-8 text-sm text-gray-600">
+                            <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                              <FileText className="w-4 h-4" />
+                              <span className="font-medium">{scheme.category}</span>
+                            </span>
+                            <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                              <Calendar className="w-4 h-4" />
+                              <span className="font-medium">{scheme.date}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <Clock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600 text-lg font-medium">No schemes saved for later. Start bookmarking schemes!</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {statsCards.map((card, index) => (
+                <div
+                  key={index}
+                  onClick={card.onClick}
+                  className={`relative p-8 rounded-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-3 cursor-pointer group bg-white/90 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl overflow-hidden ${isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}
+                  style={{
+                    animationDelay: `${index * 0.15}s`
+                  }}
+                >
+                  {/* Background Gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                  
+                  {/* Sparkle Effect */}
+                  {card.sparkle && (
+                    <div className="absolute top-4 right-4">
+                      <Sparkles className="w-5 h-5 text-blue-400 animate-pulse" />
+                    </div>
+                  )}
+
+                  <div className="flex items-start justify-between relative z-10">
+                    <div className="flex-1">
+                      <p className="text-lg font-semibold mb-4 text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+                        {card.title}
+                      </p>
+                      <p className="text-4xl font-bold transition-all duration-500 group-hover:scale-110 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                        {card.value}
+                      </p>
+                    </div>
+                    <div className={`p-5 rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 ${card.iconBg} shadow-lg`}>
+                      <div className="text-white transition-all duration-300">
+                        {card.icon}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Progress Bar */}
+                  <div className={`mt-6 h-2 rounded-full bg-gradient-to-r ${card.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 shadow-lg`}></div>
+                  
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Recently Viewed Schemes */}
+            <div className={`rounded-3xl transition-all duration-1000 hover:shadow-2xl bg-white/90 backdrop-blur-xl border border-white/50 shadow-xl relative overflow-hidden ${isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`} style={{animationDelay: '0.9s'}}>
+              {/* Header Section */}
+              <div className="relative">
+                {/* Header Gradient Background */}
+                <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-r from-blue-500/10 via-sky-500/10 to-cyan-500/10 rounded-t-3xl"></div>
+                
+                <div className="p-8 border-b border-gray-200/50 relative z-10">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="relative p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl shadow-lg">
+                        <Eye className="w-7 h-7 text-white" />
+                        <div className="absolute inset-0 bg-white/20 rounded-2xl animate-pulse"></div>
+                      </div>
+                      <div>
+                        <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+                          Recently Viewed Schemes
+                        </h2>
+                        <p className="text-sm text-gray-500 mt-1">Track your application progress</p>
+                      </div>
+                    </div>
+                    <button 
+                      onClick={handleViewAllClick}
+                      className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-500 hover:scale-105 group shadow-lg hover:shadow-xl overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500"></div>
+                      <span className="font-semibold relative z-10">View All</span>
+                      <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-2 relative z-10" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Schemes List */}
+              <div className="p-8">
+                {recentSchemes.length > 0 ? (
+                  <div className="space-y-6">
+                    {recentSchemes.map((scheme, index) => (
+                      <div
+                        key={scheme.id}
+                        className={`relative p-6 rounded-2xl border transition-all duration-700 hover:scale-105 hover:-translate-y-2 cursor-pointer group border-gray-200/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white/80 hover:border-blue-300/50 shadow-sm hover:shadow-xl overflow-hidden ${isLoaded ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'}`}
+                        style={{
+                          animationDelay: `${1.2 + index * 0.1}s`
+                        }}
+                      >
+                        {/* Background Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
+                        
+                        <div className="flex items-center justify-between relative z-10">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-4 mb-4">
+                              <h3 className="font-bold text-xl transition-all duration-300 group-hover:text-blue-600">
+                                {scheme.name}
+                              </h3>
+                              {getPriorityIcon(scheme.priority)}
+                              <span className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 shadow-sm ${getStatusColor(scheme.status)}`}>
+                                {scheme.status}
+                              </span>
+                            </div>
+                            <div className="flex items-center space-x-8 text-sm text-gray-600">
+                              <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                                <FileText className="w-4 h-4" />
+                                <span className="font-medium">{scheme.category}</span>
+                              </span>
+                              <span className="flex items-center space-x-2 group-hover:text-blue-600 transition-colors duration-300">
+                                <Calendar className="w-4 h-4" />
+                                <span className="font-medium">{scheme.date}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Hover Glow Effect */}
+                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <Eye className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-600 text-lg font-medium">No recent viewed schemes. Start exploring recommendations!</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </main>
 
       <style jsx>{`
