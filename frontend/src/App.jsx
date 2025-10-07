@@ -2,17 +2,20 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Landing from './pages/landing';
 import Dashboard from './pages/dashboard';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar';
 import ProfileForm from './pages/profileform';
 import { SchemeDisplay, SchemeDetail } from './pages/scheme';
 import Eligibility from './pages/eligibility';
 import Profile from './pages/profile';
 import Application from './pages/application';
+import Chatbot from './components/Chatbot';
+
 function App() {
   const location = useLocation();
 
   // Show sidebar only on dashboard (exclude landing and profileform)
   const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform';
+  const isLandingPage = location.pathname === '/';
 
   return (
     <div className="flex h-screen">
@@ -37,7 +40,10 @@ function App() {
         </Routes>
       </div>
 
-      {/* AccessibilityDialog & Chatbot can go here if needed */}
+      {/* Chatbot - exclude landing */}
+      {!isLandingPage && <Chatbot />}
+
+      {/* AccessibilityDialog can go here if needed */}
     </div>
   );
 }
