@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { 
   MapPin, 
@@ -9,6 +10,7 @@ import {
   Gift,
   XCircle,
   Clock,
+  Check,
   Eye,
   ArrowRight,
   Calendar,
@@ -24,6 +26,8 @@ const Dashboard = () => {
   const [bookmarked, setBookmarked] = useState(new Set());
   const [isLoaded, setIsLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   // Functions copied from SchemeDisplay
   const extractSchemeName = (rawName, desc) => {
@@ -116,7 +120,6 @@ const Dashboard = () => {
     return 'Check Eligibility';
   };
 
-  // Updated function for amounts based on real benefits
   const getAmount = (scheme) => {
     const lowerDesc = scheme.description.toLowerCase();
     if (lowerDesc.includes('1000 monthly')) return 12000; // 1000*12
@@ -187,9 +190,19 @@ const Dashboard = () => {
 
   const statsCards = [
     {
-      title: 'Total Schemes Discovered',
-      value: totalDiscovered.toString(),
+      title: 'Schemes Available',
+      value: '1524',
       icon: <FileText className="w-8 h-8" />,
+      gradient: 'from-blue-400 via-blue-500 to-blue-600',
+      bgColor: 'bg-blue-50',
+      textColor: 'text-blue-600',
+      iconBg: 'bg-gradient-to-br from-blue-400 to-blue-600',
+      sparkle: true
+    },
+    {
+      title: 'Schemes Recommended',
+      value: totalDiscovered.toString(),
+      icon: <Check className="w-8 h-8" />,
       gradient: 'from-emerald-400 via-emerald-500 to-emerald-600',
       bgColor: 'bg-emerald-50',
       textColor: 'text-emerald-600',
@@ -207,7 +220,7 @@ const Dashboard = () => {
       sparkle: false
     },
     {
-      title: 'Ongoing Schemes',
+      title: 'Save for Later',
       value: ongoingCount.toString(),
       icon: <Clock className="w-8 h-8" />,
       gradient: 'from-orange-400 via-orange-500 to-orange-600',
@@ -227,16 +240,6 @@ const Dashboard = () => {
       sparkle: true
     },
     {
-      title: 'Rejected/Expired',
-      value: rejectedCount.toString(),
-      icon: <XCircle className="w-8 h-8" />,
-      gradient: 'from-slate-400 via-slate-500 to-slate-600',
-      bgColor: 'bg-slate-50',
-      textColor: 'text-slate-600',
-      iconBg: 'bg-gradient-to-br from-slate-400 to-slate-600',
-      sparkle: false
-    },
-    {
       title: 'Incomplete',
       value: incompleteCount.toString(),
       icon: <Clock className="w-8 h-8" />,
@@ -248,7 +251,6 @@ const Dashboard = () => {
     }
   ];
 
-  // Compute recentSchemes based on viewed - no static fallback
   const viewedStr = localStorage.getItem('viewedSchemes') || '[]';
   const viewed = JSON.parse(viewedStr);
   const viewedRecent = viewed
@@ -293,6 +295,14 @@ const Dashboard = () => {
     }
   };
 
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
+
+  const handleViewAllClick = () => {
+    navigate('/application');
+  };
+
   if (loading && schemes.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 flex items-center justify-center">
@@ -334,17 +344,10 @@ const Dashboard = () => {
 
           {/* Right side */}
           <div className={`flex items-center space-x-4 transition-all duration-1000 ${isLoaded ? 'animate-slide-in-right' : 'opacity-0 translate-x-[50px]'}`}>
-            <button className="relative p-4 rounded-2xl transition-all duration-500 hover:scale-110 hover:rotate-3 bg-white/80 backdrop-blur-xl shadow-lg hover:shadow-2xl border border-white/50 group overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:to-cyan-500/10 transition-all duration-500"></div>
-              <MapPin className="w-6 h-6 transition-all duration-500 group-hover:text-blue-600 relative z-10" />
-            </button>
-            <button className="relative p-4 rounded-2xl transition-all duration-500 hover:scale-110 hover:rotate-3 bg-white/80 backdrop-blur-xl shadow-lg hover:shadow-2xl border border-white/50 group overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-500/0 to-blue-500/0 group-hover:from-sky-500/10 group-hover:to-blue-500/10 transition-all duration-500"></div>
-              <Bell className="w-6 h-6 transition-all duration-500 group-hover:animate-wiggle relative z-10" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-blue-500 to-sky-500 rounded-full animate-pulse shadow-lg"></span>
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-blue-400 to-sky-400 rounded-full animate-ping"></span>
-            </button>
-            <button className="relative p-4 rounded-2xl transition-all duration-500 hover:scale-110 hover:rotate-3 bg-white/80 backdrop-blur-xl shadow-lg hover:shadow-2xl border border-white/50 group overflow-hidden">
+            <button 
+              onClick={handleProfileClick}
+              className="relative p-4 rounded-2xl transition-all duration-500 hover:scale-110 hover:rotate-3 bg-white/80 backdrop-blur-xl shadow-lg hover:shadow-2xl border border-white/50 group overflow-hidden"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-500"></div>
               <User className="w-6 h-6 transition-all duration-500 group-hover:text-cyan-600 relative z-10" />
             </button>
@@ -420,7 +423,10 @@ const Dashboard = () => {
                     <p className="text-sm text-gray-500 mt-1">Track your application progress</p>
                   </div>
                 </div>
-                <button className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-500 hover:scale-105 group shadow-lg hover:shadow-xl overflow-hidden">
+                <button 
+                  onClick={handleViewAllClick}
+                  className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-500 hover:scale-105 group shadow-lg hover:shadow-xl overflow-hidden"
+                >
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500"></div>
                   <span className="font-semibold relative z-10">View All</span>
                   <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-2 relative z-10" />
@@ -466,11 +472,7 @@ const Dashboard = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-110">
-                          {scheme.amount}
-                        </p>
-                      </div>
+                      
                     </div>
                     
                     {/* Hover Glow Effect */}

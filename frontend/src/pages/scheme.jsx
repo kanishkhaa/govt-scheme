@@ -400,8 +400,8 @@ const SchemeDisplay = () => {
         {/* Enhanced Controls Section */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl shadow-gray-200 border border-white/50 p-8 mb-12">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <div className="relative flex-1 max-w-1000">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search schemes by name or description..."
@@ -411,20 +411,7 @@ const SchemeDisplay = () => {
               />
             </div>
 
-            <div className="relative">
-              <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <select
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                className="pl-12 pr-8 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50 min-w-[220px] text-lg"
-              >
-                <option value="">All States</option>
-                <option value="tamil nadu">Tamil Nadu</option>
-                <option value="kerala">Kerala</option>
-                <option value="karnataka">Karnataka</option>
-                <option value="maharashtra">Maharashtra</option>
-              </select>
-            </div>
+            
 
             <div className="relative">
               <select
@@ -432,9 +419,8 @@ const SchemeDisplay = () => {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50 min-w-[180px] text-lg"
               >
-                <option value="similarity">By Relevance</option>
-                <option value="rating">By Rating</option>
-                <option value="name">By Name</option>
+                <option value="rating">⭐By Rating</option>
+                <option value="name">🔤By Name</option>
               </select>
             </div>
 
@@ -504,7 +490,7 @@ const SchemeDisplay = () => {
             <div className="flex items-center mb-8">
               <div className="w-3 h-12 bg-gradient-to-b from-emerald-500 to-green-600 mr-4 rounded-full shadow-lg"></div>
               <h2 className="text-4xl font-bold text-gray-900 drop-shadow-md">Various Suggested Schemes</h2>
-              <p className="text-gray-600 ml-16 text-lg font-medium">You may also be eligible for these based on your profile</p>
+              <p className="text-gray-600 ml-16 text-lg font-medium">🌟You may also be eligible for these based on your profile</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"> {/* Reduced gap */}
               {suggestedSchemes.map(renderSchemeCard)}
