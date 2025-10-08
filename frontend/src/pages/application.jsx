@@ -27,13 +27,11 @@ const ApplicationPage = () => {
   const [selectedState, setSelectedState] = useState('All States');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
-  const [selectedEligibility, setSelectedEligibility] = useState('All');
   const [amountRange, setAmountRange] = useState([0, 500000]); // Min/Max amount filter
-  const [sortBy, setSortBy] = useState('name'); // name, amount-desc, amount-asc, relevance
+  const [sortBy, setSortBy] = useState('name'); // name, amount-desc, amount-asc
 
   // Derived states
   const categories = ['All Categories', 'Education', 'Healthcare', 'Agriculture', 'Employment', 'Housing', 'Women Welfare', 'General Welfare'];
-  const eligibilities = ['All', 'For Students', 'For Farmers', 'For Women', 'For BPL Families', 'Check Eligibility'];
   const uniqueStates = ['All States', ...Array.from(new Set(allSchemes.map(s => s.state_formatted || s.state)))];
 
   // Category display and colors
@@ -65,7 +63,7 @@ const ApplicationPage = () => {
     return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   };
 
-  // Extract scheme names from text (improved)
+  // Extract scheme names from text
   const extractSchemeNamesFromText = (rawText) => {
     const cleanText = (text) => {
       let cleaned = text.replace(/\(adsbygoogle=window\.adsbygoogle\|\|\[\]\)\.push\(\{\}\);/g, '');
@@ -80,7 +78,6 @@ const ApplicationPage = () => {
     const cleaned = cleanText(rawText);
     const fullNames = [];
 
-    // Prefixes for specific schemes (expanded)
     const prefixes = ['ysr', 'jagananna', 'ap', 'amma', 'raithu', 'arogya', 'asara', 'vidya', 'deevena', 'gorumudda', 'kanuka', 'saswatha', 'indiramma', 'ntr', 'manabadi', 'matsyakara'];
     prefixes.forEach(prefix => {
       const pattern = new RegExp(`(?:${prefix})\\s+([a-z\\s]+?)\\s*scheme`, 'gi');
@@ -91,7 +88,6 @@ const ApplicationPage = () => {
       }
     });
 
-    // General scheme patterns
     const schemePattern = /\b([a-z]+(?:\s+[a-z]+)+?)\s+scheme\b/gi;
     let match;
     while ((match = schemePattern.exec(cleaned)) !== null) {
@@ -101,7 +97,6 @@ const ApplicationPage = () => {
       }
     }
 
-    // Unique, filter, and sort by length descending
     const uniqueNames = [...new Set(fullNames)].filter(name => name && name.length > 5);
     uniqueNames.sort((a, b) => b.length - a.length);
     return uniqueNames;
@@ -113,18 +108,15 @@ const ApplicationPage = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [selectedState, searchTerm, selectedCategory, selectedEligibility, amountRange, sortBy, allSchemes]);
+  }, [selectedState, searchTerm, selectedCategory, amountRange, sortBy, allSchemes]);
 
   const fetchAllSchemes = async () => {
     setLoading(true);
     try {
-      // Assume API endpoint for all schemes; adjust as needed
       const response = await axios.get('http://localhost:5000/all-schemes');
       const schemes = response.data.schemes || [];
       
-      // Process schemes similar to recommendations (add derived fields)
       const processed = schemes.map((scheme, index) => {
-        // Extract scheme name if scheme_name is missing or empty
         let cleanSchemeName = scheme.scheme_name;
         if (!cleanSchemeName || cleanSchemeName.trim() === '' || cleanSchemeName.toLowerCase().includes('doc')) {
           const extracted = extractSchemeNamesFromText(scheme.description || '');
@@ -143,11 +135,11 @@ const ApplicationPage = () => {
           id: scheme.id || index + 1,
           cleanName: cleanSchemeName,
           state_formatted: scheme.state ? scheme.state.replace(/\b\w/g, l => l.toUpperCase()).replace(/ Nadu$/, ' Nadu') : 'National',
-          rating: Math.floor(Math.random() * 5) + 1, // Placeholder; use real if available
+          rating: Math.floor(Math.random() * 5) + 1,
           category: scheme.category || 'General Welfare',
           benefits: scheme.benefits || ['Government Support'],
           eligibility: scheme.eligibility || 'Check Eligibility',
-          amount: scheme.amount || Math.floor(Math.random() * 100000) + 1000 // Placeholder
+          amount: scheme.amount || Math.floor(Math.random() * 100000) + 1000
         };
       });
       
@@ -164,12 +156,10 @@ const ApplicationPage = () => {
   const applyFilters = () => {
     let filtered = [...allSchemes];
 
-    // State filter
     if (selectedState !== 'All States') {
       filtered = filtered.filter(s => (s.state_formatted || s.state) === selectedState);
     }
 
-    // Search filter
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(s => 
@@ -178,20 +168,12 @@ const ApplicationPage = () => {
       );
     }
 
-    // Category filter
     if (selectedCategory !== 'All Categories') {
       filtered = filtered.filter(s => s.category === selectedCategory);
     }
 
-    // Eligibility filter
-    if (selectedEligibility !== 'All') {
-      filtered = filtered.filter(s => s.eligibility === selectedEligibility);
-    }
-
-    // Amount range filter
     filtered = filtered.filter(s => s.amount >= amountRange[0] && s.amount <= amountRange[1]);
 
-    // Sort
     filtered.sort((a, b) => {
       switch (sortBy) {
         case 'name':
@@ -200,8 +182,6 @@ const ApplicationPage = () => {
           return b.amount - a.amount;
         case 'amount-asc':
           return a.amount - b.amount;
-        case 'relevance':
-          return (b.rating || 0) - (a.rating || 0); // Assuming rating as proxy
         default:
           return 0;
       }
@@ -210,7 +190,6 @@ const ApplicationPage = () => {
     setFilteredSchemes(filtered);
   };
 
-  // Compute grouped schemes
   const groupedSchemes = useMemo(() => {
     return filteredSchemes.reduce((acc, scheme) => {
       const stateKey = scheme.state_formatted || scheme.state || 'Unknown';
@@ -234,12 +213,10 @@ const ApplicationPage = () => {
         <div className="relative z-10">
           <div className="flex items-start justify-between mb-3">
             <div className="flex-1">
-              {/* State name first */}
               <div className="flex items-center mb-2 text-blue-100 text-xs">
                 <MapPin className="w-3 h-3 mr-1" />
                 <span className="font-medium">{scheme.state_formatted || scheme.state}</span>
               </div>
-              {/* Scheme name under state */}
               <h3 className="text-lg font-bold leading-tight line-clamp-2">{scheme.cleanName}</h3>
               <div className="flex items-center mt-2">
                 {[...Array(scheme.rating)].map((_, i) => (
@@ -253,12 +230,7 @@ const ApplicationPage = () => {
 
       <div className="p-4 flex-1 flex flex-col">
         <div className="mb-3">
-          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${
-            scheme.category === 'Education' ? 'bg-blue-100 text-blue-800' :
-            scheme.category === 'Healthcare' ? 'bg-green-100 text-green-800' :
-            scheme.category === 'Agriculture' ? 'bg-yellow-100 text-yellow-800' :
-            'bg-gray-100 text-gray-800'
-          }`}>
+          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ${getCatColor(scheme.category)}`}>
             {scheme.category}
           </span>
         </div>
@@ -332,6 +304,7 @@ const ApplicationPage = () => {
       <div className="relative overflow-hidden py-12 px-4">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10"></div>
         <div className="relative max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-400 via-gray-500 to-slate-600 bg-clip-text text-transparent mb-4 drop-shadow-lg">🏛️</h1>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-slate-600 bg-clip-text text-transparent mb-4 drop-shadow-lg">
             All Government Schemes
           </h1>
@@ -343,97 +316,69 @@ const ApplicationPage = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 py-8">
         {/* Filters Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl shadow-gray-200 border border-white/50 p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 items-end">
-            {/* Search */}
-            <div className="md:col-span-2">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search schemes by name or description..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 text-lg text-gray-900 placeholder-gray-400 bg-white/50"
-                />
-              </div>
-            </div>
-
-            {/* State Filter */}
-            <div>
-              <select
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50"
-              >
-                {uniqueStates.map(state => (
-                  <option key={state} value={state}>{state}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Category Filter */}
-            <div>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50"
-              >
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Eligibility Filter */}
-            <div>
-              <select
-                value={selectedEligibility}
-                onChange={(e) => setSelectedEligibility(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50"
-              >
-                {eligibilities.map(el => (
-                  <option key={el} value={el}>{el}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Amount Range - Simplified as input for now; can use slider */}
-            <div className="lg:col-span-2">
-              <div className="flex space-x-2">
-                <input
-                  type="number"
-                  placeholder="Min Amount"
-                  value={amountRange[0]}
-                  onChange={(e) => setAmountRange([parseInt(e.target.value) || 0, amountRange[1]])}
-                  className="flex-1 px-3 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <span className="self-center text-gray-500">-</span>
-                <input
-                  type="number"
-                  placeholder="Max Amount"
-                  value={amountRange[1]}
-                  onChange={(e) => setAmountRange([amountRange[0], parseInt(e.target.value) || 500000])}
-                  className="flex-1 px-3 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-            </div>
-
-            {/* Sort Filter */}
-            <div>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50"
-              >
-                <option value="name">Sort by Name</option>
-                <option value="amount-asc">Amount (Low to High)</option>
-                <option value="amount-desc">Amount (High to Low)</option>
-                <option value="relevance">Relevance</option>
-              </select>
-            </div>
-          </div>
-        </div>
+ <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl shadow-gray-200 border border-white/50 p-6 mb-8">
+  <div className="flex flex-wrap items-center gap-4">
+    {/* Search */}
+    <div className="relative flex-1 min-w-[1000px]">
+      <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 w-5 h-5" />
+      <input
+        type="text"
+        placeholder="Search schemes by name or description..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 text-sm text-gray-900 placeholder-gray-400 bg-white/50"
+      />
+    </div>
+    {/* State */}
+    <select
+      value={selectedState}
+      onChange={(e) => setSelectedState(e.target.value)}
+      className="min-w-[120px] px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50 text-sm"
+    >
+      {uniqueStates.map(state => (
+        <option key={state} value={state}>{state}</option>
+      ))}
+    </select>
+    {/* Category */}
+    <select
+      value={selectedCategory}
+      onChange={(e) => setSelectedCategory(e.target.value)}
+      className="min-w-[140px] px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50 text-sm"
+    >
+      {categories.map(cat => (
+        <option key={cat} value={cat}>{cat}</option>
+      ))}
+    </select>
+    {/* Amount Range */}
+    <div className="flex items-center min-w-[180px] space-x-2">
+      <input
+        type="number"
+        placeholder="Min Amount"
+        value={amountRange[0]}
+        onChange={(e) => setAmountRange([parseInt(e.target.value) || 0, amountRange[1]])}
+        className="flex-1 px-3 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+      />
+      <span className="text-gray-500">-</span>
+      <input
+        type="number"
+        placeholder="Max Amount"
+        value={amountRange[1]}
+        onChange={(e) => setAmountRange([amountRange[0], parseInt(e.target.value) || 500000])}
+        className="flex-1 px-3 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+      />
+    </div>
+    {/* Sort By */}
+    <select
+      value={sortBy}
+      onChange={(e) => setSortBy(e.target.value)}
+      className="min-w-[160px] px-4 py-3 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 appearance-none bg-white/50 text-sm"
+    >
+      <option value="name">🔤Sort by Name</option>
+      <option value="amount-asc">⬆️Amount (Low to High)</option>
+      <option value="amount-desc">⬇️Amount (High to Low)</option>
+    </select>
+  </div>
+</div>
 
         {/* Results Summary */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 mb-8 shadow-xl border border-white/50">
@@ -449,7 +394,6 @@ const ApplicationPage = () => {
                 setSelectedState('All States');
                 setSearchTerm('');
                 setSelectedCategory('All Categories');
-                setSelectedEligibility('All');
                 setAmountRange([0, 500000]);
                 setSortBy('name');
               }}
@@ -497,7 +441,6 @@ const ApplicationPage = () => {
                 setSelectedState('All States');
                 setSearchTerm('');
                 setSelectedCategory('All Categories');
-                setSelectedEligibility('All');
                 setAmountRange([0, 500000]);
                 setSortBy('name');
               }}
