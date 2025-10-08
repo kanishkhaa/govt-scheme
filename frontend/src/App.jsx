@@ -9,6 +9,9 @@ import Eligibility from './pages/eligibility';
 import Profile from './pages/profile';
 import Application from './pages/application';
 import Chatbot from './components/Chatbot';
+import LoginPage from './pages/loginpage';
+import SignupPage from './pages/signup';
+
 
 function App() {
   const location = useLocation();
@@ -37,6 +40,9 @@ function App() {
           <Route path="/scheme/:id" element={<SchemeDetail />} />
           <Route path="/eligibility" element={<Eligibility/>} />
           <Route path="/application" element={<Application/>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          
         </Routes>
       </div>
 
