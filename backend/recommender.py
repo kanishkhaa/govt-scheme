@@ -154,7 +154,7 @@ def get_all_schemes():
                 elif 'farm' in desc or 'agri' in desc:
                     category = 'Agriculture'
                 elif 'employ' in desc or 'skill' in desc:
-                    category = 'Employment'
+                    category = 'Employment'                     
                 elif 'house' in desc or 'home' in desc:
                     category = 'Housing'
                 elif 'women' in desc or 'girl' in desc:
