@@ -162,7 +162,7 @@ const Landing = () => {
                     <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                   </span>
                 </Link>
-                <Link to="/schemes" className="group relative px-8 py-4 bg-transparent border-2 border-blue-400 text-blue-400 font-semibold rounded-full hover:bg-blue-400 hover:text-white transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <Link to="/signup" className="group relative px-8 py-4 bg-transparent border-2 border-blue-400 text-blue-400 font-semibold rounded-full hover:bg-blue-400 hover:text-white transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                   <div className="absolute inset-0 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <span className="relative z-10 flex items-center space-x-2">
                     <span>Explore Schemes</span>

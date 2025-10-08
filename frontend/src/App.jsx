@@ -16,8 +16,7 @@ import SignupPage from './pages/signup';
 function App() {
   const location = useLocation();
 
-  // Show sidebar only on dashboard (exclude landing and profileform)
-  const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform';
+  const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform' && location.pathname !== '/login' && location.pathname !== '/signup';
   const isLandingPage = location.pathname === '/';
 
   return (

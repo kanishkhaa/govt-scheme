@@ -40,7 +40,7 @@ const SchemeDisplay = () => {
   const [message, setMessage] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedState, setSelectedState] = useState('');
-  const [sortBy, setSortBy] = useState('similarity');
+  const [sortBy, setSortBy] = useState('rating');
   const [bookmarked, setBookmarked] = useState(new Set());
   const [userProfile, setUserProfile] = useState(null);
 
@@ -164,6 +164,7 @@ const SchemeDisplay = () => {
     return 'Check Eligibility';
   };
 
+  // Filter schemes based on search and state
   const filteredSchemes = schemes.filter(scheme => {
     const matchesSearch = scheme.cleanName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          scheme.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -171,16 +172,19 @@ const SchemeDisplay = () => {
     return matchesSearch && matchesState;
   });
 
-  const sortedSchemes = [...filteredSchemes].sort((a, b) => {
-    if (sortBy === 'similarity') return b.similarity - a.similarity;
-    if (sortBy === 'rating') return b.rating - a.rating;
-    if (sortBy === 'name') return a.cleanName.localeCompare(b.cleanName);
-    return 0;
-  });
+  // Top 3 recommendations always sorted by similarity
+  const topRecommendations = [...filteredSchemes]
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, 3);
 
-  // Split into top 3 and suggestions
-  const topRecommendations = sortedSchemes.slice(0, 3);
-  const suggestedSchemes = sortedSchemes.slice(3);
+  // Suggested schemes (exclude top 3) sorted by user-selected sortBy
+  const suggestedSchemes = [...filteredSchemes]
+    .filter(scheme => !topRecommendations.some(top => top.id === scheme.id))
+    .sort((a, b) => {
+      if (sortBy === 'rating') return b.rating - a.rating;
+      if (sortBy === 'name') return a.cleanName.localeCompare(b.cleanName);
+      return b.similarity - a.similarity; // Default to similarity
+    });
 
   const toggleBookmark = (schemeId) => {
     setBookmarked(prev => {
@@ -232,7 +236,7 @@ const SchemeDisplay = () => {
     }
   }, [location.state]);
 
-  // Listen for profile updates (e.g., from Profile component save)
+  // Listen for profile updates
   useEffect(() => {
     const handleProfileUpdate = () => {
       loadFromLocalStorage();
@@ -259,13 +263,13 @@ const SchemeDisplay = () => {
     return state.replace(/\b\w/g, l => l.toUpperCase()).replace(/ Nadu$/, ' Nadu');
   };
 
-  // Render a scheme card with compact, uniform sizing
+  // Render a scheme card
   const renderSchemeCard = (scheme, isTop = false) => (
     <div 
       key={scheme.id} 
-      className="group bg-white rounded-2xl shadow-lg shadow-gray-100 border border-gray-100 overflow-visible hover:shadow-xl hover:shadow-gray-200 transition-all duration-300 transform hover:-translate-y-1 h-[480px] flex flex-col relative" // overflow-visible for badge
+      className="group bg-white rounded-2xl shadow-lg shadow-gray-100 border border-gray-100 overflow-visible hover:shadow-xl hover:shadow-gray-200 transition-all duration-300 transform hover:-translate-y-1 h-[480px] flex flex-col relative"
     >
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 text-white relative overflow-hidden flex-shrink-0"> {/* Reduced padding */}
+      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 text-white relative overflow-hidden flex-shrink-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-indigo-600/20"></div>
         <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full transform translate-x-6 -translate-y-6 blur-lg"></div>
         <div className="relative z-10">
@@ -277,7 +281,7 @@ const SchemeDisplay = () => {
                 ))}
                 <span className="ml-2 text-xs font-semibold bg-white/20 px-2 py-0.5 rounded-full">({(scheme.similarity * 100).toFixed(0)}%)</span>
               </div>
-              <h3 className="text-lg font-bold leading-tight mb-1 drop-shadow-sm line-clamp-2">{scheme.cleanName}</h3> {/* Reduced font size */}
+              <h3 className="text-lg font-bold leading-tight mb-1 drop-shadow-sm line-clamp-2">{scheme.cleanName}</h3>
               <div className="flex items-center text-blue-100 text-xs">
                 <MapPin className="w-3 h-3 mr-1" />
                 <span className="font-medium">{formatState(scheme.state)}</span>
@@ -293,9 +297,9 @@ const SchemeDisplay = () => {
         </div>
       </div>
 
-      <div className="p-4 flex-1 flex flex-col relative z-10"> {/* Reduced padding, flex to fill space */}
+      <div className="p-4 flex-1 flex flex-col relative z-10">
         {isTop && (
-          <div className="absolute -top-4 left-2 z-20"> {/* Adjusted position for better alignment, z-index for stacking */}
+          <div className="absolute -top-4 left-2 z-20">
             <div className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">Top Pick</div>
           </div>
         )}
@@ -305,7 +309,7 @@ const SchemeDisplay = () => {
           </span>
         </div>
 
-        <p className="text-gray-700 text-sm leading-relaxed mb-3 line-clamp-2 flex-1"> {/* Reduced lines, flex to push buttons down */}
+        <p className="text-gray-700 text-sm leading-relaxed mb-3 line-clamp-2 flex-1">
           {scheme.description.length > 120 
             ? `${scheme.description.substring(0, 120)}...` 
             : scheme.description}
@@ -333,11 +337,9 @@ const SchemeDisplay = () => {
           </div>
         </div>
 
-        {/* Buttons fixed at bottom */}
-        <div className="flex gap-2 mt-auto"> {/* mt-auto to push to bottom */}
+        <div className="flex gap-2 mt-auto">
           <button 
             onClick={() => {
-              // Record view in localStorage for dashboard
               let viewed = JSON.parse(localStorage.getItem('viewedSchemes') || '[]');
               const newView = { id: scheme.id, timestamp: Date.now() };
               const existsIndex = viewed.findIndex(v => v.id === scheme.id);
@@ -364,7 +366,6 @@ const SchemeDisplay = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-100/30">
-      {/* Enhanced Header with Profile Summary */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10"></div>
         <div className="relative max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -397,7 +398,6 @@ const SchemeDisplay = () => {
       </div>
 
       <div className="relative -mt-8 max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        {/* Enhanced Controls Section */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl shadow-gray-200 border border-white/50 p-8 mb-12">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             <div className="relative flex-1 max-w-1000">
@@ -410,9 +410,6 @@ const SchemeDisplay = () => {
                 className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 text-lg text-gray-900 placeholder-gray-400 bg-white/50 shadow-inner"
               />
             </div>
-
-            
-
             <div className="relative">
               <select
                 value={sortBy}
@@ -423,7 +420,6 @@ const SchemeDisplay = () => {
                 <option value="name">🔤By Name</option>
               </select>
             </div>
-
             <button
               onClick={() => userProfile && fetchRecommendations(userProfile)}
               disabled={loading || !userProfile}
@@ -435,7 +431,6 @@ const SchemeDisplay = () => {
           </div>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-32">
             <div className="w-20 h-20 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6 shadow-xl"></div>
@@ -443,7 +438,6 @@ const SchemeDisplay = () => {
           </div>
         )}
 
-        {/* Error State */}
         {error && (
           <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-3xl p-8 mb-12 shadow-xl">
             <div className="flex items-center justify-center">
@@ -453,15 +447,14 @@ const SchemeDisplay = () => {
           </div>
         )}
 
-        {/* Results Summary */}
-        {!loading && sortedSchemes.length > 0 && (
+        {!loading && (topRecommendations.length > 0 || suggestedSchemes.length > 0) && (
           <div className="bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-3xl p-8 mb-12 shadow-xl backdrop-blur-sm">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center">
                 <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-ping"></div>
                 <CheckCircle className="w-8 h-8 text-emerald-600 mr-3" />
                 <p className="text-emerald-800 font-bold text-xl">
-                  Found {sortedSchemes.length} schemes matching your profile
+                  Found {filteredSchemes.length} schemes matching your profile
                 </p>
               </div>
               {message && (
@@ -471,20 +464,18 @@ const SchemeDisplay = () => {
           </div>
         )}
 
-        {/* Top Recommendations Section */}
         {!loading && topRecommendations.length > 0 && (
           <section className="mb-16">
             <div className="flex items-center mb-8">
               <div className="w-3 h-12 bg-gradient-to-b from-blue-500 to-indigo-600 mr-4 rounded-full shadow-lg"></div>
               <h2 className="text-4xl font-bold text-gray-900 drop-shadow-md">Top 3 Recommendations</h2>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"> {/* Reduced gap */}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {topRecommendations.map(scheme => renderSchemeCard(scheme, true))}
             </div>
           </section>
         )}
 
-        {/* Suggested Schemes Section */}
         {!loading && suggestedSchemes.length > 0 && (
           <section className="mb-16">
             <div className="flex items-center mb-8">
@@ -492,14 +483,13 @@ const SchemeDisplay = () => {
               <h2 className="text-4xl font-bold text-gray-900 drop-shadow-md">Various Suggested Schemes</h2>
               <p className="text-gray-600 ml-16 text-lg font-medium">🌟You may also be eligible for these based on your profile</p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"> {/* Reduced gap */}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {suggestedSchemes.map(renderSchemeCard)}
             </div>
           </section>
         )}
 
-        {/* No Results */}
-        {!loading && sortedSchemes.length === 0 && schemes.length > 0 && (
+        {!loading && filteredSchemes.length === 0 && schemes.length > 0 && (
           <div className="text-center py-32">
             <div className="w-28 h-28 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
               <Search className="w-14 h-14 text-gray-400" />
@@ -543,18 +533,16 @@ const SchemeDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const scheme = location.state?.scheme;
-  const [appliedStatus, setAppliedStatus] = useState(null); // Default to null
+  const [appliedStatus, setAppliedStatus] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview'); // For tabbed navigation
+  const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     if (scheme) {
-      // Check if already applied from localStorage
       const savedStatus = localStorage.getItem(`applied_${scheme.id}`);
       if (savedStatus) {
         setAppliedStatus(savedStatus === 'yes' ? 'Yes' : 'No');
       }
-      // Check bookmark from localStorage
       const savedBookmark = localStorage.getItem(`bookmark_${scheme.id}`);
       setBookmarked(savedBookmark === 'true');
     }
@@ -570,7 +558,6 @@ const SchemeDetail = () => {
     const newStatus = !current;
     localStorage.setItem(`bookmark_${scheme.id}`, newStatus.toString());
 
-    // Update the array for dashboard
     let bookmarkedArr = JSON.parse(localStorage.getItem('bookmarkedSchemes') || '[]');
     if (newStatus) {
       if (!bookmarkedArr.includes(scheme.id)) {
@@ -614,34 +601,24 @@ const SchemeDetail = () => {
     return icons[category] || icons['General Welfare'];
   };
 
-  // Improved sentence splitting with better handling for abbreviations, newlines, and short texts
   const splitIntoSentences = (text) => {
-    // Normalize whitespace and replace newlines with spaces
     let normalized = text.replace(/\n\s*/g, ' ').replace(/\s+/g, ' ').trim();
-    // Remove trailing artifacts like "save as pdf"
     normalized = normalized.replace(/save as pdf\.$/i, '').trim();
-    // Enhanced regex: split on .!? followed by space and capital, or force split on common abbreviations
-    const sentenceRegex = /(?<=[.!?])\s+(?=[A-Z])|(?<=[.!?][a-z]{1,3}\.)\s+(?=[A-Z])/g; // Handles e.g., "U.S.A."
+    const sentenceRegex = /(?<=[.!?])\s+(?=[A-Z])|(?<=[.!?][a-z]{1,3}\.)\s+(?=[A-Z])/g;
     const sentences = normalized.split(sentenceRegex).map(s => s.trim()).filter(s => s.length > 0);
-    // If no splits, treat as single sentence or split on commas for long texts
     if (sentences.length === 1 && sentences[0].length > 100) {
       return sentences[0].split(/[;,]/).map(s => s.trim()).filter(s => s.length > 5);
     }
-    // Filter short sentences
     return sentences.filter(s => s.length > 10);
   };
 
-  // Enhanced extraction for key points with fallback categorization, improved for scheme texts
   const extractKeyPoints = (description) => {
-    // Preprocess: normalize and split into sentences
     let sentences = splitIntoSentences(description);
-
-    // If sentences are still too long, chunk them further (max 20 words per point)
     const chunkSentences = (sents) => {
       const chunks = [];
       let currentChunk = '';
       sents.forEach(sent => {
-        if ((currentChunk + ' ' + sent).split(/\s+/).length > 20) { // ~100 chars approx
+        if ((currentChunk + ' ' + sent).split(/\s+/).length > 20) {
           if (currentChunk) chunks.push(currentChunk.trim());
           currentChunk = sent;
         } else {
@@ -678,32 +655,26 @@ const SchemeDetail = () => {
           currentSection = displayName;
           matchedSection = true;
           matchedSectionName = currentSection;
-          // Ensure section exists
           let currentKp = keyPoints.find(kp => kp.section === currentSection);
           if (!currentKp) {
             currentKp = { section: currentSection, points: [] };
             keyPoints.push(currentKp);
           }
-          break; // Match only the first section
+          break;
         }
       }
 
-      // Always add the sentence to the appropriate section's points
       let targetKp;
       if (matchedSection) {
-        // Add to the newly matched section
         targetKp = keyPoints.find(kp => kp.section === matchedSectionName);
       } else {
-        // Add to current section
         targetKp = keyPoints.find(kp => kp.section === currentSection) || 
           (keyPoints.push({ section: currentSection, points: [] }), keyPoints[keyPoints.length - 1]);
       }
 
-      // Skip adding if it's a pure header (e.g., "Features:")
       const trimmedLower = sentence.trim().toLowerCase();
       const pureHeaderRegex = /^(objective|aim|purpose|goal|target|features?|benefits?|eligibility|criteria|who can|target|beneficiaries|apply|eligible|application|how to|process|procedure|form|submit|background|history|launched|introduced|since):\s*$/i;
       if (!pureHeaderRegex.test(trimmedLower)) {
-        // If there's a colon, add only the content after it
         if (trimmedLower.includes(':')) {
           const content = sentence.split(':')[1]?.trim();
           if (content) {
@@ -717,7 +688,6 @@ const SchemeDetail = () => {
       }
     });
 
-    // Fallback: If only Overview, auto-categorize into standard sections
     if (keyPoints.length === 1 && keyPoints[0].section === 'Overview') {
       const overviewPoints = keyPoints[0].points;
       const sectionsMap = {
@@ -750,12 +720,10 @@ const SchemeDetail = () => {
         .map(([section, points]) => ({ section, points }));
     }
 
-    // If still empty, use full description as Overview
     if (keyPoints.length === 0) {
       keyPoints.push({ section: 'Overview', points: [description.trim()] });
     }
 
-    // Limit points per section to 5-6 for brevity and filter empty
     return keyPoints
       .map(kp => ({
         ...kp,
@@ -764,7 +732,6 @@ const SchemeDetail = () => {
       .filter(kp => kp.points.length > 0);
   };
 
-  // Enhanced rendering for key points with icons and better styling
   const renderKeyPoints = (keyPoints) => (
     <div className="space-y-8">
       {keyPoints.map(({ section, points }, sectionIdx) => (
@@ -812,8 +779,6 @@ const SchemeDetail = () => {
   }
 
   const keyPoints = extractKeyPoints(scheme.description);
-
-  // Fallback for hero overview if no Overview section
   const overviewText = keyPoints.find(kp => kp.section === 'Overview')?.points?.slice(0, 2).join('. ') || 
                        scheme.description.substring(0, 150) + '...';
 
@@ -827,7 +792,6 @@ const SchemeDetail = () => {
       case 'overview':
         return (
           <div className="space-y-6">
-            {/* Enhanced Hero Summary */}
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-8 border border-blue-200">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex-1">
@@ -853,7 +817,6 @@ const SchemeDetail = () => {
               </div>
             </div>
 
-            {/* Quick Benefits */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
                 <h3 className="text-lg font-bold flex items-center text-gray-800 mb-4">
@@ -930,7 +893,6 @@ const SchemeDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-100/30">
-      {/* Enhanced Header */}
       <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
@@ -974,10 +936,8 @@ const SchemeDetail = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/50">
-          {/* Tab Navigation */}
           <div className="border-b border-gray-200 bg-gray-50">
             <nav className="flex space-x-8 px-6 py-4">
               {tabs.map((tab) => {
@@ -1000,12 +960,10 @@ const SchemeDetail = () => {
             </nav>
           </div>
 
-          {/* Tab Content */}
           <div className="p-6 lg:p-8">
             {renderTabContent()}
           </div>
 
-          {/* Enhanced Action Buttons - Fixed at bottom on mobile, integrated on desktop */}
           <div className="bg-gradient-to-r from-emerald-50 to-green-50 border-t border-gray-200 p-6 lg:p-8">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
