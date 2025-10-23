@@ -17,13 +17,14 @@ import ResetPassword from './pages/ResetPassword';
 function App() {
   const location = useLocation();
 
-  const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform' && location.pathname !== '/login' && location.pathname !== '/signup' && location.pathname !== '/forgot-password' && location.pathname !== '/reset-password';  
+  const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform' && location.pathname !== '/login' && location.pathname !== '/signup' && location.pathname !== '/forgot-password' && location.pathname !== '/reset-password' && !location.pathname.startsWith('/reset-password/');  
+;  
   const isLandingPage = location.pathname === '/';
   const isSignUpPage = location.pathname === '/signup';
   const isLoginPage = location.pathname === '/login';
   const isProfileFormPage = location.pathname === '/profileform';
   const isForgotPasswordPage = location.pathname === '/forgot-password';
-
+  const isResetPasswordPage = location.pathname === '/reset-password' || location.pathname.startsWith('/reset-password/');
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -54,7 +55,7 @@ function App() {
       </div>
 
       {/* Chatbot - exclude landing */}
-      {!isLandingPage && !isSignUpPage && !isLoginPage && !isProfileFormPage && !isForgotPasswordPage && <Chatbot />}
+      {!isLandingPage && !isSignUpPage && !isLoginPage && !isProfileFormPage && !isForgotPasswordPage && !isResetPasswordPage &&<Chatbot />}
       
       {/* AccessibilityDialog can go here if needed */}
     </div>

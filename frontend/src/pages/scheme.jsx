@@ -1,4 +1,3 @@
-// SchemeDisplay.jsx - Full updated component with localStorage and event dispatch in SchemeDetail
 import React, { useState, useEffect } from 'react';
 import { 
   Star, 
@@ -30,6 +29,7 @@ import {
 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import jsPDF from 'jspdf';
 
 const SchemeDisplay = () => {
   const location = useLocation();
@@ -44,11 +44,9 @@ const SchemeDisplay = () => {
   const [sortBy, setSortBy] = useState('rating');
   const [bookmarked, setBookmarked] = useState(new Set());
   const [userProfile, setUserProfile] = useState(null);
-  // New states for applied schemes
   const [appliedSchemes, setAppliedSchemes] = useState([]);
   const [loadingApplied, setLoadingApplied] = useState(false);
 
-  // Enhanced extraction - parses desc if rawName is "Doc"-style
   const extractSchemeName = (rawName, desc) => {
     if (!rawName) return 'Unknown Scheme';
     
@@ -86,15 +84,27 @@ const SchemeDisplay = () => {
   };
 
   const processSchemes = (recommendations) => {
-    return recommendations.map((scheme, index) => ({
-      ...scheme,
-      id: index + 1,
-      cleanName: extractSchemeName(scheme.scheme_name, scheme.description),
-      rating: Math.min(5, Math.max(1, Math.round(scheme.similarity * 5))),
-      category: getCategoryFromDescription(scheme.description),
-      benefits: extractBenefits(scheme.description),
-      eligibility: extractEligibility(scheme.description)
-    }));
+    // Hardcoded URLs for specific schemes
+    const hardcodedUrls = {
+      'state_tamilnadu_doc_6': 'https://www.tnpscthervupettagam.com/currentaffairs-detail/free-laptop-scheme',
+      'health_insurance_scheme': 'https://www.tn.gov.in/scheme/health-insurance'
+    };
+
+    return recommendations.map((scheme, index) => {
+      const cleanName = extractSchemeName(scheme.scheme_name, scheme.description);
+      return {
+        ...scheme,
+        id: index + 1,
+        cleanName,
+        rating: Math.min(5, Math.max(1, Math.round(scheme.similarity * 5))),
+        category: getCategoryFromDescription(scheme.description),
+        benefits: extractBenefits(scheme.description),
+        eligibility: extractEligibility(scheme.description),
+        officialUrl: hardcodedUrls[scheme.scheme_name.toLowerCase()] || // Use hardcoded URL if available
+                    scheme.officialUrl || // Fallback to backend-provided URL
+                    `https://www.example.gov.in/scheme/${scheme.scheme_name.replace(/\s+/g, '-').toLowerCase()}` // Fallback to placeholder
+      };
+    });
   };
 
   const loadFromLocalStorage = () => {
@@ -124,7 +134,6 @@ const SchemeDisplay = () => {
       const processedSchemes = processSchemes(response.data.recommendations);
       setSchemes(processedSchemes);
 
-      // Save to localStorage for persistence
       const recommendationData = {
         profile: profileData,
         recommendations: response.data.recommendations,
@@ -168,7 +177,6 @@ const SchemeDisplay = () => {
     return 'Check Eligibility';
   };
 
-  // Filter schemes based on search and state
   const filteredSchemes = schemes.filter(scheme => {
     const matchesSearch = scheme.cleanName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          scheme.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -176,18 +184,16 @@ const SchemeDisplay = () => {
     return matchesSearch && matchesState;
   });
 
-  // Top 3 recommendations always sorted by similarity
   const topRecommendations = [...filteredSchemes]
     .sort((a, b) => b.similarity - a.similarity)
     .slice(0, 3);
 
-  // Suggested schemes (exclude top 3) sorted by user-selected sortBy
   const suggestedSchemes = [...filteredSchemes]
     .filter(scheme => !topRecommendations.some(top => top.id === scheme.id))
     .sort((a, b) => {
       if (sortBy === 'rating') return b.rating - a.rating;
       if (sortBy === 'name') return a.cleanName.localeCompare(b.cleanName);
-      return b.similarity - a.similarity; // Default to similarity
+      return b.similarity - a.similarity;
     });
 
   const toggleBookmark = (schemeId) => {
@@ -205,42 +211,47 @@ const SchemeDisplay = () => {
     });
   };
 
-  // New: Fetch applied schemes
   useEffect(() => {
     const fetchAppliedSchemes = async () => {
-      if (!userProfile) return; // Skip if no user (not logged in)
+      if (!userProfile) return;
       try {
         setLoadingApplied(true);
         const res = await axios.get('http://localhost:3000/auth/applied-schemes', { withCredentials: true });
-        setAppliedSchemes(res.data.filter(s => s.status === 'applied')); // Only show 'applied'
+        setAppliedSchemes(res.data.filter(s => s.status === 'applied'));
       } catch (err) {
         console.error('Failed to fetch applied schemes:', err);
-        // Silently fail (no alert, as it's optional)
       } finally {
         setLoadingApplied(false);
       }
     };
 
     fetchAppliedSchemes();
-  }, [userProfile]); // Refetch if profile changes
+  }, [userProfile]);
 
-  // New: Render applied card (maps to scheme shape)
   const renderAppliedCard = (scheme) => {
+    // Hardcoded URLs for applied schemes
+    const hardcodedUrls = {
+      'state_tamilnadu_doc_6': 'https://www.tn.gov.in/scheme/free-laptop',
+      'health_insurance_scheme': 'https://www.tn.gov.in/scheme/health-insurance'
+    };
+
     const mappedScheme = {
       id: scheme.id,
       cleanName: scheme.name,
       category: scheme.category,
       description: scheme.description,
       state: scheme.state,
-      rating: 5, // Default high for applied
-      similarity: 1, // 100% match
-      benefits: ['Applied Successfully'], // Placeholder
-      eligibility: 'You Applied'
+      rating: 5,
+      similarity: 1,
+      benefits: ['Applied Successfully'],
+      eligibility: 'You Applied',
+      officialUrl: hardcodedUrls[scheme.name.toLowerCase()] || // Use hardcoded URL if available
+                  scheme.officialUrl || // Fallback to backend-provided URL
+                  `https://www.example.gov.in/scheme/${scheme.name.replace(/\s+/g, '-').toLowerCase()}` // Fallback to placeholder
     };
     return renderSchemeCard(mappedScheme);
   };
 
-  // Initial load on mount
   useEffect(() => {
     let loaded = false;
     if (loadFromLocalStorage()) {
@@ -251,7 +262,6 @@ const SchemeDisplay = () => {
       setMessage(location.state.message);
       const processedSchemes = processSchemes(location.state.recommendations);
       setSchemes(processedSchemes);
-      // Save to localStorage for future refreshes
       localStorage.setItem('recommendationData', JSON.stringify(location.state));
       loaded = true;
     } 
@@ -275,7 +285,6 @@ const SchemeDisplay = () => {
     }
   }, [location.state]);
 
-  // Listen for profile updates
   useEffect(() => {
     const handleProfileUpdate = () => {
       loadFromLocalStorage();
@@ -302,7 +311,6 @@ const SchemeDisplay = () => {
     return state.replace(/\b\w/g, l => l.toUpperCase()).replace(/ Nadu$/, ' Nadu');
   };
 
-  // Render a scheme card
   const renderSchemeCard = (scheme, isTop = false) => (
     <div 
       key={scheme.id} 
@@ -575,20 +583,16 @@ const SchemeDetail = () => {
   const [appliedStatus, setAppliedStatus] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
-  // New: Loading state for status
   const [loadingStatus, setLoadingStatus] = useState(true);
 
   useEffect(() => {
     if (scheme) {
-      // New: Fetch initial applied status for this scheme
       fetchSchemeStatus();
-      
       const savedBookmark = localStorage.getItem(`bookmark_${scheme.id}`);
       setBookmarked(savedBookmark === 'true');
     }
   }, [scheme]);
 
-  // New: Fetch scheme status from backend
   const fetchSchemeStatus = async () => {
     if (!scheme) return;
     try {
@@ -599,13 +603,11 @@ const SchemeDetail = () => {
       setAppliedStatus(thisScheme?.status === 'applied' ? 'Yes' : thisScheme ? 'No' : null);
     } catch (err) {
       console.error('Failed to fetch scheme status:', err);
-      // Fallback to null (not applied)
     } finally {
       setLoadingStatus(false);
     }
   };
 
-  // Updated: Handle applied response with API call
   const handleAppliedResponse = async (response) => {
     if (!scheme || loadingStatus) return;
     
@@ -622,17 +624,13 @@ const SchemeDetail = () => {
       
       setAppliedStatus(response);
 
-      // NEW: Update localStorage to sync with Dashboard immediately
       if (response === 'Yes') {
         localStorage.setItem(`applied_${scheme.id}`, 'yes');
       } else {
         localStorage.setItem(`applied_${scheme.id}`, 'no');
       }
 
-      // NEW: Optionally emit custom event to trigger Dashboard re-render if open
       window.dispatchEvent(new CustomEvent('appliedStatusUpdated', { detail: { schemeId: scheme.id, status: response } }));
-
-      // Optionally refetch all applied schemes if needed
     } catch (err) {
       console.error('Failed to update application:', err);
       alert('Failed to update application status. Please try again.');
@@ -717,7 +715,7 @@ const SchemeDetail = () => {
 
     sentences = chunkSentences(sentences);
 
-   let keyPoints = [];
+    let keyPoints = [];
     const sections = {
       objective: /(objective|aim|purpose|goal|target|focus|improve|encourage)/i,
       features: /(features?|benefits?|provides|offers|includes|key|main|upgrade|change|instead)/i,
@@ -846,6 +844,96 @@ const SchemeDetail = () => {
       ))}
     </div>
   );
+
+  const downloadAsPDF = () => {
+    const doc = new jsPDF();
+    let yOffset = 20;
+
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.text(scheme.cleanName, 20, yOffset);
+    yOffset += 10;
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`State: ${formatState(scheme.state)}`, 20, yOffset);
+    yOffset += 8;
+    doc.text(`Category: ${scheme.category}`, 20, yOffset);
+    yOffset += 8;
+    doc.text(`Rating: ${(scheme.similarity * 100).toFixed(0)}% Match`, 20, yOffset);
+    yOffset += 10;
+
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Key Benefits", 20, yOffset);
+    yOffset += 8;
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    scheme.benefits.forEach((benefit, index) => {
+      doc.text(`• ${benefit}`, 25, yOffset);
+      yOffset += 8;
+    });
+    yOffset += 5;
+
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Eligibility", 20, yOffset);
+    yOffset += 8;
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(scheme.eligibility, 25, yOffset, { maxWidth: 160 });
+    yOffset += doc.getTextDimensions(scheme.eligibility, { maxWidth: 160 }).h + 10;
+
+    const keyPoints = extractKeyPoints(scheme.description);
+    keyPoints.forEach(({ section, points }) => {
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text(section, 20, yOffset);
+      yOffset += 8;
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+      points.forEach((point) => {
+        const formattedPoint = point.charAt(0).toUpperCase() + point.slice(1).trim();
+        doc.text(`• ${formattedPoint}`, 25, yOffset, { maxWidth: 160 });
+        yOffset += doc.getTextDimensions(formattedPoint, { maxWidth: 160 }).h + 5;
+      });
+      yOffset += 5;
+    });
+
+    doc.save(`${scheme.cleanName.replace(/\s+/g, '_')}_Details.pdf`);
+  };
+
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/scheme/${scheme.id}`;
+    const shareData = {
+      title: scheme.cleanName,
+      text: `Check out this government scheme: ${scheme.cleanName} (${scheme.category}) in ${formatState(scheme.state)}. ${scheme.description.substring(0, 100)}...`,
+      url: shareUrl
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        alert('Scheme shared successfully!');
+      } else {
+        await navigator.clipboard.writeText(shareUrl);
+        alert('Link copied to clipboard! You can paste it to share the scheme.');
+      }
+    } catch (err) {
+      console.error('Share failed:', err);
+      alert('Failed to share the scheme. Link copied to clipboard instead.');
+      await navigator.clipboard.writeText(shareUrl);
+    }
+  };
+
+  const handleApplyNow = async () => {
+    await handleAppliedResponse('Yes');
+    if (scheme.officialUrl) {
+      window.open(scheme.officialUrl, '_blank');
+    } else {
+      alert(`The official application page for ${scheme.cleanName} is not available. Please visit the official government portal or contact the relevant authorities for more information.`);
+    }
+  };
 
   if (!scheme) {
     return (
@@ -995,9 +1083,7 @@ const SchemeDetail = () => {
             </button>
             <div className="flex items-center space-x-4">
               <button
-                onClick={() => {
-                  alert(`Sharing ${scheme.cleanName}... (Demo)`);
-                }}
+                onClick={handleShare}
                 className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200"
               >
                 <Share2 className="w-5 h-5" />
@@ -1057,22 +1143,16 @@ const SchemeDetail = () => {
           <div className="bg-gradient-to-r from-emerald-50 to-green-50 border-t border-gray-200 p-6 lg:p-8">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
-                onClick={() => {
-                  handleAppliedResponse('Yes');
-                  alert(`Application for ${scheme.cleanName} submitted successfully! (Demo - In production, this would redirect to official portal or process form.)`);
-                }}
+                onClick={handleApplyNow}
                 className="flex-1 max-w-md inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-2xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-xl hover:shadow-2xl font-semibold transform hover:-translate-y-0.5 text-base"
               >
                 <DollarSign className="w-5 h-5 mr-2" />
                 Apply Now
               </button>
               <button 
-                onClick={() => {
-                  alert(`Download form for ${scheme.cleanName}. Please visit the official Tamil Nadu Education Department website (tn.gov.in) for the latest forms and guidelines. (Demo)`);
-                }}
+                onClick={downloadAsPDF}
                 className="flex-1 max-w-md inline-flex items-center justify-center px-6 py-4 border-2 border-blue-600 text-blue-600 rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-base"
               >
-                
                 <Download className="w-5 h-5 mr-2" />
                 Download Form
               </button>
