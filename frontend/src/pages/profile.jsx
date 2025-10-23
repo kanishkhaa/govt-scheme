@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Calendar, Users, Briefcase, DollarSign, MapPin, Edit3, CheckCircle, ChevronLeft, Sparkles } from 'lucide-react';
+import { User, Calendar, Users, Briefcase, DollarSign, MapPin, Edit3, CheckCircle, ChevronLeft, Sparkles, Heart, School, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,10 +12,20 @@ const Profile = () => {
     name: '',
     age_group: '',
     gender: '',
+    custom_gender: '',
     occupation: '',
+    custom_occupation: '',
     income_level: '',
     state: '',
-    customState: ''
+    customState: '',
+    marital_status: '',
+    education_level: '',
+    custom_education: '',
+    residential_status: '',
+    family_size: '',
+    disability: '',
+    disability_type: '',
+    custom_disability: ''
   });
 
   const predefinedStates = [
@@ -32,9 +42,10 @@ const Profile = () => {
     }
     if (field === 'age_group') {
       const map = {
-        student: 'Student (18-25)',
-        'young adult': 'Young Adult (25-35)',
-        adult: 'Adult (35+)'
+        below_18: 'Below 18',
+        '18_25': '18-25',
+        '25_35': '25-35',
+        '35_plus': '35+'
       };
       return map[value] || value;
     }
@@ -50,7 +61,8 @@ const Profile = () => {
       const map = {
         student: 'Student',
         farmer: 'Farmer',
-        employed: 'Employed'
+        employed: 'Employed',
+        other: 'Other'
       };
       return map[value] || value;
     }
@@ -59,6 +71,32 @@ const Profile = () => {
         low: 'Low',
         middle: 'Middle',
         high: 'High'
+      };
+      return map[value] || value;
+    }
+    if (field === 'marital_status') {
+      const map = {
+        single: 'Single',
+        married: 'Married',
+        divorced: 'Divorced',
+        widowed: 'Widowed'
+      };
+      return map[value] || value;
+    }
+    if (field === 'education_level') {
+      const map = {
+        secondary: 'Secondary',
+        higher_secondary: 'Higher Secondary',
+        ug: 'UG',
+        pg: 'PG',
+        other: 'Other'
+      };
+      return map[value] || value;
+    }
+    if (field === 'residential_status') {
+      const map = {
+        urban: 'Urban',
+        rural: 'Rural'
       };
       return map[value] || value;
     }
@@ -71,17 +109,55 @@ const Profile = () => {
       const parsed = JSON.parse(savedProfile);
       setProfile(parsed);
 
-      // Handle custom state for formData
       let stateVal = parsed.state;
       let customStateVal = '';
       if (!predefinedStates.includes(stateVal)) {
         stateVal = 'Other';
         customStateVal = parsed.state;
       }
+
+      let genderVal = parsed.gender;
+      let customGenderVal = '';
+      if (!['female', 'male'].includes(genderVal)) {
+        genderVal = 'other';
+        customGenderVal = parsed.gender;
+      }
+
+      let occupationVal = parsed.occupation;
+      let customOccupationVal = '';
+      if (!['student', 'farmer', 'employed'].includes(occupationVal)) {
+        occupationVal = 'other';
+        customOccupationVal = parsed.occupation;
+      }
+
+      let educationVal = parsed.education_level;
+      let customEducationVal = '';
+      if (!['secondary', 'higher_secondary', 'ug', 'pg'].includes(educationVal)) {
+        educationVal = 'other';
+        customEducationVal = parsed.education_level;
+      }
+
+      let disabilityVal = parsed.disability_status === 'none' ? 'no' : 'yes';
+      let disabilityTypeVal = parsed.disability_status === 'none' ? '' : parsed.disability_status;
+      let customDisabilityVal = '';
+      if (disabilityVal === 'yes' && !['visual', 'hearing'].includes(disabilityTypeVal)) {
+        disabilityTypeVal = 'other';
+        customDisabilityVal = parsed.disability_status;
+      }
+
       setFormData({
         ...parsed,
         state: stateVal,
-        customState: customStateVal
+        customState: customStateVal,
+        gender: genderVal,
+        custom_gender: customGenderVal,
+        occupation: occupationVal,
+        custom_occupation: customOccupationVal,
+        education_level: educationVal,
+        custom_education: customEducationVal,
+        disability: disabilityVal,
+        disability_type: disabilityTypeVal,
+        custom_disability: customDisabilityVal
       });
     }
     setLoading(false);
@@ -93,7 +169,6 @@ const Profile = () => {
 
   const handleCancel = () => {
     setEditMode(false);
-    // Reload from localStorage
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
       const parsed = JSON.parse(savedProfile);
@@ -103,10 +178,49 @@ const Profile = () => {
         stateVal = 'Other';
         customStateVal = parsed.state;
       }
+
+      let genderVal = parsed.gender;
+      let customGenderVal = '';
+      if (!['female', 'male'].includes(genderVal)) {
+        genderVal = 'other';
+        customGenderVal = parsed.gender;
+      }
+
+      let occupationVal = parsed.occupation;
+      let customOccupationVal = '';
+      if (!['student', 'farmer', 'employed'].includes(occupationVal)) {
+        occupationVal = 'other';
+        customOccupationVal = parsed.occupation;
+      }
+
+      let educationVal = parsed.education_level;
+      let customEducationVal = '';
+      if (!['secondary', 'higher_secondary', 'ug', 'pg'].includes(educationVal)) {
+        educationVal = 'other';
+        customEducationVal = parsed.education_level;
+      }
+
+      let disabilityVal = parsed.disability_status === 'none' ? 'no' : 'yes';
+      let disabilityTypeVal = parsed.disability_status === 'none' ? '' : parsed.disability_status;
+      let customDisabilityVal = '';
+      if (disabilityVal === 'yes' && !['visual', 'hearing'].includes(disabilityTypeVal)) {
+        disabilityTypeVal = 'other';
+        customDisabilityVal = parsed.disability_status;
+      }
+
       setFormData({
         ...parsed,
         state: stateVal,
-        customState: customStateVal
+        customState: customStateVal,
+        gender: genderVal,
+        custom_gender: customGenderVal,
+        occupation: occupationVal,
+        custom_occupation: customOccupationVal,
+        education_level: educationVal,
+        custom_education: customEducationVal,
+        disability: disabilityVal,
+        disability_type: disabilityTypeVal,
+        custom_disability: customDisabilityVal
       });
     }
   };
@@ -114,26 +228,74 @@ const Profile = () => {
   const handleSave = async () => {
     const submitData = {
       ...formData,
-      state: formData.state === 'Other' ? formData.customState : formData.state
+      gender: formData.gender === 'other' ? formData.custom_gender : formData.gender,
+      occupation: formData.occupation === 'other' ? formData.custom_occupation : formData.occupation,
+      state: formData.state === 'Other' ? formData.customState : formData.state,
+      education_level: formData.education_level === 'other' ? formData.custom_education : formData.education_level,
+      disability_status: formData.disability === 'no' ? 'none' : formData.disability_type === 'other' ? formData.custom_disability : formData.disability_type
     };
+    delete submitData.custom_gender;
+    delete submitData.custom_occupation;
     delete submitData.customState;
+    delete submitData.custom_education;
+    delete submitData.disability;
+    delete submitData.disability_type;
+    delete submitData.custom_disability;
+
     localStorage.setItem('userProfile', JSON.stringify(submitData));
     setProfile(submitData);
 
-    // Update formData for consistency
     let stateVal = submitData.state;
     let customStateVal = '';
     if (!predefinedStates.includes(stateVal)) {
       stateVal = 'Other';
       customStateVal = submitData.state;
     }
+
+    let genderVal = submitData.gender;
+    let customGenderVal = '';
+    if (!['female', 'male'].includes(genderVal)) {
+      genderVal = 'other';
+      customGenderVal = submitData.gender;
+    }
+
+    let occupationVal = submitData.occupation;
+    let customOccupationVal = '';
+    if (!['student', 'farmer', 'employed'].includes(occupationVal)) {
+      occupationVal = 'other';
+      customOccupationVal = submitData.occupation;
+    }
+
+    let educationVal = submitData.education_level;
+    let customEducationVal = '';
+    if (!['secondary', 'higher_secondary', 'ug', 'pg'].includes(educationVal)) {
+      educationVal = 'other';
+      customEducationVal = submitData.education_level;
+    }
+
+    let disabilityVal = submitData.disability_status === 'none' ? 'no' : 'yes';
+    let disabilityTypeVal = submitData.disability_status === 'none' ? '' : submitData.disability_status;
+    let customDisabilityVal = '';
+    if (disabilityVal === 'yes' && !['visual', 'hearing'].includes(disabilityTypeVal)) {
+      disabilityTypeVal = 'other';
+      customDisabilityVal = submitData.disability_status;
+    }
+
     setFormData({
       ...submitData,
       state: stateVal,
-      customState: customStateVal
+      customState: customStateVal,
+      gender: genderVal,
+      custom_gender: customGenderVal,
+      occupation: occupationVal,
+      custom_occupation: customOccupationVal,
+      education_level: educationVal,
+      custom_education: customEducationVal,
+      disability: disabilityVal,
+      disability_type: disabilityTypeVal,
+      custom_disability: customDisabilityVal
     });
 
-    // Re-fetch recommendations with updated profile and save to localStorage
     try {
       const response = await axios.post('http://localhost:5000/recommend', submitData);
       const recommendationData = {
@@ -143,7 +305,6 @@ const Profile = () => {
         message: response.data.message
       };
       localStorage.setItem('recommendationData', JSON.stringify(recommendationData));
-      // Dispatch custom event to notify other components (e.g., Schemes page) of update
       window.dispatchEvent(new CustomEvent('profileUpdated'));
     } catch (err) {
       console.error('Failed to update recommendations:', err);
@@ -153,19 +314,24 @@ const Profile = () => {
   };
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value,
+      ...(field === 'occupation' && value === 'student' ? { income_level: 'low' } : {}),
+      ...(field === 'occupation' && value !== 'student' ? { income_level: '' } : {})
+    }));
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-sky-100 to-cyan-100 flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-300/20 to-blue-500/20 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-sky-300/20 to-sky-500/20 rounded-full blur-3xl animate-float-delayed"></div>
+          <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 rounded-full blur-4xl animate-float"></div>
+          <div className="absolute -bottom-48 -left-48 w-112 h-112 bg-gradient-to-br from-sky-400/20 to-blue-500/20 rounded-full blur-4xl animate-float-delayed"></div>
         </div>
-        <div className="text-center relative z-10 bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-white/50">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin mx-auto mb-2"></div>
-          <p className="text-sm text-gray-600 font-medium">Loading profile...</p>
+        <div className="text-center relative z-10 bg-white/95 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-blue-200/30">
+          <div className="w-10 h-10 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-base text-gray-700 font-semibold tracking-wide">Loading your profile...</p>
         </div>
       </div>
     );
@@ -173,21 +339,22 @@ const Profile = () => {
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-sky-100 to-cyan-100 flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-300/20 to-blue-500/20 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-sky-300/20 to-sky-500/20 rounded-full blur-3xl animate-float-delayed"></div>
+          <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 rounded-full blur-4xl animate-float"></div>
+          <div className="absolute -bottom-48 -left-48 w-112 h-112 bg-gradient-to-br from-sky-400/20 to-blue-500/20 rounded-full blur-4xl animate-float-delayed"></div>
         </div>
-        <div className="text-center max-w-sm relative z-10 bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-white/50">
-          <User className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">No Profile Found</h2>
-          <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please complete your profile to view details and get personalized recommendations.</p>
+        <div className="text-center max-w-md relative z-10 bg-white/95 backdrop-blur-lg p-10 rounded-3xl shadow-2xl border border-blue-200/30">
+          <User className="w-20 h-20 text-blue-400 mx-auto mb-6 animate-pulse" />
+          <h2 className="text-2xl font-bold text-gray-800 mb-3 tracking-tight">No Profile Found</h2>
+          <p className="text-gray-600 mb-8 text-base leading-relaxed tracking-wide">Create your profile to unlock personalized recommendations.</p>
           <button
             onClick={() => navigate('/profile-form')}
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm font-medium inline-flex items-center"
+            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-base font-semibold relative overflow-hidden"
           >
-            <User className="w-4 h-4 mr-2" />
+            <User className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
             Create Profile
+            <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-2xl"></div>
           </button>
         </div>
       </div>
@@ -198,9 +365,10 @@ const Profile = () => {
     { icon: User, label: 'Full Name', value: profile.name, field: 'name', type: 'text' },
     { icon: Calendar, label: 'Age Group', value: profile.age_group, field: 'age_group', type: 'select', options: [
       { value: '', label: 'Select Age Group' },
-      { value: 'student', label: 'Student (18-25)' },
-      { value: 'young adult', label: 'Young Adult (25-35)' },
-      { value: 'adult', label: 'Adult (35+)' }
+      { value: 'below_18', label: 'Below 18' },
+      { value: '18_25', label: '18-25' },
+      { value: '25_35', label: '25-35' },
+      { value: '35_plus', label: '35+' }
     ] },
     { icon: Users, label: 'Gender', value: profile.gender, field: 'gender', type: 'select', options: [
       { value: '', label: 'Select Gender' },
@@ -212,13 +380,40 @@ const Profile = () => {
       { value: '', label: 'Select Occupation' },
       { value: 'student', label: 'Student' },
       { value: 'farmer', label: 'Farmer' },
-      { value: 'employed', label: 'Employed' }
+      { value: 'employed', label: 'Employed' },
+      { value: 'other', label: 'Other' }
     ] },
     { icon: DollarSign, label: 'Income Level', value: profile.income_level, field: 'income_level', type: 'select', options: [
       { value: '', label: 'Select Income Level' },
       { value: 'low', label: 'Low' },
       { value: 'middle', label: 'Middle' },
       { value: 'high', label: 'High' }
+    ], disabled: formData.occupation === 'student' },
+    { icon: Heart, label: 'Marital Status', value: profile.marital_status, field: 'marital_status', type: 'select', options: [
+      { value: '', label: 'Select Marital Status' },
+      { value: 'single', label: 'Single' },
+      { value: 'married', label: 'Married' },
+      { value: 'divorced', label: 'Divorced' },
+      { value: 'widowed', label: 'Widowed' }
+    ] },
+    { icon: School, label: 'Education Level', value: profile.education_level, field: 'education_level', type: 'select', options: [
+      { value: '', label: 'Select Education Level' },
+      { value: 'secondary', label: 'Secondary' },
+      { value: 'higher_secondary', label: 'Higher Secondary' },
+      { value: 'ug', label: 'UG' },
+      { value: 'pg', label: 'PG' },
+      { value: 'other', label: 'Other' }
+    ] },
+    { icon: Home, label: 'Residential Status', value: profile.residential_status, field: 'residential_status', type: 'select', options: [
+      { value: '', label: 'Select Residential Status' },
+      { value: 'urban', label: 'Urban' },
+      { value: 'rural', label: 'Rural' }
+    ] },
+    { icon: Users, label: 'Family Size', value: profile.family_size, field: 'family_size', type: 'number', min: 1 },
+    { icon: Heart, label: 'Disability Status', value: profile.disability_status, field: 'disability', type: 'select', options: [
+      { value: '', label: 'Select Disability' },
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' }
     ] },
     { icon: MapPin, label: 'State', value: profile.state, field: 'state', type: 'select', options: predefinedStates.map(s => ({
       value: s,
@@ -227,96 +422,91 @@ const Profile = () => {
   ];
 
   return (
-    <div className="min-h-screen transition-all duration-1000 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 text-gray-900 relative overflow-hidden">
-      {/* Animated Background Elements */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-sky-100 to-cyan-100 text-gray-900 relative overflow-hidden font-sans">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-300/20 to-blue-500/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-sky-300/20 to-sky-500/20 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-cyan-300/15 to-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 rounded-full blur-4xl animate-float"></div>
+        <div className="absolute -bottom-48 -left-48 w-112 h-112 bg-gradient-to-br from-sky-400/20 to-blue-500/20 rounded-full blur-4xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-br from-cyan-300/15 to-blue-400/15 rounded-full blur-4xl animate-pulse"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10 py-8 px-4">
-        {/* Header */}
-        <header className="text-center mb-6 relative">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 shadow-2xl shadow-blue-200 animate-pulse">
-            <User className="w-12 h-12 text-white" />
-            <Sparkles className="absolute -top-2 -right-8 w-6 h-6 text-blue-300 animate-spin-slow" />
+      <div className="max-w-7xl mx-auto relative z-10 py-16 px-6">
+        <header className="text-center mb-12 relative">
+          <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mb-6 shadow-2xl shadow-blue-300/40 animate-pulse">
+            <User className="w-16 h-16 text-white" />
+            <Sparkles className="absolute -top-4 -right-4 w-10 h-10 text-blue-200 animate-spin-slow" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-slate-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-blue-800 to-cyan-800 bg-clip-text text-transparent mb-4 tracking-tight">
             Your Profile
           </h1>
-          <p className="text-gray-600 text-base max-w-2xl mx-auto leading-relaxed font-medium">
-            Personal information used for personalized recommendations
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium tracking-wide">
+            Customize your details for tailored recommendations
           </p>
         </header>
 
-        {/* Edit/Save Buttons */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-12">
           {editMode ? (
-            <div className="flex space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/50">
+            <div className="flex space-x-6 bg-white/95 backdrop-blur-lg rounded-3xl p-6 shadow-2xl border border-blue-200/30">
               <button
                 onClick={handleSave}
-                className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-xl hover:from-emerald-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-sm"
+                className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl hover:from-emerald-600 hover:to-teal-700 focus:outline-none focus:ring-4 focus:ring-emerald-200/50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold text-base relative overflow-hidden"
               >
-                <CheckCircle className="w-4 h-4 mr-2 group-hover:animate-pulse" />
+                <CheckCircle className="w-5 h-5 mr-3 group-hover:animate-pulse" />
                 Save Changes
+                <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-2xl"></div>
               </button>
               <button
                 onClick={handleCancel}
-                className="group inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 font-medium text-sm"
+                className="group inline-flex items-center px-8 py-4 border-2 border-blue-200 text-gray-700 rounded-2xl hover:bg-blue-50/50 hover:border-blue-300 focus:outline-none focus:ring-4 focus:ring-blue-200/50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold text-base relative overflow-hidden"
               >
-                <ChevronLeft className="w-4 h-4 mr-2" />
+                <ChevronLeft className="w-5 h-5 mr-3 group-hover:-translate-x-1 transition-transform" />
                 Cancel
+                <div className="absolute inset-0 bg-blue-100/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-2xl"></div>
               </button>
             </div>
           ) : (
             <button
               onClick={handleEdit}
-              className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-blue-600 text-white rounded-xl hover:from-indigo-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-indigo-200 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-sm relative overflow-hidden"
+              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-4 focus:ring-blue-200/50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold text-base relative overflow-hidden"
             >
-              <Edit3 className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
+              <Edit3 className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" />
               Edit Profile
-              <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></div>
+              <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-2xl"></div>
             </button>
           )}
         </div>
 
-        {/* Profile Details Grid */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl shadow-gray-200/50 border border-white/50 overflow-hidden">
-          <div className="p-6 lg:p-8 bg-gradient-to-r from-indigo-50 to-blue-50/50 border-b border-indigo-100/50">
-            <h2 className="text-xl font-bold text-gray-800 flex items-center">
-              <User className="w-6 h-6 mr-3 text-indigo-600" />
+        <div className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl shadow-blue-200/30 border border-blue-200/30 overflow-hidden">
+          <div className="p-8 bg-gradient-to-r from-blue-50/50 to-cyan-50/50 border-b border-blue-100/30">
+            <h2 className="text-2xl font-bold text-gray-800 flex items-center">
+              <User className="w-8 h-8 mr-4 text-blue-600 animate-pulse" />
               Personal Information
             </h2>
           </div>
-          <div className="p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {profileFields.map(({ icon: Icon, label, value, field, type, options }, index) => (
+          <div className="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {profileFields.map(({ icon: Icon, label, value, field, type, options, min, disabled }, index) => (
               <div 
                 key={field} 
-                className={`group relative transition-all duration-300 hover:shadow-lg hover:shadow-gray-300/50 ${
-                  editMode ? 'ring-2 ring-blue-200/50' : ''
-                }`}
+                className={`group relative transition-all duration-500 hover:shadow-xl hover:shadow-blue-200/20 transform hover:-translate-y-1 animate-fadeIn delay-${index * 100}`}
               >
-                <div className={`bg-white rounded-2xl p-4 lg:p-6 transition-all duration-300 ${
-                  editMode 
-                    ? 'border-2 border-blue-200/50 shadow-md' 
-                    : 'hover:border-blue-100/50 border border-gray-100/50'
+                <div className={`bg-white/95 backdrop-blur-md rounded-2xl p-6 transition-all duration-300 border border-blue-100/30 hover:border-blue-200/50 ${
+                  editMode ? 'shadow-md border-blue-200/50' : ''
                 }`}>
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-5">
                     <div className="flex items-center flex-1">
-                      <div className={`w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-indigo-100 to-blue-100 rounded-xl flex items-center justify-center mr-3 lg:mr-4 flex-shrink-0 shadow-sm transition-transform group-hover:scale-105 ${
+                      <div className={`w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-sm transition-transform group-hover:scale-110 ${
                         editMode ? 'opacity-80' : ''
                       }`}>
-                        <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-indigo-600" />
+                        <Icon className="w-6 h-6 text-blue-600 group-hover:animate-wiggle" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <label className="block text-xs lg:text-sm font-semibold text-gray-700 mb-2 truncate">{label}</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-3 tracking-wide">{label}</label>
                         {editMode ? (
                           type === 'select' ? (
                             <select
                               value={formData[field]}
                               onChange={(e) => handleInputChange(field, e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-xs lg:text-sm bg-white shadow-sm"
+                              disabled={disabled}
+                              className={`w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
                               {options.map(opt => (
                                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -327,24 +517,88 @@ const Profile = () => {
                               type={type}
                               value={formData[field]}
                               onChange={(e) => handleInputChange(field, e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-xs lg:text-sm bg-white shadow-sm"
+                              min={min}
+                              className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
                             />
                           )
                         ) : (
-                          <span className="text-sm lg:text-base font-medium text-gray-900 block leading-tight truncate">{formatDisplayValue(value, field)}</span>
+                          <span className="text-base font-medium text-gray-900 block leading-tight truncate">{formatDisplayValue(value, field)}</span>
                         )}
                       </div>
                     </div>
                   </div>
                   {field === 'state' && editMode && formData.state === 'Other' && (
-                    <div className="mt-4 p-3 lg:p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200">
-                      <label className="block text-xs lg:text-sm font-semibold text-gray-700 mb-2">Custom State</label>
+                    <div className="mt-5 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-blue-100/50 animate-fadeIn">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">Custom State</label>
                       <input
                         type="text"
                         value={formData.customState}
                         onChange={(e) => handleInputChange('customState', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-xs lg:text-sm bg-white shadow-sm"
+                        className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
                         placeholder="Enter your state name"
+                      />
+                    </div>
+                  )}
+                  {field === 'gender' && editMode && formData.gender === 'other' && (
+                    <div className="mt-5 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-blue-100/50 animate-fadeIn">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">Custom Gender</label>
+                      <input
+                        type="text"
+                        value={formData.custom_gender}
+                        onChange={(e) => handleInputChange('custom_gender', e.target.value)}
+                        className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
+                        placeholder="Enter your gender"
+                      />
+                    </div>
+                  )}
+                  {field === 'occupation' && editMode && formData.occupation === 'other' && (
+                    <div className="mt-5 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-blue-100/50 animate-fadeIn">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">Custom Occupation</label>
+                      <input
+                        type="text"
+                        value={formData.custom_occupation}
+                        onChange={(e) => handleInputChange('custom_occupation', e.target.value)}
+                        className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
+                        placeholder="Enter your occupation"
+                      />
+                    </div>
+                  )}
+                  {field === 'education_level' && editMode && formData.education_level === 'other' && (
+                    <div className="mt-5 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-blue-100/50 animate-fadeIn">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">Custom Education Level</label>
+                      <input
+                        type="text"
+                        value={formData.custom_education}
+                        onChange={(e) => handleInputChange('custom_education', e.target.value)}
+                        className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
+                        placeholder="Enter your education level"
+                      />
+                    </div>
+                  )}
+                  {field === 'disability' && editMode && formData.disability === 'yes' && (
+                    <div className="mt-5 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-blue-100/50 animate-fadeIn">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">Disability Type</label>
+                      <select
+                        value={formData.disability_type}
+                        onChange={(e) => handleInputChange('disability_type', e.target.value)}
+                        className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
+                      >
+                        <option value="">Select Disability Type</option>
+                        <option value="visual">Visual</option>
+                        <option value="hearing">Hearing</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  )}
+                  {field === 'disability' && editMode && formData.disability_type === 'other' && (
+                    <div className="mt-5 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-blue-100/50 animate-fadeIn">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">Custom Disability</label>
+                      <input
+                        type="text"
+                        value={formData.custom_disability}
+                        onChange={(e) => handleInputChange('custom_disability', e.target.value)}
+                        className="w-full px-4 py-3 border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-base bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
+                        placeholder="Enter disability type"
                       />
                     </div>
                   )}
@@ -354,35 +608,62 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <button
             onClick={() => navigate('/dashboard')}
-            className="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl hover:from-gray-900 hover:to-black focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-sm relative overflow-hidden"
+            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-800 to-blue-900 text-white rounded-2xl hover:from-gray-900 hover:to-blue-950 focus:outline-none focus:ring-4 focus:ring-blue-200/50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold text-base relative overflow-hidden"
           >
-            <ChevronLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft className="w-5 h-5 mr-3 group-hover:-translate-x-1 transition-transform" />
             Back to Dashboard
-            <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></div>
+            <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-2xl"></div>
           </button>
         </div>
       </div>
 
       <style jsx>{`
+        @font-face {
+          font-family: 'Inter';
+          src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        }
+        body {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
         @keyframes float {
           0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
+          50% { transform: translateY(-30px) rotate(180deg); }
         }
         @keyframes float-delayed {
           0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-30px) rotate(-180deg); }
+          50% { transform: translateY(-40px) rotate(-180deg); }
         }
         @keyframes spin-slow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        .animate-float { animation: float 20s ease-in-out infinite; }
-        .animate-float-delayed { animation: float-delayed 25s ease-in-out infinite; }
-        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(-5deg); }
+          75% { transform: rotate(5deg); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-float { animation: float 18s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 22s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 10s linear infinite; }
+        .animate-wiggle { animation: wiggle 0.3s ease-in-out; }
+        .animate-fadeIn { animation: fadeIn 0.5s ease-in-out; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
+        .delay-900 { animation-delay: 900ms; }
+        .delay-1000 { animation-delay: 1000ms; }
       `}</style>
     </div>
   );
