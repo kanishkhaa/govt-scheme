@@ -3,12 +3,16 @@ import axios from 'axios';
 import Lottie from 'lottie-react';
 import SignupAnimation from '../assets/login.json';
 import { useNavigate } from 'react-router-dom';
+import CryptoJS from 'crypto-js'; // npm i crypto-js
 
 function Signup() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+
+  // Encryption key (must match backend; use VITE_ prefix for Vite)
+  const ENCRYPTION_KEY = import.meta.env.VITE_ENCRYPTION_KEY || 'AvpsUT9vnOL5t2L19Kkhis1p5kUaTyGcSHW2yKBKYoU';
 
   // Validation patterns
   const validators = {
@@ -30,12 +34,23 @@ function Signup() {
     }
   };
 
+  const encryptPayload = (payload) => {
+    try {
+      const jsonPayload = JSON.stringify(payload);
+      return CryptoJS.AES.encrypt(jsonPayload, ENCRYPTION_KEY).toString();
+    } catch (error) {
+      console.error('Encryption failed:', error);
+      throw new Error('Encryption error');
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
     Object.keys(form).forEach((key) => {
-      if (!form[key]) {
+      const value = form[key].trim();
+      if (!value) {
         newErrors[key] = 'This field is required';
-      } else if (validators[key] && !validators[key].pattern.test(form[key])) {
+      } else if (validators[key] && !validators[key].pattern.test(value)) {
         newErrors[key] = validators[key].message;
       }
     });
@@ -45,10 +60,11 @@ function Signup() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    const sanitizedValue = value.trim(); // Sanitize on change
+    setForm({ ...form, [name]: sanitizedValue });
     
-    // Clear error when user starts typing valid input
-    if (value && validators[name]?.pattern.test(value)) {
+    // Clear error when valid
+    if (sanitizedValue && validators[name]?.pattern.test(sanitizedValue)) {
       setErrors({ ...errors, [name]: '' });
     }
   };
@@ -63,23 +79,29 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post('http://localhost:3000/auth/signup', form, {
-        headers: { 'Content-Type': 'application/json' },
+      // Encrypt payload
+      const encryptedPayload = encryptPayload({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        password: form.password
       });
 
-      // Verify JWT token exists in response
-      if (!res.data.token) {
-        throw new Error('No authentication token received');
+      const res = await axios.post('http://localhost:3000/auth/signup', {
+        encryptedData: encryptedPayload
+      }, {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true  // For httpOnly cookies
+      });
+
+      if (res.status === 201) {
+        setMessage('Signup successful! Redirecting...');
+        setTimeout(() => {
+          navigate('/profileform');
+        }, 2000);
+      } else {
+        throw new Error(res.data.error || 'Signup failed');
       }
-
-      // Store JWT securely
-      localStorage.setItem('token', res.data.token);
-      setMessage('Signup successful! Redirecting...');
-
-      // Redirect after 2 seconds
-      setTimeout(() => {
-        navigate('/profileform');
-      }, 2000);
     } catch (err) {
       const errorMessage = err.response?.data?.error || 'Signup failed. Please try again.';
       setMessage(errorMessage);
@@ -103,7 +125,7 @@ function Signup() {
         <div className="md:w-1/2 w-full">
           <h2 className="text-3xl font-bold text-sky-700 mb-6 text-center">Create Your Account</h2>
 
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <input
                 name="name"
@@ -159,13 +181,12 @@ function Signup() {
               {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
             </div>
             <button
-              type="button"
-              onClick={handleSubmit}
+              type="submit"
               className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition duration-200 font-semibold"
             >
               Sign Up
             </button>
-          </div>
+          </form>
 
           <div className="mt-4 text-center">
             <button

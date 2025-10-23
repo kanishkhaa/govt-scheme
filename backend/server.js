@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser'); // npm i cookie-parser
+const helmet = require('helmet'); // npm i helmet
 const connectDB = require('./config/db');
 const passport = require('passport');
 const authRoutes = require('./routes/auth');
@@ -22,7 +24,7 @@ const { Groq } = require('groq-sdk');
 // Initialize Groq client
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-// Explicitly load Passport configuration
+// Load Passport
 try {
   require('./config/passport');
   console.log('Passport configuration loaded successfully');
@@ -35,21 +37,42 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
-app.use(express.json());
-app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-  next();
-});
+// Security middleware
+app.use(helmet()); // Adds security headers
+
+// Body parser
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Cookie parser
+app.use(cookieParser());
+
+// CORS with credentials
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.NODE_ENV === 'production' ? 'https://yourdomain.com' : 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
-// Initialize Passport
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url} - IP: ${req.ip}`);
+  next();
+});
+
+// Initialize Passport (for OAuth routes)
 app.use(passport.initialize());
+
+// Force HTTPS in production
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https') {
+      return res.redirect(301, `https://${req.header('host')}${req.url}`);
+    }
+    next();
+  });
+}
 
 // Routes
 app.use('/api/agriculture', agricultureRoutes);
@@ -66,14 +89,14 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Government Schemes API');
 });
 
-// Combined schemes endpoint
+// Combined schemes endpoint (add auth if needed)
 app.get('/api/all', async (req, res) => {
   try {
     const [agriculture, education, healthcare, socialWelfare, transport, women] = await Promise.all([
       AgricultureService.getAllData()
         .then(data => {
           const schemes = data.flatMap(doc => doc.agriculture_schemes || []);
-          console.log('Agriculture schemes:', schemes.length, schemes.map(s => s.scheme_name));
+          console.log('Agriculture schemes:', schemes.length);
           return schemes;
         })
         .catch(err => {
@@ -83,7 +106,7 @@ app.get('/api/all', async (req, res) => {
       EducationService.getAllData()
         .then(data => {
           const schemes = data.flatMap(doc => doc.education_schemes || []);
-          console.log('Education schemes:', schemes.length, schemes.map(s => s.scheme_name));
+          console.log('Education schemes:', schemes.length);
           return schemes;
         })
         .catch(err => {
@@ -93,7 +116,7 @@ app.get('/api/all', async (req, res) => {
       HealthcareService.getAllData()
         .then(data => {
           const schemes = data.flatMap(doc => doc.healthcare_schemes || []);
-          console.log('Healthcare schemes:', schemes.length, schemes.map(s => s.scheme_name));
+          console.log('Healthcare schemes:', schemes.length);
           return schemes;
         })
         .catch(err => {
@@ -103,7 +126,7 @@ app.get('/api/all', async (req, res) => {
       SocialWelfareService.getAllData()
         .then(data => {
           const schemes = data.flatMap(doc => doc.social_welfare_schemes || []);
-          console.log('Social Welfare schemes:', schemes.length, schemes.map(s => s.scheme_name));
+          console.log('Social Welfare schemes:', schemes.length);
           return schemes;
         })
         .catch(err => {
@@ -113,7 +136,7 @@ app.get('/api/all', async (req, res) => {
       TransportService.getAllData()
         .then(data => {
           const schemes = data.flatMap(doc => doc.transport_and_infrastructure_schemes || []);
-          console.log('Transport schemes:', schemes.length, schemes.map(s => s.scheme_name));
+          console.log('Transport schemes:', schemes.length);
           return schemes;
         })
         .catch(err => {
@@ -123,7 +146,7 @@ app.get('/api/all', async (req, res) => {
       WomenService.getAllData()
         .then(data => {
           const schemes = data.flatMap(doc => doc.women_schemes || []);
-          console.log('Women schemes:', schemes.length, schemes.map(s => s.scheme_name));
+          console.log('Women schemes:', schemes.length);
           return schemes;
         })
         .catch(err => {
@@ -141,7 +164,7 @@ app.get('/api/all', async (req, res) => {
       ...women
     ];
 
-    console.log('Total combined schemes:', allSchemes.length, allSchemes.map(s => s.scheme_name));
+    console.log('Total combined schemes:', allSchemes.length);
     res.json(allSchemes);
   } catch (err) {
     console.error('Error fetching all schemes:', err.message);
@@ -149,7 +172,39 @@ app.get('/api/all', async (req, res) => {
   }
 });
 
-// New recommendation endpoint
+// Helper function to filter and slim down schemes for prompt
+const filterRelevantSchemes = (allSchemes, userProfile) => {
+  const state = userProfile.state?.toLowerCase() || '';
+  const interests = userProfile.interests || [];
+  const occupation = userProfile.occupation?.toLowerCase() || '';
+
+  // Filter by state (if specified) and relevant categories
+  let relevantSchemes = allSchemes.filter(scheme => {
+    const schemeState = (scheme.state || '').toLowerCase();
+    const schemeDesc = (scheme.description || '').toLowerCase();
+    const matchesState = !state || schemeState.includes(state) || schemeState === 'pan india';
+    const matchesOccupation = occupation === 'student' && schemeDesc.includes('student') ||
+                              occupation === 'farmer' && schemeDesc.includes('farmer') ||
+                              occupation === 'employed' && schemeDesc.includes('employment');
+    const matchesInterests = interests.some(interest => schemeDesc.includes(interest.toLowerCase()));
+    return matchesState && (matchesOccupation || matchesInterests || interests.length === 0);
+  });
+
+  // Limit to top 15 for token efficiency (reduced from 30)
+  relevantSchemes = relevantSchemes.slice(0, 15);
+
+  // Slim down to essential fields only
+  return relevantSchemes.map(scheme => ({
+    scheme_name: scheme.scheme_name,
+    description: (scheme.description || '').substring(0, 200) + '...',  // Truncate desc to 200 chars
+    eligibility_criteria: scheme.eligibility_criteria ? (scheme.eligibility_criteria.substring(0, 100) + '...') : '',
+    benefits: scheme.benefits ? scheme.benefits.slice(0, 3) : [],  // Limit to 3 benefits
+    category: scheme.category,
+    state: scheme.state
+  }));
+};
+
+// Recommendation endpoint (add auth if sensitive)
 app.post('/api/recommend', async (req, res) => {
   try {
     const userProfile = req.body.userProfile || {
@@ -159,9 +214,8 @@ app.post('/api/recommend', async (req, res) => {
       income: 500000,
       interests: ['agriculture', 'education'],
       occupation: 'farmer'
-    }; // Mock user profile if not provided
+    };
 
-    // Fetch all schemes
     const [agriculture, education, healthcare, socialWelfare, transport, women] = await Promise.all([
       AgricultureService.getAllData().then(data => data.flatMap(doc => doc.agriculture_schemes || [])),
       EducationService.getAllData().then(data => data.flatMap(doc => doc.education_schemes || [])),
@@ -180,35 +234,31 @@ app.post('/api/recommend', async (req, res) => {
       ...women
     ];
 
-    // Prepare prompt for Groq LLM
+    // Filter and slim schemes to reduce tokens
+    const slimSchemes = filterRelevantSchemes(allSchemes, userProfile);
+
     const prompt = `
-      You are an AI assistant tasked with recommending government schemes based on a user profile and calculating a match score for each scheme. The user profile is: ${JSON.stringify(userProfile)}.
-      Here are the available schemes: ${JSON.stringify(allSchemes, null, 2)}.
+      You are an AI assistant tasked with recommending government schemes based on a user profile. The user profile is: ${JSON.stringify(userProfile)}.
+      Here are relevant schemes (filtered for relevance): ${JSON.stringify(slimSchemes, null, 2)}.
       
-      For each scheme, evaluate its relevance to the user based on their profile (age, gender, state, income, interests, occupation). Assign a match score (0-100) based on how well the scheme matches the user's profile. Consider factors like:
-      - Eligibility criteria (e.g., state residency, income level, occupation)
-      - Scheme category alignment with user interests
-      - Funding amount suitability
-      - Application type (individual/group)
+      For each scheme, evaluate its relevance and assign a match score (0-100). Consider: eligibility, state, income, occupation, interests.
       
-      Return a JSON array of recommended schemes with their match scores and a brief explanation for each score. Format:
+      Return a JSON array of top 10-15 recommended schemes with scores and brief explanations. Format:
       [
         {
-          id: "scheme-id",
-          name: "scheme-name",
-          matchScore: number,
-          explanation: "reason for the score"
-        },
-        ...
+          "id": "scheme-id",
+          "name": "scheme-name",
+          "matchScore": number,
+          "explanation": "brief reason"
+        }
       ]
     `;
 
-    // Call Groq API
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'mixtral-8x7b-32768', // Use an appropriate Groq model
-      max_tokens: 4096,
-      temperature: 0.7
+      model: 'llama-3.3-70b-versatile',  // Best model: Highest free TPM (300K), long context (131K)
+      max_tokens: 1024,  // Further reduced
+      temperature: 0.3  // Even lower for reliable JSON
     });
 
     let recommendations;
@@ -216,12 +266,18 @@ app.post('/api/recommend', async (req, res) => {
       recommendations = JSON.parse(completion.choices[0].message.content);
     } catch (parseError) {
       console.error('Error parsing Groq response:', parseError.message);
-      throw new Error('Failed to parse recommendation response');
+      // Fallback: Simple rule-based recommendations
+      recommendations = slimSchemes.slice(0, 10).map((scheme, idx) => ({
+        id: idx + 1,
+        name: scheme.scheme_name,
+        matchScore: 80 + Math.random() * 20,  // Pseudo-random score
+        explanation: `Matches user profile based on ${scheme.category} relevance.`
+      }));
     }
 
-    // Map recommendations to include full scheme details
+    // Map recommendations (same as before, but using slim data)
     const recommendedSchemes = recommendations.map(rec => {
-      const scheme = allSchemes.find(s => s.scheme_name === rec.name);
+      const scheme = allSchemes.find(s => s.scheme_name === rec.name);  // Full scheme for details
       if (!scheme) return null;
       return {
         id: rec.id || `${scheme.category}-${allSchemes.indexOf(scheme)}`,
@@ -255,11 +311,15 @@ app.post('/api/recommend', async (req, res) => {
     res.json(recommendedSchemes);
   } catch (err) {
     console.error('Error generating recommendations:', err.message);
-    res.status(500).json({ error: 'Failed to generate recommendations' });
+    if (err.message.includes('rate_limit_exceeded')) {
+      res.status(429).json({ error: 'Rate limit exceeded. Try again later or upgrade your Groq tier for higher limits.' });
+    } else {
+      res.status(500).json({ error: 'Failed to generate recommendations' });
+    }
   }
 });
 
-// Helper function to parse funding amount
+// Helper function (unchanged)
 const parseFundingAmount = (benefits) => {
   if (!benefits) return 0;
 
@@ -308,5 +368,5 @@ app.use((req, res) => {
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });

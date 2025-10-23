@@ -1,3 +1,4 @@
+// SchemeDisplay.jsx - Full updated component with localStorage and event dispatch in SchemeDetail
 import React, { useState, useEffect } from 'react';
 import { 
   Star, 
@@ -43,6 +44,9 @@ const SchemeDisplay = () => {
   const [sortBy, setSortBy] = useState('rating');
   const [bookmarked, setBookmarked] = useState(new Set());
   const [userProfile, setUserProfile] = useState(null);
+  // New states for applied schemes
+  const [appliedSchemes, setAppliedSchemes] = useState([]);
+  const [loadingApplied, setLoadingApplied] = useState(false);
 
   // Enhanced extraction - parses desc if rawName is "Doc"-style
   const extractSchemeName = (rawName, desc) => {
@@ -112,7 +116,7 @@ const SchemeDisplay = () => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:5000/recommend', profileData);
+      const response = await axios.post('http://localhost:3000/api/recommend', profileData);
       
       setQuery(response.data.query);
       setMessage(response.data.message);
@@ -199,6 +203,41 @@ const SchemeDisplay = () => {
       localStorage.setItem(`bookmark_${schemeId}`, (!wasBookmarked).toString());
       return newSet;
     });
+  };
+
+  // New: Fetch applied schemes
+  useEffect(() => {
+    const fetchAppliedSchemes = async () => {
+      if (!userProfile) return; // Skip if no user (not logged in)
+      try {
+        setLoadingApplied(true);
+        const res = await axios.get('http://localhost:3000/auth/applied-schemes', { withCredentials: true });
+        setAppliedSchemes(res.data.filter(s => s.status === 'applied')); // Only show 'applied'
+      } catch (err) {
+        console.error('Failed to fetch applied schemes:', err);
+        // Silently fail (no alert, as it's optional)
+      } finally {
+        setLoadingApplied(false);
+      }
+    };
+
+    fetchAppliedSchemes();
+  }, [userProfile]); // Refetch if profile changes
+
+  // New: Render applied card (maps to scheme shape)
+  const renderAppliedCard = (scheme) => {
+    const mappedScheme = {
+      id: scheme.id,
+      cleanName: scheme.name,
+      category: scheme.category,
+      description: scheme.description,
+      state: scheme.state,
+      rating: 5, // Default high for applied
+      similarity: 1, // 100% match
+      benefits: ['Applied Successfully'], // Placeholder
+      eligibility: 'You Applied'
+    };
+    return renderSchemeCard(mappedScheme);
   };
 
   // Initial load on mount
@@ -536,21 +575,68 @@ const SchemeDetail = () => {
   const [appliedStatus, setAppliedStatus] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
+  // New: Loading state for status
+  const [loadingStatus, setLoadingStatus] = useState(true);
 
   useEffect(() => {
     if (scheme) {
-      const savedStatus = localStorage.getItem(`applied_${scheme.id}`);
-      if (savedStatus) {
-        setAppliedStatus(savedStatus === 'yes' ? 'Yes' : 'No');
-      }
+      // New: Fetch initial applied status for this scheme
+      fetchSchemeStatus();
+      
       const savedBookmark = localStorage.getItem(`bookmark_${scheme.id}`);
       setBookmarked(savedBookmark === 'true');
     }
   }, [scheme]);
 
-  const handleAppliedResponse = (response) => {
-    setAppliedStatus(response);
-    localStorage.setItem(`applied_${scheme.id}`, response.toLowerCase());
+  // New: Fetch scheme status from backend
+  const fetchSchemeStatus = async () => {
+    if (!scheme) return;
+    try {
+      setLoadingStatus(true);
+      const res = await axios.get('http://localhost:3000/auth/applied-schemes', { withCredentials: true });
+      const appliedSchemes = res.data;
+      const thisScheme = appliedSchemes.find(s => s.id === scheme.id);
+      setAppliedStatus(thisScheme?.status === 'applied' ? 'Yes' : thisScheme ? 'No' : null);
+    } catch (err) {
+      console.error('Failed to fetch scheme status:', err);
+      // Fallback to null (not applied)
+    } finally {
+      setLoadingStatus(false);
+    }
+  };
+
+  // Updated: Handle applied response with API call
+  const handleAppliedResponse = async (response) => {
+    if (!scheme || loadingStatus) return;
+    
+    try {
+      const status = response === 'Yes' ? 'applied' : 'not_applied';
+      await axios.post('http://localhost:3000/auth/apply-scheme', {
+        schemeId: scheme.id,
+        schemeName: scheme.cleanName,
+        category: scheme.category,
+        description: scheme.description,
+        state: scheme.state,
+        status
+      }, { withCredentials: true });
+      
+      setAppliedStatus(response);
+
+      // NEW: Update localStorage to sync with Dashboard immediately
+      if (response === 'Yes') {
+        localStorage.setItem(`applied_${scheme.id}`, 'yes');
+      } else {
+        localStorage.setItem(`applied_${scheme.id}`, 'no');
+      }
+
+      // NEW: Optionally emit custom event to trigger Dashboard re-render if open
+      window.dispatchEvent(new CustomEvent('appliedStatusUpdated', { detail: { schemeId: scheme.id, status: response } }));
+
+      // Optionally refetch all applied schemes if needed
+    } catch (err) {
+      console.error('Failed to update application:', err);
+      alert('Failed to update application status. Please try again.');
+    }
   };
 
   const toggleBookmark = () => {
@@ -631,7 +717,7 @@ const SchemeDetail = () => {
 
     sentences = chunkSentences(sentences);
 
-    const keyPoints = [];
+   let keyPoints = [];
     const sections = {
       objective: /(objective|aim|purpose|goal|target|focus|improve|encourage)/i,
       features: /(features?|benefits?|provides|offers|includes|key|main|upgrade|change|instead)/i,
@@ -840,7 +926,9 @@ const SchemeDetail = () => {
                 </h3>
                 <div className="space-y-4">
                   <p className="text-gray-700 text-sm leading-relaxed bg-blue-50 p-3 rounded-xl">{scheme.eligibility}</p>
-                  {appliedStatus === 'Yes' ? (
+                  {loadingStatus ? (
+                    <Loader className="w-6 h-6 text-blue-500 animate-spin mx-auto" />
+                  ) : appliedStatus === 'Yes' ? (
                     <div className="flex items-center justify-center gap-4 p-3 bg-green-50 rounded-xl border border-green-200">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <span className="text-green-800 font-semibold">Applied</span>
@@ -860,6 +948,7 @@ const SchemeDetail = () => {
                             ? 'bg-green-600 text-white hover:bg-green-700' 
                             : 'bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700'
                         }`}
+                        disabled={loadingStatus}
                       >
                         Yes, Applied
                       </button>
@@ -870,6 +959,7 @@ const SchemeDetail = () => {
                             ? 'border-red-300 bg-red-50 text-red-700 hover:bg-red-100' 
                             : 'border-gray-300 text-gray-700 hover:bg-gray-50'
                         }`}
+                        disabled={loadingStatus}
                       >
                         Not Yet
                       </button>

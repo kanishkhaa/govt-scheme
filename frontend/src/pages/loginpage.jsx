@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import Login from '../assets/login.json';
 import axios from 'axios';
+import CryptoJS from 'crypto-js'; // npm i crypto-js
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,10 +16,48 @@ const LoginPage = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
+  // Encryption key (must match backend; use VITE_ prefix for Vite)
+  const ENCRYPTION_KEY = import.meta.env.VITE_ENCRYPTION_KEY || 'AvpsUT9vnOL5t2L19Kkhis1p5kUaTyGcSHW2yKBKYoU';
+
+  // Validation patterns
+  const validators = {
+    email: {
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: 'Please enter a valid email address'
+    },
+    password: {
+      pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      message: 'Password must be at least 8 characters long and include a letter, number, and special character'
+    }
+  };
+
+  const encryptPayload = (payload) => {
+    try {
+      const jsonPayload = JSON.stringify(payload);
+      return CryptoJS.AES.encrypt(jsonPayload, ENCRYPTION_KEY).toString();
+    } catch (error) {
+      console.error('Encryption failed:', error);
+      throw new Error('Encryption error');
+    }
+  };
+
+  const validateForm = () => {
+    if (!formData.email || !validators.email.pattern.test(formData.email.trim())) {
+      setMessage(validators.email.message);
+      return false;
+    }
+    if (!formData.password || !validators.password.pattern.test(formData.password)) {
+      setMessage(validators.password.message);
+      return false;
+    }
+    return true;
+  };
+
   const handleInputChange = (e) => {
+    const value = e.target.value.trim(); // Sanitize
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
     setMessage('');
   };
@@ -27,18 +66,44 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     setMessage('');
+
+    if (!validateForm()) {
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const res = await axios.post("http://localhost:3000/auth/login", {
+      // Encrypt payload
+      const encryptedPayload = encryptPayload({
         email: formData.email,
         password: formData.password
+      });
+
+      const res = await axios.post("http://localhost:3000/auth/login", {
+        encryptedData: encryptedPayload
       }, {
         headers: { "Content-Type": "application/json" },
+        withCredentials: true  // For httpOnly cookies
       });
+
       if (res.status === 200) {
-        localStorage.setItem('token', res.data.token);
-        setMessage('Login successful!');
+        // Fetch user profile to check completeness
+        const profileRes = await axios.get("http://localhost:3000/auth/profile", { withCredentials: true });
+        const userProfile = profileRes.data;
+
+        // Check if profile is complete (required fields from ProfileForm)
+        const isProfileComplete = userProfile &&
+          userProfile.name && userProfile.age_group && userProfile.gender &&
+          userProfile.occupation && userProfile.income_level && userProfile.state;
+
+        setMessage(isProfileComplete ? 'Welcome back!' : 'Login successful!');
+
         setTimeout(() => {
-          navigate('/profileform');
+          if (isProfileComplete) {
+            navigate('/dashboard');
+          } else {
+            navigate('/profileform');
+          }
         }, 2000);
       } else {
         setMessage(res.data.error || 'Login failed');
@@ -64,7 +129,7 @@ const LoginPage = () => {
           <h2 className="text-3xl font-bold text-sky-700 mb-6 text-center">Sign In to Your Account</h2>
 
           {message && (
-            <p className={`mb-4 text-center font-medium ${message.includes('successful') ? 'text-green-600' : 'text-red-600'}`}>
+            <p className={`mb-4 text-center font-medium ${message.includes('successful') || message.includes('Welcome') ? 'text-green-600' : 'text-red-600'}`}>
               {message}
             </p>
           )}
