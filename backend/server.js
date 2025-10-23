@@ -20,7 +20,7 @@ const SocialWelfareService = require('./services/socialWelfareService');
 const TransportService = require('./services/transportService');
 const WomenService = require('./services/womenService');
 const { Groq } = require('groq-sdk');
-
+const nodemailer = require('nodemailer');
 // Initialize Groq client
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 

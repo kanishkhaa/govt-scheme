@@ -14,6 +14,10 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [showForgotModal, setShowForgotModal] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotMessage, setForgotMessage] = useState('');
   const navigate = useNavigate();
 
   // Encryption key (must match backend; use VITE_ prefix for Vite)
@@ -116,6 +120,47 @@ const LoginPage = () => {
     }
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    setForgotLoading(true);
+    setForgotMessage('');
+    const trimmedEmail = forgotEmail.trim();
+    try {
+      const res = await axios.post("http://localhost:3000/auth/forgot-password", {
+        email: trimmedEmail
+      }, {
+        headers: { "Content-Type": "application/json" },
+      });
+      if (res.status === 200) {
+        setForgotMessage('Password reset link sent! Check your email.');
+        setTimeout(() => {
+          setShowForgotModal(false);
+          setForgotEmail('');
+        }, 3000);
+      } else {
+        setForgotMessage(res.data.error || 'Failed to send reset link');
+      }
+    } catch (error) {
+      console.error("Forgot password error:", error);
+      setForgotMessage(error.response?.data?.error || 'Failed to connect to server');
+    } finally {
+      setForgotLoading(false);
+    }
+  };
+
+  const toggleForgotModal = () => {
+    setShowForgotModal(!showForgotModal);
+    if (!showForgotModal) {
+      setForgotEmail(formData.email); // Pre-fill with login email if available
+      setForgotMessage('');
+    }
+  };
+
+  const handleForgotInputChange = (e) => {
+    setForgotEmail(e.target.value.trim());
+    setForgotMessage('');
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-sky-100">
       <div className="bg-white p-8 rounded-2xl shadow-xl max-w-4xl w-full mx-4 flex flex-col md:flex-row items-center gap-8">
@@ -175,12 +220,12 @@ const LoginPage = () => {
           </form>
 
           <div className="mt-4 text-center">
-            <Link
-              to="/forgot-password"
-              className="text-sky-600 hover:text-sky-800 font-medium transition duration-200"
+            <button
+              onClick={toggleForgotModal}
+              className="text-sky-600 hover:text-sky-800 font-medium transition duration-200 bg-transparent border-none cursor-pointer"
             >
               Forgot Password?
-            </Link>
+            </button>
           </div>
           <div className="mt-2 text-center">
             <Link
@@ -192,6 +237,52 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Forgot Password Modal */}
+      {showForgotModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-2xl shadow-xl max-w-md w-full mx-4">
+            <h3 className="text-2xl font-bold text-sky-700 mb-4 text-center">Reset Your Password</h3>
+            <p className="text-center text-gray-600 mb-6">Enter your email to receive a reset link.</p>
+
+            {forgotMessage && (
+              <p className={`mb-4 text-center font-medium ${forgotMessage.includes('sent') ? 'text-green-600' : 'text-red-600'}`}>
+                {forgotMessage}
+              </p>
+            )}
+
+            <form onSubmit={handleForgotPassword} className="space-y-4">
+              <div className="relative">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={forgotEmail}
+                  onChange={handleForgotInputChange}
+                  required
+                  className="w-full p-3 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200 pl-10"
+                />
+                <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+              </div>
+              <button
+                type="submit"
+                disabled={forgotLoading}
+                className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition duration-200 font-semibold disabled:opacity-50"
+              >
+                {forgotLoading ? 'Sending Link...' : 'Send Reset Link'}
+              </button>
+            </form>
+
+            <div className="mt-4 text-center">
+              <button
+                onClick={toggleForgotModal}
+                className="text-sky-600 hover:text-sky-800 font-medium transition duration-200 bg-transparent border-none cursor-pointer"
+              >
+                Back to Sign In
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

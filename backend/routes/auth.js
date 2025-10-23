@@ -4,6 +4,8 @@ const { body, validationResult } = require('express-validator');
 const rateLimit = require('express-rate-limit');
 const CryptoJS = require('crypto-js');
 const User = require('../models/userModel');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const router = express.Router();
 
 // Rate limiting for auth endpoints (5 attempts per 15 min)
@@ -132,7 +134,7 @@ router.post('/login', authLimiter, [
 
     // Check if user has a password
     if (!user.password) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ error: 'Account requires password setup. Please use forgot password to set one.' });
     }
 
     // Check password
@@ -159,6 +161,128 @@ router.post('/login', authLimiter, [
     }
     console.error('Login Error:', err.message);
     res.status(500).json({ error: 'Login failed' });
+  }
+});
+
+// Forgot Password Route
+// Forgot Password Route
+router.post('/forgot-password', authLimiter, async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      return res.status(400).json({ error: 'Valid email is required' });
+    }
+
+    const sanitizedEmail = email.toLowerCase().trim();
+    console.log(`Searching for user with email: ${sanitizedEmail}`);
+
+    const user = await User.findOne({ email: sanitizedEmail });
+    console.log(`User found: ${!!user}`);
+
+    if (!user) {
+      return res.status(404).json({ error: 'No user found with that email' });
+    }
+
+    // Generate reset token
+    const token = crypto.randomBytes(20).toString('hex');
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    await user.save();
+
+    console.log(`Generated token: ${token}`);
+    console.log(`Expiration: ${new Date(user.resetPasswordExpires).toISOString()}`);
+
+    // Corrected: Use createTransport (not createTransporter)
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,  // Use TLS on port 587
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false  // Dev only; remove in prod for security
+      },
+      // Enable logging in dev
+      logger: process.env.NODE_ENV === 'development',
+      debug: process.env.NODE_ENV === 'development'
+    });
+
+    // Verify transporter (optional, for debugging)
+    await transporter.verify();
+
+    const resetUrl = `http://localhost:5173/reset-password/${token}`;
+    const mailOptions = {
+      to: email,
+      from: `"Government Schemes App" <${process.env.EMAIL_USER}>`,
+      subject: 'Password Reset Link - Government Schemes App',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2>Reset Your Password</h2>
+          <p>Hello,</p>
+          <p>You requested a password reset. Click the link below to set a new password (expires in 1 hour):</p>
+          <a href="${resetUrl}" style="background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Reset Password</a>
+          <p>If you didn't request this, ignore this email.</p>
+          <p>Best,<br>Government Schemes Team</p>
+        </div>
+      `,
+      text: `Click here to reset: ${resetUrl}. Expires in 1 hour.`
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`Reset email sent to ${email} at ${new Date().toISOString()}`);
+
+    res.status(200).json({ message: 'Password reset link sent to your email!' });
+  } catch (error) {
+    console.error('Forgot password FULL error:', {
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
+    res.status(500).json({ error: `Failed to send reset link: ${error.message}` });
+  }
+});
+
+// Reset Password Route
+router.post('/reset-password/:token', async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { newPassword } = req.body;
+
+    console.log('Received reset request at', new Date().toISOString(), 'with token:', token);
+
+    if (!token || !newPassword) {
+      console.log('Validation failed: Missing token or newPassword');
+      return res.status(400).json({ error: 'Token and new password are required' });
+    }
+
+    if (newPassword.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])/.test(newPassword)) {
+      return res.status(400).json({ error: 'New password must be 8+ chars with letter, number, special char' });
+    }
+
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      console.log('Token check failed for token:', token, 'at', new Date().toISOString());
+      return res.status(400).json({ error: 'Invalid or expired token' });
+    }
+
+    // Set plain password (pre-save hook will hash it)
+    user.password = newPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    console.log('Password reset successful for user:', user.email);
+    res.status(200).json({ message: 'Password reset successful' });
+
+  } catch (error) {
+    console.error('Reset password error at', new Date().toISOString(), ':', error);
+    res.status(500).json({ error: 'Failed to reset password' });
   }
 });
 

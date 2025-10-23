@@ -68,7 +68,10 @@ const userSchema = new mongoose.Schema(
         bookmarkedDate: { type: Date, default: Date.now }
       }]
     },
+    resetPasswordToken: { type: String }, // Added for password reset
+    resetPasswordExpires: { type: Date }, // Added for password reset expiration
   },
+  
   { timestamps: true }
 );
 
