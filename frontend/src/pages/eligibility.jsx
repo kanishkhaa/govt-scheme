@@ -18,7 +18,7 @@ const EligibilityChecker = () => {
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Agriculture', 'Education', 'Healthcare', 'Social Welfare', 'Transport', 'Women Empowerment'];
+  const categories = ['All', 'Agriculture', 'Education', 'Healthcare', 'Social Welfare', 'Transport', 'Women'];
 
   // Fetch schemes from backend based on selected category
   useEffect(() => {
@@ -196,13 +196,13 @@ const EligibilityChecker = () => {
             <h1 className="text-4xl font-extrabold text-sky-600 mb-2 tracking-tight">
               Check Your Eligibility
             </h1>
-            <div className="flex flex-wrap justify-center mb-4">
+            <div className="category-container">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`mx-1 px-3 py-1 rounded-md transition-all duration-200 font-medium ${
-                    selectedCategory === cat ? 'bg-sky-500 text-white' : 'bg-sky-200 text-sky-800 hover:bg-sky-300'
+                  className={`category-button ${
+                    selectedCategory === cat ? 'category-button-active' : ''
                   }`}
                 >
                   {cat}
@@ -249,13 +249,13 @@ const EligibilityChecker = () => {
               <p className="text-lg text-gray-600 mb-8 text-center font-medium animate-slideUp">
                 Explore available schemes and check your eligibility with ease.
               </p>
-              <div className="flex flex-wrap justify-center mb-4">
+              <div className="category-container">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`mx-2 px-3 py-1 rounded-md transition-all duration-200 font-medium ${
-                      selectedCategory === cat ? 'bg-sky-500 text-white' : 'bg-sky-200 text-sky-900 hover:bg-sky-300'
+                    className={`category-button ${
+                      selectedCategory === cat ? 'category-button-active' : ''
                     }`}
                   >
                     {cat}
@@ -385,7 +385,7 @@ const EligibilityChecker = () => {
 
           {showResult && (
             <div className="fixed inset-0 backdrop-blur-md bg-gray-900/20 flex items-center ml-60 justify-center p-4 z-50">
-              <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-md w-full animate-bounceIn border border-gray-200/50">
+              <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-md ml-15 w-full animate-bounceIn border border-gray-200/50">
                 <div className="text-center">
                   {isEligible ? (
                     <>
@@ -535,6 +535,71 @@ const EligibilityChecker = () => {
 
         .scrollbar-custom::-webkit-scrollbar-thumb:hover {
           background: #0ea5e9;
+        }
+
+        /* Styles for category buttons */
+        .category-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+          padding: 12px 0;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .category-button {
+          flex: 1 1 150px;
+          max-width: 200px;
+          padding: 12px 16px;
+          border-radius: 8px;
+          background-color: #e0f2fe;
+          color: #075985;
+          font-weight: 500;
+          font-size: 14px;
+          text-align: center;
+          transition: all 0.3s ease;
+          border: 1px solid #bae6fd;
+          cursor: pointer;
+        }
+
+        .category-button:hover {
+          background-color: #bae6fd;
+          transform: translateY(-2px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-button-active {
+          background-color: #0284c7;
+          color: white;
+          border-color: #0284c7;
+          box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+        }
+
+        .category-button:active {
+          transform: translateY(0);
+          box-shadow: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+          .category-button {
+            flex: 1 1 120px;
+            padding: 10px 12px;
+            font-size: 13px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .category-container {
+            gap: 8px;
+          }
+          .category-button {
+            flex: 1 1 100%;
+            max-width: none;
+            padding: 10px;
+            font-size: 12px;
+          }
         }
       `}</style>
     </div>

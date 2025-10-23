@@ -1,7 +1,5 @@
-// Update to ProfileForm.jsx - add localStorage save in handleSubmit
-
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle, User, Briefcase, MapPin, DollarSign, Calendar, Users } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle, User, Briefcase, MapPin, DollarSign, Calendar, Users, Heart, School, Home } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,15 +11,34 @@ const ProfileForm = () => {
     name: '',
     age_group: '',
     gender: '',
+    custom_gender: '',
     occupation: '',
+    custom_occupation: '',
     income_level: '',
     state: '',
-    customState: ''
+    customState: '',
+    marital_status: '',
+    education_level: '',
+    custom_education: '',
+    residential_status: '',
+    family_size: '',
+    disability: '',
+    disability_type: '',
+    custom_disability: ''
   });
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const newFormData = { ...prev, [field]: value };
+      // Automatically set income_level to 'low' if occupation is student
+      if (field === 'occupation' && value === 'student') {
+        newFormData.income_level = 'low';
+      } else if (field === 'occupation' && value !== 'student') {
+        newFormData.income_level = ''; // Reset income_level for non-student selections
+      }
+      return newFormData;
+    });
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -33,10 +50,20 @@ const ProfileForm = () => {
       if (!formData.name) newErrors.name = 'Name is required';
       if (!formData.age_group) newErrors.age_group = 'Age group is required';
       if (!formData.gender) newErrors.gender = 'Gender is required';
+      if (formData.gender === 'other' && !formData.custom_gender) newErrors.custom_gender = 'Custom gender is required';
       if (!formData.occupation) newErrors.occupation = 'Occupation is required';
-      if (!formData.income_level) newErrors.income_level = 'Income level is required';
+      if (formData.occupation === 'other' && !formData.custom_occupation) newErrors.custom_occupation = 'Custom occupation is required';
+      if (formData.occupation !== 'student' && !formData.income_level) newErrors.income_level = 'Income level is required';
       if (!formData.state) newErrors.state = 'State is required';
       if (formData.state === 'Other' && !formData.customState) newErrors.customState = 'Custom state is required';
+      if (!formData.marital_status) newErrors.marital_status = 'Marital status is required';
+      if (!formData.education_level) newErrors.education_level = 'Education level is required';
+      if (formData.education_level === 'other' && !formData.custom_education) newErrors.custom_education = 'Custom education level is required';
+      if (!formData.residential_status) newErrors.residential_status = 'Residential status is required';
+      if (!formData.family_size) newErrors.family_size = 'Family size is required';
+      if (!formData.disability) newErrors.disability = 'Disability status is required';
+      if (formData.disability === 'yes' && !formData.disability_type) newErrors.disability_type = 'Disability type is required';
+      if (formData.disability_type === 'other' && !formData.custom_disability) newErrors.custom_disability = 'Custom disability is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -57,9 +84,19 @@ const ProfileForm = () => {
     try {
       const submitData = {
         ...formData,
-        state: formData.state === 'Other' ? formData.customState : formData.state
+        gender: formData.gender === 'other' ? formData.custom_gender : formData.gender,
+        occupation: formData.occupation === 'other' ? formData.custom_occupation : formData.occupation,
+        state: formData.state === 'Other' ? formData.customState : formData.state,
+        education_level: formData.education_level === 'other' ? formData.custom_education : formData.education_level,
+        disability_status: formData.disability === 'no' ? 'none' : formData.disability_type === 'other' ? formData.custom_disability : formData.disability_type
       };
+      delete submitData.custom_gender;
+      delete submitData.custom_occupation;
       delete submitData.customState;
+      delete submitData.custom_education;
+      delete submitData.custom_disability;
+      delete submitData.disability;
+      delete submitData.disability_type;
       
       // Save to localStorage for persistence
       localStorage.setItem('userProfile', JSON.stringify(submitData));
@@ -87,7 +124,6 @@ const ProfileForm = () => {
     }
   };
 
-  // ... rest of the component remains the same
   const renderStepIndicator = () => {
     const steps = [
       { id: 1, title: 'Profile Details', description: 'Basic information' },
@@ -180,9 +216,10 @@ const ProfileForm = () => {
                 className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
               >
                 <option value="">Select Age Group</option>
-                <option value="student">Student (18-25)</option>
-                <option value="young adult">Young Adult (25-35)</option>
-                <option value="adult">Adult (35+)</option>
+                <option value="below_18">Below 18</option>
+                <option value="18_25">18-25</option>
+                <option value="25_35">25-35</option>
+                <option value="35_plus">35+</option>
               </select>
               {errors.age_group && <p className="text-red-500 text-sm mt-1">{errors.age_group}</p>}
             </div>
@@ -205,6 +242,23 @@ const ProfileForm = () => {
               {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
             </div>
           </div>
+
+          {formData.gender === 'other' && (
+            <div className="group animate-fadeIn">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Users className="w-6 h-6 mr-3 text-indigo-500" />
+                Custom Gender
+              </label>
+              <input
+                type="text"
+                value={formData.custom_gender}
+                onChange={(e) => handleInputChange('custom_gender', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
+                placeholder="Enter your gender"
+              />
+              {errors.custom_gender && <p className="text-red-500 text-sm mt-1">{errors.custom_gender}</p>}
+            </div>
+          )}
           
           <div className="grid md:grid-cols-2 gap-6">
             <div className="group">
@@ -221,19 +275,21 @@ const ProfileForm = () => {
                 <option value="student">Student</option>
                 <option value="farmer">Farmer</option>
                 <option value="employed">Employed</option>
+                <option value="other">Other</option>
               </select>
               {errors.occupation && <p className="text-red-500 text-sm mt-1">{errors.occupation}</p>}
             </div>
-            
+
             <div className="group">
               <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
                 <DollarSign className="w-6 h-6 mr-3 text-indigo-500" />
                 Income Level
               </label>
               <select
-                value={formData.income_level}
+                value={formData.occupation === 'student' ? '' : formData.income_level}
                 onChange={(e) => handleInputChange('income_level', e.target.value)}
-                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
+                disabled={formData.occupation === 'student'}
+                className={`w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none ${formData.occupation === 'student' ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <option value="">Select Income Level</option>
                 <option value="low">Low</option>
@@ -243,6 +299,170 @@ const ProfileForm = () => {
               {errors.income_level && <p className="text-red-500 text-sm mt-1">{errors.income_level}</p>}
             </div>
           </div>
+
+          {formData.occupation === 'other' && (
+            <div className="group animate-fadeIn">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Briefcase className="w-6 h-6 mr-3 text-indigo-500" />
+                Custom Occupation
+              </label>
+              <input
+                type="text"
+                value={formData.custom_occupation}
+                onChange={(e) => handleInputChange('custom_occupation', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
+                placeholder="Enter your occupation"
+              />
+              {errors.custom_occupation && <p className="text-red-500 text-sm mt-1">{errors.custom_occupation}</p>}
+            </div>
+          )}
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="group">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Heart className="w-6 h-6 mr-3 text-indigo-500" />
+                Marital Status
+              </label>
+              <select
+                value={formData.marital_status}
+                onChange={(e) => handleInputChange('marital_status', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
+              >
+                <option value="">Select Marital Status</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+              </select>
+              {errors.marital_status && <p className="text-red-500 text-sm mt-1">{errors.marital_status}</p>}
+            </div>
+            
+            <div className="group">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <School className="w-6 h-6 mr-3 text-indigo-500" />
+                Education Level
+              </label>
+              <select
+                value={formData.education_level}
+                onChange={(e) => handleInputChange('education_level', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
+              >
+                <option value="">Select Education Level</option>
+                <option value="secondary">Secondary</option>
+                <option value="higher_secondary">Higher Secondary</option>
+                <option value="ug">UG</option>
+                <option value="pg">PG</option>
+                <option value="other">Other</option>
+              </select>
+              {errors.education_level && <p className="text-red-500 text-sm mt-1">{errors.education_level}</p>}
+            </div>
+          </div>
+
+          {formData.education_level === 'other' && (
+            <div className="group animate-fadeIn">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <School className="w-6 h-6 mr-3 text-indigo-500" />
+                Custom Education Level
+              </label>
+              <input
+                type="text"
+                value={formData.custom_education}
+                onChange={(e) => handleInputChange('custom_education', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
+                placeholder="Enter your education level"
+              />
+              {errors.custom_education && <p className="text-red-500 text-sm mt-1">{errors.custom_education}</p>}
+            </div>
+          )}
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="group">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Home className="w-6 h-6 mr-3 text-indigo-500" />
+                Residential Status
+              </label>
+              <select
+                value={formData.residential_status}
+                onChange={(e) => handleInputChange('residential_status', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
+              >
+                <option value="">Select Residential Status</option>
+                <option value="urban">Urban</option>
+                <option value="rural">Rural</option>
+              </select>
+              {errors.residential_status && <p className="text-red-500 text-sm mt-1">{errors.residential_status}</p>}
+            </div>
+            
+            <div className="group">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Users className="w-6 h-6 mr-3 text-indigo-500" />
+                Family Size
+              </label>
+              <input
+                type="number"
+                min="1"
+                value={formData.family_size}
+                onChange={(e) => handleInputChange('family_size', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
+                placeholder="Enter family size"
+              />
+              {errors.family_size && <p className="text-red-500 text-sm mt-1">{errors.family_size}</p>}
+            </div>
+          </div>
+          
+          <div className="group">
+            <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+              <Heart className="w-6 h-6 mr-3 text-indigo-500" />
+              Disability
+            </label>
+            <select
+              value={formData.disability}
+              onChange={(e) => handleInputChange('disability', e.target.value)}
+              className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
+            >
+              <option value="">Select Disability</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            {errors.disability && <p className="text-red-500 text-sm mt-1">{errors.disability}</p>}
+          </div>
+
+          {formData.disability === 'yes' && (
+            <div className="group animate-fadeIn">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Heart className="w-6 h-6 mr-3 text-indigo-500" />
+                Disability Type
+              </label>
+              <select
+                value={formData.disability_type}
+                onChange={(e) => handleInputChange('disability_type', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 bg-gray-50 focus:bg-white group-hover:border-gray-300 appearance-none"
+              >
+                <option value="">Select Disability Type</option>
+                <option value="visual">Visual</option>
+                <option value="hearing">Hearing</option>
+                <option value="other">Other</option>
+              </select>
+              {errors.disability_type && <p className="text-red-500 text-sm mt-1">{errors.disability_type}</p>}
+            </div>
+          )}
+
+          {formData.disability_type === 'other' && (
+            <div className="group animate-fadeIn">
+              <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                <Heart className="w-6 h-6 mr-3 text-indigo-500" />
+                Custom Disability
+              </label>
+              <input
+                type="text"
+                value={formData.custom_disability}
+                onChange={(e) => handleInputChange('custom_disability', e.target.value)}
+                className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-lg text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white group-hover:border-gray-300"
+                placeholder="Enter disability type"
+              />
+              {errors.custom_disability && <p className="text-red-500 text-sm mt-1">{errors.custom_disability}</p>}
+            </div>
+          )}
           
           <div className="group">
             <label className="flex items-center text-lg font-semibold text-gray-800 mb-3">
@@ -319,10 +539,20 @@ const ProfileForm = () => {
         <div className="space-y-5">
           {[
             { icon: User, label: 'Name', value: formData.name },
-            { icon: Calendar, label: 'Age Group', value: formData.age_group },
-            { icon: Users, label: 'Gender', value: formData.gender },
-            { icon: Briefcase, label: 'Occupation', value: formData.occupation },
+            { icon: Calendar, label: 'Age Group', value: {
+              'below_18': 'Below 18',
+              '18_25': '18-25',
+              '25_35': '25-35',
+              '35_plus': '35+'
+            }[formData.age_group] || formData.age_group },
+            { icon: Users, label: 'Gender', value: formData.gender === 'other' ? formData.custom_gender : formData.gender },
+            { icon: Briefcase, label: 'Occupation', value: formData.occupation === 'other' ? formData.custom_occupation : formData.occupation },
             { icon: DollarSign, label: 'Income Level', value: formData.income_level },
+            { icon: Heart, label: 'Marital Status', value: formData.marital_status },
+            { icon: School, label: 'Education Level', value: formData.education_level === 'other' ? formData.custom_education : formData.education_level },
+            { icon: Home, label: 'Residential Status', value: formData.residential_status },
+            { icon: Users, label: 'Family Size', value: formData.family_size },
+            { icon: Heart, label: 'Disability Status', value: formData.disability === 'no' ? 'No' : formData.disability_type === 'other' ? formData.custom_disability : formData.disability_type },
             { icon: MapPin, label: 'State', value: formData.state === 'Other' ? formData.customState : formData.state }
           ].map(({ icon: Icon, label, value }, index) => (
             <div key={label} className="flex items-center justify-between p-6 bg-gradient-to-r from-gray-50 to-gray-100/50 rounded-2xl border border-gray-100 hover:shadow-md transition-all duration-200">
