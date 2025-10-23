@@ -18,6 +18,9 @@ function App() {
 
   const shouldShowSidebar = location.pathname !== '/' && location.pathname !== '/profileform' && location.pathname !== '/login' && location.pathname !== '/signup';
   const isLandingPage = location.pathname === '/';
+  const isSignUpPage = location.pathname === '/signup';
+  const isLoginPage = location.pathname === '/login';
+  const isProfileFormPage = location.pathname === '/profileform';
 
   return (
     <div className="flex h-screen">
@@ -46,8 +49,8 @@ function App() {
       </div>
 
       {/* Chatbot - exclude landing */}
-      {!isLandingPage && <Chatbot />}
-
+      {!isLandingPage && !isSignUpPage && !isLoginPage && !isProfileFormPage && <Chatbot />}
+      
       {/* AccessibilityDialog can go here if needed */}
     </div>
   );

@@ -9,6 +9,7 @@
     "framer-motion": "^12.23.22",
     "groq-sdk": "^0.32.0",
     "jsonwebtoken": "^9.0.2",
+    "jspdf": "^3.0.3",
     "mongoose": "^8.19.0",
     "numpy": "^0.0.1",
     "pandas": "^0.0.3",

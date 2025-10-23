@@ -982,6 +982,7 @@ const SchemeDetail = () => {
                 }}
                 className="flex-1 max-w-md inline-flex items-center justify-center px-6 py-4 border-2 border-blue-600 text-blue-600 rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-base"
               >
+                
                 <Download className="w-5 h-5 mr-2" />
                 Download Form
               </button>

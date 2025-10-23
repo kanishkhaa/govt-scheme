@@ -6,24 +6,84 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' });
+  const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  // Validation patterns
+  const validators = {
+    name: {
+      pattern: /^[A-Za-z\s]{2,50}$/,
+      message: 'Name must be 2-50 characters long and contain only letters and spaces'
+    },
+    email: {
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: 'Please enter a valid email address'
+    },
+    phone: {
+      pattern: /^\+?[\d\s-]{10,15}$/,
+      message: 'Phone number must be 10-15 digits (may include +, spaces, or dashes)'
+    },
+    password: {
+      pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      message: 'Password must be at least 8 characters long and include a letter, number, and special character'
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    Object.keys(form).forEach((key) => {
+      if (!form[key]) {
+        newErrors[key] = 'This field is required';
+      } else if (validators[key] && !validators[key].pattern.test(form[key])) {
+        newErrors[key] = validators[key].message;
+      }
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    
+    // Clear error when user starts typing valid input
+    if (value && validators[name]?.pattern.test(value)) {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('');
+
+    if (!validateForm()) {
+      setMessage('Please fix the form errors before submitting');
+      return;
+    }
+
     try {
       const res = await axios.post('http://localhost:3000/auth/signup', form, {
         headers: { 'Content-Type': 'application/json' },
       });
-      setMessage('Signup successful!');
+
+      // Verify JWT token exists in response
+      if (!res.data.token) {
+        throw new Error('No authentication token received');
+      }
+
+      // Store JWT securely
       localStorage.setItem('token', res.data.token);
+      setMessage('Signup successful! Redirecting...');
+
+      // Redirect after 2 seconds
       setTimeout(() => {
-        navigate('/profileform'); // Redirect after signup
+        navigate('/profileform');
       }, 2000);
     } catch (err) {
-      setMessage(err.response?.data?.error || 'Signup failed');
+      const errorMessage = err.response?.data?.error || 'Signup failed. Please try again.';
+      setMessage(errorMessage);
+      console.error('Signup error:', err);
     }
   };
 
@@ -43,52 +103,69 @@ function Signup() {
         <div className="md:w-1/2 w-full">
           <h2 className="text-3xl font-bold text-sky-700 mb-6 text-center">Create Your Account</h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-4">
             <div>
               <input
                 name="name"
                 placeholder="Full Name"
+                value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200"
+                className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-200 ${
+                  errors.name ? 'border-red-500 focus:ring-red-500' : 'border-sky-200 focus:ring-sky-500'
+                }`}
               />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
             <div>
               <input
                 type="email"
                 name="email"
                 placeholder="Email Address"
+                value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200"
+                className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-200 ${
+                  errors.email ? 'border-red-500 focus:ring-red-500' : 'border-sky-200 focus:ring-sky-500'
+                }`}
               />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
             <div>
               <input
                 name="phone"
                 placeholder="Phone Number"
+                value={form.phone}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200"
+                className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-200 ${
+                  errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-sky-200 focus:ring-sky-500'
+                }`}
               />
+              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
             </div>
             <div>
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
+                value={form.password}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 transition duration-200"
+                className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-200 ${
+                  errors.password ? 'border-red-500 focus:ring-red-500' : 'border-sky-200 focus:ring-sky-500'
+                }`}
               />
+              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
             </div>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition duration-200 font-semibold"
             >
               Sign Up
             </button>
-          </form>
+          </div>
 
           <div className="mt-4 text-center">
             <button
